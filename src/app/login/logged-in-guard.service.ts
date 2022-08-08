@@ -8,6 +8,8 @@ export class LoggedInGuardService implements CanActivate {
 
     public token!: string | null;
     public isAuthenticated = false;
+    public userId = '';
+    public garage = "empty";
     endpointPrefix = environment.endpointPrefix;
 
     constructor(private _router: Router) {
@@ -42,6 +44,9 @@ export class LoggedInGuardService implements CanActivate {
             console.log(jsonData);
             sessionStorage.setItem('AuthToken', JSON.stringify(this.token))
             this.isAuthenticated = true;
+            this.userId = jsonData['id'];
+            console.log(this.userId);
+            this.garage = "";
             this._router.navigate(['/home']);
             return true;
 
