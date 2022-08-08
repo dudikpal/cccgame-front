@@ -9,6 +9,7 @@ import {
     Validators
 } from "@angular/forms";
 import {MyErrorStateMatcher} from "./myErrorStateMatcher";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-register',
@@ -30,11 +31,12 @@ export class RegisterComponent implements OnInit {
         confirmPassword: 'The passwords must be equal'
     };
     matcher = new MyErrorStateMatcher();
-
+    registrationSuccess = false;
 
     constructor(
         private authService: LoggedInGuardService,
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private router: Router
     ) {
     }
 
@@ -94,6 +96,7 @@ export class RegisterComponent implements OnInit {
 
                 const jsonData = await JSON.parse(response);
                 this.result = jsonData['message'];
+                this.registrationSuccess = true;
             } else {
                 this.result = 'Error response'
             }
@@ -105,4 +108,7 @@ export class RegisterComponent implements OnInit {
 
     }
 
+    toLogin() {
+        this.router.navigate(['/login']);
+    }
 }

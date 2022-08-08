@@ -53,9 +53,11 @@
                     {{errors.confirmPassword}}
                 </mat-error>
             </mat-form-field>
-            <button mat-raised-button color="primary" [disabled]="userRegistrationForm.invalid" (click)="onSubmit()">Register</button>
+            <button mat-raised-button color="primary" [disabled]="userRegistrationForm.invalid || registrationSuccess" (click)="onSubmit()">Register</button>
+            <button mat-raised-button color="primary" *ngIf="registrationSuccess" (click)="toLogin()">
+                Login
+            </button>
         </form>
     </mat-card-content>
-    <mat-divider></mat-divider>
     <h4>{{userRegistrationForm.errors}}</h4>
 </mat-card>

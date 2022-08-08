@@ -24,7 +24,7 @@ export class GarageComponent implements OnInit {
 
     ngOnInit(): void {
 
-        this.tryRequest();
+        //this.tryRequest();
         this.getPlayerCards();
 
     }
