@@ -38,7 +38,7 @@
         <a
                 *ngFor="let tile of footerTiles"
 
-        (click)=toGarage()>
+        (click)="navigate(tile.click)">
         <mat-grid-tile
                 class="text footer"
                 [colspan]="tile.cols"
@@ -50,7 +50,7 @@
     <h2>{{content}}</h2>
 
     <button
-            (click)="toGarage()">
+          (click)="toGarage()"  >
         My Garage
     </button>
 </div>

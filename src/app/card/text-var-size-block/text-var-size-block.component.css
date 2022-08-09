@@ -1,0 +1,10 @@
+h1 {
+    font-family: "Calibri Light";
+    display: flex;
+    white-space: nowrap;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+

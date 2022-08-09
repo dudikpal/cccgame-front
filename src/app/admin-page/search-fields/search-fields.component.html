@@ -1,0 +1,13 @@
+<div class="input-group row"
+     *ngFor="let prop of initProps"
+>
+    <label for="search_{{prop.identifier}}"
+           [innerHTML]='prop.name'>
+
+    </label>
+    <input
+        class="input-group"
+        type="text"
+        id="search_{{prop.identifier}}"
+        [attr.data-search]=prop.identifier>
+</div>

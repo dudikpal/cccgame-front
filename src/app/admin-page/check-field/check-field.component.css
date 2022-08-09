@@ -1,0 +1,18 @@
+.btn {
+    /*background-color: papayawhip;*/
+    height: 100%;
+    width: 100%;
+    background-color: #dfc2c4;
+    border: 1px solid black;
+    line-height: 0.9;
+    border: 0;
+}
+.form-check {
+    display: inline-flex;
+    padding: 3px;
+}
+
+[aria-pressed='true'] {
+    background-color: #0a58ca;
+    color: white;
+}

@@ -1,0 +1,14 @@
+<div>
+    <div class="container-fluid">
+        <!--<app-font-size-variable></app-font-size-variable>-->
+        <app-card
+            *ngFor="let card of cardList"
+            [card]="card"
+        >
+
+        </app-card>
+        <!--<app-popup-img
+            [hidden]="showPopup"
+        [popupCard]="popupCard"></app-popup-img>-->
+    </div>
+</div>

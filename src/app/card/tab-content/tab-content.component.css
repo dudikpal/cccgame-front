@@ -1,0 +1,15 @@
+.table th {
+    font-family: "Calibri Light";
+    font-size: 0.9em;
+    font-weight: bold;
+    text-align: left;
+}
+
+.table td {
+    font-family: "Calibri Light";
+    font-size: 1em;
+    text-align: right;
+}
+
+
+

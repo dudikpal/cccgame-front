@@ -24,9 +24,9 @@ export class HomeComponent implements OnInit {
     ];
 
     footerTiles = [
-        {text: '20000', cols: 1, rows: 1, color: '#B711E8', click: ''},
-        {text: '579', cols: 1, rows: 1, color: '#11A0E8', click: '/garage'},
-        {text: '69', cols: 1, rows: 1, color: '#B7A011', click: ''},
+        {text: '20000', cols: 1, rows: 1, color: '#B711E8', click: 'admin'},
+        {text: '579', cols: 1, rows: 1, color: '#11A0E8', click: 'garage'},
+        {text: '69', cols: 1, rows: 1, color: '#B7A011', click: 'garage'},
     ];
 
     listWidth = window.innerHeight * 0.8;
@@ -56,10 +56,15 @@ export class HomeComponent implements OnInit {
         this.content += '\nnparsed JWT: '
             + JSON.stringify(parseJwt(token));
 
-
         return this.content;
     }
 
+
+    navigate(page: string): void {
+        const url = `/${page}`;
+        console.log(url);
+        this.router.navigate([url]);
+    }
 
     toGarage() {
         this.router.navigate(['/garage']);

@@ -1,0 +1,12 @@
+<div class="form-check"
+     *ngFor="let prop of initProps">
+    <button class="btn shadow-none"
+            type="button"
+            autocomplete="off"
+            id="check_{{prop.identifier}}"
+            data-bs-toggle="button"
+            [innerHTML]="prop.name"
+            [attr.data-check] = prop.identifier
+            (click)="isSelected($event)"
+    ></button>
+</div>

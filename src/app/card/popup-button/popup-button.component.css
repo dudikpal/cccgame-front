@@ -1,0 +1,16 @@
+.popup-btn {
+    position: absolute;
+    top: 0rem;
+    right: 0rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 0px 10px 0px 0px;
+    opacity: 20%;
+    cursor: zoom-in;
+    line-height: 0rem;
+}
+
+img {
+    width: 100%;
+    top: 0px;
+}

@@ -1,0 +1,39 @@
+* {
+    background-color: #cfdce9;
+}
+
+.fight-table {
+    justify-content: center;
+    display: inline-flex;
+
+    align-content: center;
+}
+
+.card-place {
+    display: inline-flex;
+    position: relative;
+    transform-style: preserve-3d;
+
+    flex: none;
+    margin: 1rem 1rem;
+    height: 350px;
+    width: 260px;
+}
+
+.card-place .card-placeholder {
+    border-radius: 10px;
+    background: #9eb9d2;
+    box-shadow: inset 5px 5px 18px #363636,
+    inset -5px -5px 18px #dadada;
+    height: 100%;
+    width: 100%;
+
+    /*position: absolute;
+    background: #dee2e6;
+    border-radius: 10px;
+    box-shadow: 20px 20px 50px #00d2c6,
+    -30px -30px 60px #00ffff;
+    backface-visibility: hidden;*/
+    /*box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);*/
+    /*transition: transform 0.3s cubic-bezier(0.4, 0.2, 0.2, 1);*/
+}

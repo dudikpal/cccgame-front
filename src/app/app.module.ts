@@ -23,8 +23,27 @@ import {LoginComponent} from './login/login.component';
 import {HomeComponent} from './home/home.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {LoggedInGuardService} from "./login/logged-in-guard.service";
-import {GarageComponent} from './home/garage/garage.component';
+import {GarageComponent} from './garage/garage.component';
 import {RegisterComponent} from './register/register.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {EventService} from "./event.service";
+import {CardComponent} from "./card/card.component";
+import {DeckComponent} from "./deck/deck.component";
+import {TabContentComponent} from "./card/tab-content/tab-content.component";
+import {TextVarSizeBlockComponent} from "./card/text-var-size-block/text-var-size-block.component";
+import {AdminPageComponent} from "./admin-page/admin-page.component";
+import {SelectButtonComponent} from "./card/select-button/select-button.component";
+import {InputFieldComponent} from "./admin-page/input-field/input-field.component";
+import {CardListItemComponent} from "./admin-page/card-list/card-list-item/card-list-item.component";
+import {SearchFieldsComponent} from "./admin-page/search-fields/search-fields.component";
+import {CardListComponent} from "./admin-page/card-list/card-list.component";
+import {FightTableComponent} from "./fight-table/fight-table.component";
+import {PopupImgComponent} from "./card/popup-img/popup-img.component";
+import {PopupButtonComponent} from "./card/popup-button/popup-button.component";
+import {LockedImgComponent} from "./card/locked-img/locked-img.component";
+import {CheckFieldComponent} from "./admin-page/check-field/check-field.component";
+import {CardPreviewComponent} from "./admin-page/card-preview/card-preview.component";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -34,8 +53,25 @@ import {RegisterComponent} from './register/register.component';
         HomeComponent,
         GarageComponent,
         RegisterComponent,
+        CardComponent,
+        DeckComponent,
+        TabContentComponent,
+        TextVarSizeBlockComponent,
+        AdminPageComponent,
+        SelectButtonComponent,
+        InputFieldComponent,
+        CheckFieldComponent,
+        CardPreviewComponent,
+        CardListComponent,
+        CardListItemComponent,
+        SearchFieldsComponent,
+        FightTableComponent,
+        PopupImgComponent,
+        PopupButtonComponent,
+        LockedImgComponent,
     ],
     imports: [
+        HttpClientModule,
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
@@ -54,9 +90,11 @@ import {RegisterComponent} from './register/register.component';
         MatDividerModule,
         ReactiveFormsModule,
         MatGridListModule,
+        MatDialogModule
     ],
     providers: [LoggedInGuardService,
-        FormBuilder,],
+        FormBuilder,
+    EventService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

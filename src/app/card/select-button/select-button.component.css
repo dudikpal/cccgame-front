@@ -1,0 +1,19 @@
+.select_btn {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0px 0px 10px 10px;
+    background-color: #dfc2c4;
+    border: 1px solid black;
+    line-height: 0.5;
+    outline: 0;
+    border: 0;
+}
+
+.selected {
+    color: #f2e7c3;
+}
+
+.selected {
+    background-color: #0f5132;
+}

@@ -1,0 +1,12 @@
+<div class="input-group row"
+     *ngFor="let prop of initProps"
+>
+    <label for="input_{{prop.identifier}}"
+           [innerHTML]='prop.name'>
+
+    </label>
+    <input class="input-group" id="input_{{prop.identifier}}"
+           [(ngModel)]="selectedCard[prop.identifier].value"
+           [value]=selectedCard[prop.identifier].value
+           [attr.data-input]=prop.identifier>
+</div>

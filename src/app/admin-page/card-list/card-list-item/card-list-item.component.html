@@ -1,0 +1,5 @@
+<button
+    class="list-group-item list-group-item-action"
+    style="padding: 2px"
+*ngFor="let card of cardList"
+(click)="onClick(card)">{{card.manufacturer.value}} {{card.type.value}} {{card.year.value}}</button>

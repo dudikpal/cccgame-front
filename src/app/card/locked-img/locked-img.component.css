@@ -1,0 +1,11 @@
+.locked-btn {
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 10px 0px 0px 0px;
+    opacity: 20%;
+    cursor: not-allowed;
+    line-height: 0rem;
+}
