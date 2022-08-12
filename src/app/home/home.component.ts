@@ -11,10 +11,10 @@ export class HomeComponent implements OnInit {
 
     content!: string;
     centerTiles = [
-        {text: 'One', cols: 2, rows: 1, color: '#142A5C', image: 'https://i.stack.imgur.com/cDxxV.jpg?s=64&g=1'},
-        {text: 'Two', cols: 1, rows: 1, color: '#B7A0E8'},
-        {text: 'Three', cols: 1, rows: 2, color: '#FF0000'},
-        {text: 'Four', cols: 3, rows: 1, color: '#D9EDD9'},
+        {text: 'One', cols: 2, rows: 1, color: '#142A5C', click: 'garage', image: 'https://i.stack.imgur.com/cDxxV.jpg?s=64&g=1'},
+        {text: 'My garage', cols: 1, rows: 1, color: '#B7A0E8', click: 'garage', image: '../assets/img/mygarage.webp'},
+        {text: 'Three', cols: 1, rows: 2, color: '#FF0000', click: 'garage', image: 'https://i.stack.imgur.com/cDxxV.jpg?s=64&g=1'},
+        {text: 'Four', cols: 3, rows: 1, color: '#D9EDD9', click: 'garage', image: 'https://i.stack.imgur.com/cDxxV.jpg?s=64&g=1'},
        ];
 
     headerTiles = [
@@ -64,9 +64,5 @@ export class HomeComponent implements OnInit {
         const url = `/${page}`;
         console.log(url);
         this.router.navigate([url]);
-    }
-
-    toGarage() {
-        this.router.navigate(['/garage']);
     }
 }

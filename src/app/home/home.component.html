@@ -3,7 +3,7 @@
             class="header"
             [rowHeight]="'20:1.5'"
             cols="3"
-            >
+    >
         <mat-grid-tile
                 class="text"
                 *ngFor="let tile of headerTiles"
@@ -16,41 +16,35 @@
     <mat-grid-list
             cols="4"
             [rowHeight]="'20:17.5'"
-            [gutterSize]="'0rem'">
+            [gutterSize]="'0.1rem'">
         <mat-grid-tile
                 class="text"
                 *ngFor="let tile of centerTiles"
                 [colspan]="tile.cols"
                 [rowspan]="tile.rows"
-                [style.background]="tile.color"
+                [ngStyle]="{'background-image':'url(' + tile.image + ')',
+                'background-size': 'cover'
+                }"
+                (click)="navigate(tile.click)">
         >
-            <img
-                    src="assets/aston-martin-vantage_79941.webp"
-                    fxFlexFill>
-            <!--{{tile.text}}-->
+            <!--<img src="assets/aston-martin-vantage_79941.webp" fxFlexFill
+                 -->
+            {{tile.text}}
         </mat-grid-tile>
     </mat-grid-list>
     <mat-grid-list
             [rowHeight]="'20:1.5'"
-            cols="3"
-            >
-
-        <a
-                *ngFor="let tile of footerTiles"
-
-        (click)="navigate(tile.click)">
-        <mat-grid-tile
-                class="text footer"
-                [colspan]="tile.cols"
-                [rowspan]="tile.rows"
-                [style.background]="tile.color">
-        </mat-grid-tile>
-</a>
+            cols="3">
+        <a *ngFor="let tile of footerTiles">
+            <mat-grid-tile
+                    class="text footer"
+                    [colspan]="tile.cols"
+                    [rowspan]="tile.rows"
+                    [style.background]="tile.color">
+                {{tile.text}}
+            </mat-grid-tile>
+        </a>
     </mat-grid-list>
     <h2>{{content}}</h2>
 
-    <button
-          (click)="toGarage()"  >
-        My Garage
-    </button>
 </div>
