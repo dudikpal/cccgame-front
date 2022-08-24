@@ -40,17 +40,11 @@ export class GarageComponent implements OnInit {
                 'Authorization': payLoad,
             }
         });
+
         const responseData = await response.json();
-        /*console.log('response.json(): ');
-        console.log('json.stringify: '+ JSON.stringify(responseData));*/
-        //console.log(responseData.playerCards);
-
-        //this.playerCards = JSON.stringify(responseData);
-
         let cards = [];
+
         for (const plazerCard of responseData.playerCards) {
-            console.log('playerCard: ');
-            console.log(plazerCard.card);
             cards.push(plazerCard.card);
         }
 

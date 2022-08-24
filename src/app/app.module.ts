@@ -44,6 +44,7 @@ import {LockedImgComponent} from "./card/locked-img/locked-img.component";
 import {CheckFieldComponent} from "./admin-page/check-field/check-field.component";
 import {CardPreviewComponent} from "./admin-page/card-preview/card-preview.component";
 import {HttpClientModule} from "@angular/common/http";
+import { HomeMainComponent } from './home/home-main/home-main.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import {HttpClientModule} from "@angular/common/http";
         PopupImgComponent,
         PopupButtonComponent,
         LockedImgComponent,
+        HomeMainComponent,
     ],
     imports: [
         HttpClientModule,

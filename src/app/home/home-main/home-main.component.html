@@ -1,0 +1,19 @@
+<mat-grid-list
+        cols="4"
+        [rowHeight]="'20:17.5'"
+        [gutterSize]="'0.1rem'">
+    <mat-grid-tile
+            class="text"
+            *ngFor="let tile of centerTiles"
+            [colspan]="tile.cols"
+            [rowspan]="tile.rows"
+            [ngStyle]="{'background-image':'url(' + tile.image + ')',
+                'background-size': 'cover'
+                }"
+            (click)="navigate(tile.click)"
+    >
+        <!--<img src="assets/aston-martin-vantage_79941.webp" fxFlexFill
+             -->
+        {{tile.text}}
+    </mat-grid-tile>
+</mat-grid-list>
