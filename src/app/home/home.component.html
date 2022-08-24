@@ -40,7 +40,8 @@
                     class="text footer"
                     [colspan]="tile.cols"
                     [rowspan]="tile.rows"
-                    [style.background]="tile.color">
+                    [style.background]="tile.color"
+                    (click)="navigate(tile.click)">
                 {{tile.text}}
             </mat-grid-tile>
         </a>

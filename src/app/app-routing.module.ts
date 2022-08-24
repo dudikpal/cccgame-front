@@ -8,13 +8,13 @@ import {RegisterComponent} from "./register/register.component";
 import {AdminPageComponent} from "./admin-page/admin-page.component";
 
 const routes: Routes = [
-  {path: '', component: LoginComponent},
+  //{path: '/', redirectTo: 'login'},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'home', component: HomeComponent, canActivate: [LoggedInGuardService]},
   {path: 'garage', component: GarageComponent, canActivate: [LoggedInGuardService]},
   {path: 'admin', component: AdminPageComponent, canActivate: [LoggedInGuardService]},
-  {path: '**', component: LoginComponent},
+  {path: '**', redirectTo: 'login'},
 ];
 
 @NgModule({

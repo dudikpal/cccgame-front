@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {LoggedInGuardService} from "../login/logged-in-guard.service";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 import {environment} from "../../environments/environment";
+import {CardModel} from "../card/card.model";
 
 
 @Component({
@@ -15,7 +16,8 @@ export class GarageComponent implements OnInit {
     adminRole!: string;
     publicRole!: string;
     adminButton!: SafeHtml;
-    playerCards = 'Default content';
+    //playerCards = 'Default content';
+    playerCards! : CardModel[];
     endpointPrefix = environment.endpointPrefix;
 
     constructor(private authService: LoggedInGuardService,
@@ -39,8 +41,20 @@ export class GarageComponent implements OnInit {
             }
         });
         const responseData = await response.json();
-        console.log(responseData);
-        this.playerCards = JSON.stringify(responseData);
+        /*console.log('response.json(): ');
+        console.log('json.stringify: '+ JSON.stringify(responseData));*/
+        //console.log(responseData.playerCards);
+
+        //this.playerCards = JSON.stringify(responseData);
+
+        let cards = [];
+        for (const plazerCard of responseData.playerCards) {
+            console.log('playerCard: ');
+            console.log(plazerCard.card);
+            cards.push(plazerCard.card);
+        }
+
+        this.playerCards = cards;
     }
 
     async tryRequest() {

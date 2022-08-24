@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnChanges, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnChanges, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {EventService} from "../event.service";
 import {Event} from "@angular/router";
@@ -14,7 +14,7 @@ import {PopupImgComponent} from "../card/popup-img/popup-img.component";
 export class DeckComponent implements OnInit, OnChanges, AfterViewInit {
 
     showPopup = false;
-    cardList: any;
+    @Input() cardList: any;
 
 
     constructor(
@@ -25,11 +25,11 @@ export class DeckComponent implements OnInit, OnChanges, AfterViewInit {
 
     ngOnInit(): void {
 
-        this.getAllCard().subscribe(
+        /*this.getAllCard().subscribe(
             list => this.cardList = list,
             err => console.error(err),
             //() => console.log('Unsubscribed')
-        );
+        );*/
 
 
     }
@@ -44,9 +44,10 @@ export class DeckComponent implements OnInit, OnChanges, AfterViewInit {
 
     getAllCard() {
 
-        let url = 'http://localhost:8080/api/cards';
 
-        return this.http.get(url);
+        //let url = 'http://localhost:8080/api/cards';
+
+        //return this.http.get(url);
         // erre még rá kell nézni
         /*const response = fetch(
             url,
