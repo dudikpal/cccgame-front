@@ -10,7 +10,7 @@
             [ngStyle]="{'background-image':'url(' + tile.image + ')',
                 'background-size': 'cover'
                 }"
-            (click)="navigate(tile.click)"
+            [routerLink]="tile.routerlink"
     >
         <!--<img src="assets/aston-martin-vantage_79941.webp" fxFlexFill
              -->

@@ -16,12 +16,13 @@ const routes: Routes = [
         children: [
             {
                 path: '', component: HomeMainComponent
+            },
+            {
+                path: 'garage', component: GarageComponent
             }
         ],
         canActivate: [LoggedInGuardService]
     },
-    //{path: 'home-main', component: HomeMainComponent, outlet: 'homeCenter', canActivate: [LoggedInGuardService]},
-    {path: 'garage', component: GarageComponent, canActivate: [LoggedInGuardService]},
     {path: 'admin', component: AdminPageComponent, canActivate: [LoggedInGuardService]},
     {path: '**', redirectTo: 'login'},
 ];

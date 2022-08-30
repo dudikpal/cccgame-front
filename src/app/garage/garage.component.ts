@@ -43,7 +43,7 @@ export class GarageComponent implements OnInit {
 
         const responseData = await response.json();
         let cards = [];
-
+        console.log('fetchel');
         for (const plazerCard of responseData.playerCards) {
             cards.push(plazerCard.card);
         }
