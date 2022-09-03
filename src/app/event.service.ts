@@ -10,6 +10,8 @@ export class EventService {
 
     private gold = 0;
 
+    private cards: any;
+
     emitChildEvent(card: any) {
         this.childClickEvent.next(card);
     }
