@@ -3,6 +3,7 @@ import {LoggedInGuardService} from "../login/logged-in-guard.service";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 import {environment} from "../../environments/environment";
 import {CardModel} from "../card/card.model";
+import {EventService} from "../event.service";
 
 
 @Component({
@@ -17,7 +18,9 @@ export class GarageComponent implements OnInit {
     publicRole!: string;
     adminButton!: SafeHtml;
     //playerCards = 'Default content';
-    playerCards! : CardModel[];
+    //playerCards! : CardModel[];
+    // anyvel is megy
+    playerCards! : any[];
     endpointPrefix = environment.endpointPrefix;
 
     constructor(private authService: LoggedInGuardService,
@@ -49,6 +52,8 @@ export class GarageComponent implements OnInit {
         }
 
         this.playerCards = cards;
+
+        //this.playerCards = this.mainService.playerCards;
     }
 
     async tryRequest() {

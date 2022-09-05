@@ -2,6 +2,7 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {LoggedInGuardService} from "./logged-in-guard.service";
 import {AppComponent} from "../app.component";
 import {Router} from "@angular/router";
+import {EventService} from "../event.service";
 
 
 @Component({
@@ -33,8 +34,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     public async onSubmit() {
 
+        console.log('before senddataback');
         this.authService.isAuthenticated = await this.authService.sendLoginDataToBack(this.username, this.password);
-        //this.appComponent.isAuthenticated = this.isAuthenticated;
+        console.log('after senddataback');
+
+        if (this.authService.isAuthenticated) {
+            //this.mainService.getPlayerCards();
+        }
     }
 
     toRegistration() {

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
+import {EventService} from "../event.service";
 
 @Injectable()
 export class LoggedInGuardService implements CanActivate {
