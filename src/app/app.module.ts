@@ -101,8 +101,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     providers: [
         LoggedInGuardService,
         FormBuilder,
-        EventService,
-    LoginComponent],
+        EventService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

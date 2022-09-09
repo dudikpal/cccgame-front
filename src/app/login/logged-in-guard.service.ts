@@ -12,6 +12,7 @@ export class LoggedInGuardService implements CanActivate {
     public garageId = "empty";
     endpointPrefix = environment.endpointPrefix;
     public cards: any[] = [];
+    public isLoading = false;
 
     constructor(private _router: Router,
                 private mainService: EventService) {

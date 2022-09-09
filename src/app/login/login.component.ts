@@ -15,13 +15,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     public username = '';
     public password = '';
     public loginValid = true;
-    public isLoading = false;
+    //public isLoading = this.mainService.isLoading;
 
     constructor(
         private authService: LoggedInGuardService,
         private appComponent: AppComponent,
         private router: Router,
-        private mainService: EventService,
+        public mainService: EventService,
     ) {
     }
 
@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     public async onSubmit() {
         this.mainService.isLoading = true;
         this.mainService.userIsLoggedIn = await this.authService.sendLoginDataToBack(this.username, this.password);
+        this.mainService.isLoading = false;
     }
 
     toRegistration() {

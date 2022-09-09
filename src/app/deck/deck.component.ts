@@ -13,10 +13,11 @@ import {PopupImgComponent} from "../card/popup-img/popup-img.component";
 })
 export class DeckComponent implements OnInit {
 
-    @Input() cardList: any;
+    //@Input() cardList: any;
     page = 1;
     count = 0;
     itemsPerPage = 10;
+    cardList = this.eventService.playerCards;
 
     constructor(
         private eventService: EventService,
@@ -25,7 +26,7 @@ export class DeckComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.count = this.cardList.count;
+        this.count = this.cardList.length;
         /*this.getAllCard().subscribe(
             list => this.cardList = list,
             err => console.error(err),

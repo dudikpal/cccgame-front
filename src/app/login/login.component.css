@@ -7,3 +7,16 @@ mat-card {
 mat-form-field {
   display: block;
 }
+
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
+  stroke: mediumslateblue;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
