@@ -25,12 +25,14 @@
     <button mat-raised-button color="primary"
             (click)="toRegistration()">Register
     </button>
-    <div class="center"
+    <div class="overlay"
          *ngIf="this.mainService.isLoading">
-        <mat-spinner
-                diameter="300"
-                strokeWidth=5
-        >Fetching garage...
-        </mat-spinner>
+        <div class="center">
+            <mat-spinner
+                    diameter="300"
+                    strokeWidth=5
+            >Fetching garage...
+            </mat-spinner>
+        </div>
     </div>
 </mat-card>
