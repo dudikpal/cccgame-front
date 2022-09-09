@@ -1,9 +1,14 @@
 <div
     >
-    <div class="container-fluid">
+    <!--<div class="container-fluid">-->
         <!--<app-font-size-variable></app-font-size-variable>-->
         <app-card
-            *ngFor="let card of cardList"
+            *ngFor="let card of cardList | paginate : {
+                itemsPerPage: itemsPerPage,
+                  currentPage: page,
+                  totalItems: count
+};"
+
             [card]="card"
         >
 
@@ -11,5 +16,11 @@
         <!--<app-popup-img
             [hidden]="showPopup"
         [popupCard]="popupCard"></app-popup-img>-->
-    </div>
+    <pagination-controls
+            previousLabel="Prev"
+            nextLabel="Next"
+            (pageChange)="onDataChange($event)"
+    >
+    </pagination-controls>
+    <!--</div>-->
 </div>

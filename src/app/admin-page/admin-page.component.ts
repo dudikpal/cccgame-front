@@ -37,9 +37,9 @@ export class AdminPageComponent implements OnInit, OnChanges {
 
     ngOnInit(): void {
 
-        this.eventService.childEventListener().subscribe(card => {
+        this.eventService.childEventListener().subscribe(item => {
 
-            this.selectedCard = card;
+            this.selectedCard = item;
         });
 
         this.dataExtractor();

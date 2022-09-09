@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
 
     ngOnInit(): void {
         this.getAll();
-        //this.content = 'Login successful!';
+        this.content = 'Login successful!';
         window.innerWidth
 
     }
@@ -56,8 +56,6 @@ export class HomeComponent implements OnInit {
         };
         this.content += '\nnparsed JWT: '
             + JSON.stringify(parseJwt(token));
-
-        console.log(this.content);
 
         return this.content;
     }

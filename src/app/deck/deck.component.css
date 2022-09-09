@@ -11,6 +11,7 @@ body {
     display: grid;
     height: 100%;
     width: 100%;
+
     place-items: center;
     background: linear-gradient(375deg, #1cc7d0, #2ede98);
 }
@@ -18,4 +19,8 @@ body {
 ::selection {
     color: #fff;
     background: #1cc7d0;
+}
+
+ngb-pagination {
+    max-height: 100%;
 }

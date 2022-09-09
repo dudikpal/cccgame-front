@@ -8,17 +8,18 @@ import {EventService} from "../event.service";
 export class LoggedInGuardService implements CanActivate {
 
     public token!: string | null;
-    public isAuthenticated = false;
     public userId = '';
     public garageId = "empty";
     endpointPrefix = environment.endpointPrefix;
+    public cards: any[] = [];
 
-    constructor(private _router: Router) {
+    constructor(private _router: Router,
+                private mainService: EventService) {
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
 
-        if (!this.isAuthenticated) {
+        if (!this.mainService.userIsLoggedIn) {
             this._router.navigate(['/login']);
             return false;
         }
@@ -43,8 +44,9 @@ export class LoggedInGuardService implements CanActivate {
             const jsonData = await response.json();
             this.token = jsonData['jwt'].match(/(?<=ccgamer=).*?(?=;)/g).toString();
             console.log(jsonData);
-            sessionStorage.setItem('AuthToken', JSON.stringify(this.token))
-            this.isAuthenticated = true;
+            sessionStorage.setItem('AuthToken', JSON.stringify(this.token));
+            this.mainService.userIsLoggedIn = true;
+            await this.mainService.getPlayerCards();
             this.userId = jsonData['id'];
             this.garageId = jsonData['garageId'];
             console.log(this.garageId);

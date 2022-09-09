@@ -18,47 +18,30 @@ export class GarageComponent implements OnInit {
     publicRole!: string;
     adminButton!: SafeHtml;
     //playerCards = 'Default content';
-    //playerCards! : CardModel[];
-    // anyvel is megy
     playerCards! : any[];
     endpointPrefix = environment.endpointPrefix;
 
-    constructor(private authService: LoggedInGuardService,
-                private sanitizer: DomSanitizer) {
+    constructor(
+        //private authService: LoggedInGuardService,
+                private sanitizer: DomSanitizer,
+                public mainService: EventService) {
     }
 
     ngOnInit(): void {
-
+        console.log('garageinit');
         //this.tryRequest();
-        this.getPlayerCards();
+        //this.playerCards = this.mainService.playerCards;
 
     }
 
     async getPlayerCards() {
 
-        const payLoad = `ccgamer=${sessionStorage.getItem('AuthToken')!.replace(/\"/g, '')}`;
-
-        const response = await fetch(this.endpointPrefix + '/api/garage', {
-            headers: {
-                'Authorization': payLoad,
-            }
-        });
-
-        const responseData = await response.json();
-        let cards = [];
-        console.log('fetchel');
-        for (const plazerCard of responseData.playerCards) {
-            cards.push(plazerCard.card);
-        }
-
-        this.playerCards = cards;
-
-        //this.playerCards = this.mainService.playerCards;
+        this.playerCards = this.mainService.playerCards;
     }
 
     async tryRequest() {
 
-        const payLoad = `ccgamer=${sessionStorage.getItem('AuthToken')!.replace(/\"/g, '')}`;
+        /*const payLoad = `ccgamer=${sessionStorage.getItem('AuthToken')!.replace(/\"/g, '')}`;
 
         const responsePublic = await fetch(this.endpointPrefix + '/api/test/all');
         const publicText = await responsePublic.text();
@@ -70,7 +53,7 @@ export class GarageComponent implements OnInit {
             }
         });
         const userText = await responseUserRole.text();
-        this.userRole = userText;
+        this.userRole = userText;*/
 
         /*const responseAdminRole = await fetch(this.endpointPrefix + '/api/test/admin', {
           headers: {

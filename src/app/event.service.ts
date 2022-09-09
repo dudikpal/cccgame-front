@@ -1,7 +1,7 @@
 import {BehaviorSubject} from "rxjs";
 import {environment} from "../environments/environment";
-import {CardModel} from "./card/card.model";
 import {Injectable} from "@angular/core";
+import {LoginComponent} from "./login/login.component";
 
 @Injectable()
 export class EventService {
@@ -10,23 +10,29 @@ export class EventService {
 
     private childClickEvent = new BehaviorSubject({});
 
-    private userIsLoggedIn = false;
+    public userIsLoggedIn = false;
 
-    private cash = 0;
+    public cash = 0;
 
-    private gold = 0;
+    public gold = 0;
 
-    public playerCards!: any[];
+    public playerCards! : any[];
 
-    emitChildEvent(card: any) {
-        this.childClickEvent.next(card);
+    public isLoading = false;
+
+    constructor() {
+    }
+
+    emitChildEvent(item: any) {
+        this.childClickEvent.next(item);
     }
 
     childEventListener() {
         return this.childClickEvent.asObservable();
     }
 
-    /*async getPlayerCards() {
+    async getPlayerCards() {
+
 
         const payLoad = `ccgamer=${sessionStorage.getItem('AuthToken')!.replace(/\"/g, '')}`;
 
@@ -38,11 +44,19 @@ export class EventService {
 
         const responseData = await response.json();
         let cards = [];
-        console.log('fetchel mainserviceben');
+        //console.log('fetchel');
+        for (let i = 0; i < 5; i++) {
+
         for (const plazerCard of responseData.playerCards) {
             cards.push(plazerCard.card);
         }
+        }
 
+        /*setTimeout(() => {
+            console.log('kokokokoko');
+        }, 5000);*/
         this.playerCards = cards;
-    }*/
+
+        //console.log('fetch ending');
+    }
 }

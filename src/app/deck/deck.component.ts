@@ -11,11 +11,12 @@ import {PopupImgComponent} from "../card/popup-img/popup-img.component";
     templateUrl: './deck.component.html',
     styleUrls: ['./deck.component.css']
 })
-export class DeckComponent implements OnInit, OnChanges, AfterViewInit {
+export class DeckComponent implements OnInit {
 
-    showPopup = false;
     @Input() cardList: any;
-
+    page = 1;
+    count = 0;
+    itemsPerPage = 10;
 
     constructor(
         private eventService: EventService,
@@ -24,7 +25,7 @@ export class DeckComponent implements OnInit, OnChanges, AfterViewInit {
     }
 
     ngOnInit(): void {
-
+        this.count = this.cardList.count;
         /*this.getAllCard().subscribe(
             list => this.cardList = list,
             err => console.error(err),
@@ -34,13 +35,9 @@ export class DeckComponent implements OnInit, OnChanges, AfterViewInit {
 
     }
 
-    ngOnChanges() {
-
+    onDataChange(event: any) {
+        this.page = event;
     }
-
-    ngAfterViewInit() {
-    }
-
 
     getAllCard() {
 

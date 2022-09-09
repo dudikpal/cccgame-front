@@ -2,6 +2,7 @@ import {Component, OnChanges, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {environment} from "../environments/environment";
 import {LoggedInGuardService} from "./login/logged-in-guard.service";
+import {EventService} from "./event.service";
 
 
 @Component({
@@ -14,7 +15,8 @@ export class AppComponent implements OnInit, OnChanges {
     endpointPrefix = environment.endpointPrefix;
 
     constructor(private router: Router,
-                public authService: LoggedInGuardService) {
+                public authService: LoggedInGuardService,
+                public mainService: EventService) {
 
     }
 
@@ -23,13 +25,13 @@ export class AppComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(): void {
-        console.log('app-compban: ' + this.authService.isAuthenticated)
+        console.log('app-compban: ' + this.mainService.userIsLoggedIn)
     }
 
 
     public async logout() {
         //sessionStorage.removeItem('AuthToken');
-        this.authService.isAuthenticated = false;
+        this.mainService.userIsLoggedIn = false;
         /*const response = await fetch(this.endpointPrefix + "/api/auth/signout", {
             method: 'POST',
             headers: {

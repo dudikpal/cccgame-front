@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Injectable, Input, OnDestroy, OnInit} from '@angular/core';
 import {LoggedInGuardService} from "./logged-in-guard.service";
 import {AppComponent} from "../app.component";
 import {Router} from "@angular/router";
@@ -15,13 +15,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     public username = '';
     public password = '';
     public loginValid = true;
-
-    isAuthenticated: boolean = false;
+    public isLoading = false;
 
     constructor(
         private authService: LoggedInGuardService,
         private appComponent: AppComponent,
-        private router: Router
+        private router: Router,
+        private mainService: EventService,
     ) {
     }
 
@@ -33,17 +33,16 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     public async onSubmit() {
-
-        console.log('before senddataback');
-        this.authService.isAuthenticated = await this.authService.sendLoginDataToBack(this.username, this.password);
-        console.log('after senddataback');
-
-        if (this.authService.isAuthenticated) {
-            //this.mainService.getPlayerCards();
-        }
+        this.mainService.isLoading = true;
+        this.mainService.userIsLoggedIn = await this.authService.sendLoginDataToBack(this.username, this.password);
     }
 
     toRegistration() {
         this.router.navigate(['/register']);
+    }
+
+    public showSpinner(): void {
+
+
     }
 }

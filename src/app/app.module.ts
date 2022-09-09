@@ -45,6 +45,8 @@ import {CheckFieldComponent} from "./admin-page/check-field/check-field.componen
 import {CardPreviewComponent} from "./admin-page/card-preview/card-preview.component";
 import {HttpClientModule} from "@angular/common/http";
 import { HomeMainComponent } from './home/home-main/home-main.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -92,11 +94,15 @@ import { HomeMainComponent } from './home/home-main/home-main.component';
         MatDividerModule,
         ReactiveFormsModule,
         MatGridListModule,
-        MatDialogModule
+        MatDialogModule,
+        MatProgressSpinnerModule,
+        NgxPaginationModule,
     ],
-    providers: [LoggedInGuardService,
+    providers: [
+        LoggedInGuardService,
         FormBuilder,
-    EventService],
+        EventService,
+    LoginComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {
