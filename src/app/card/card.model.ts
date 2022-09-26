@@ -52,7 +52,7 @@ export class CardModel {
 
     imageUrl = { name: "Car image URL", value: "assets/img/placeholder.png" };
 
-    logoURL = { name: "Logo URL", value: "assets/img/placeholder.png" };
+    logoURL = { name: "Logo (assets/img/)", value: "placeholder.png" };
 
     carPageUrl = { name: "Car page Url", value: "N/A" };
 

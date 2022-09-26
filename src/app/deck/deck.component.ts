@@ -17,7 +17,7 @@ export class DeckComponent implements OnInit {
     page = 1;
     count = 0;
     itemsPerPage = 10;
-    cardList = this.eventService.playerCards;
+    cardList: any[] = [];
 
     constructor(
         private eventService: EventService,
@@ -26,6 +26,9 @@ export class DeckComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.cardList = this.eventService.playerCards;
+        console.log('deckben');
+        console.log(this.cardList);
         this.count = this.cardList.length;
         /*this.getAllCard().subscribe(
             list => this.cardList = list,

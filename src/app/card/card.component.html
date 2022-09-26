@@ -1,16 +1,16 @@
 <!--onclick="this.classList.toggle('flipCard')"-->
 <div class="wrapper"
-     [id]=card.id.value
-     (click)="frontClick(card.id.value)">
+     [id]=playerCard.id.value
+     (click)="frontClick(playerCard.id.value)">
     <div class="card front-face">
         <div
             class="img-container">
             <img
                 class="img-car"
-                [style.width]=card.objectWidth.value
-                [style.height]=card.objectHeight.value
-                [style.object-position]="card.objectPositionHorizontal.value + ' ' + card.objectPositionVertical.value"
-                [src]=card.imageUrl.value
+                [style.width]=playerCard.card.value.objectWidth.value
+                [style.height]=playerCard.card.value.objectHeight.value
+                [style.object-position]="playerCard.card.value.objectPositionHorizontal.value + ' ' + playerCard.card.value.objectPositionVertical.value"
+                [src]=playerCard.card.value.imageUrl.value
             />
 
             <app-locked-img>
@@ -18,7 +18,7 @@
             </app-locked-img>
 
             <app-popup-button
-            [card] = card>
+            [playerCard] = playerCard>
 
             </app-popup-button>
         </div>
@@ -28,20 +28,21 @@
             <img
                 class="img-logo"
 
-                [src]=card.logoURL.value>
+                [src]=generateLogoUrl(playerCard.card.value.logoURL.value)>
             <div class="card-title">
-                {{card.manufacturer.value}}
+                {{playerCard.card.value.manufacturer.value}}
             </div>
+            <div>{{playerCard.card.value.country.value}}</div>
         </div>
         <app-text-var-size-block
             class="type-row"
-            [card]="card"
+            [playerCard]="playerCard"
         ></app-text-var-size-block>
 
         <app-tab-content class="front-table"
                          [datas]="frontDatas()"></app-tab-content>
         <app-select-button
-            [cardId]=card.id.value
+            [cardId]=playerCard.id.value
 
         ></app-select-button>
 
@@ -50,45 +51,45 @@
     <div class="card back-face"
          onclick="event.stopPropagation()">
         <button class="back-face-top"
-                (click)="flipToFront(card.id.value)">
+                (click)="flipToFront(playerCard.id.value)">
             &#8656;
         </button>
         <div class="container-fluid">
-            <ul class="nav nav-tabs nav-fill nav-justified" id="back-tabs_{{card.id.value}}">
+            <ul class="nav nav-tabs nav-fill nav-justified" id="back-tabs_{{playerCard.id.value}}">
                 <li
                     class="nav-item">
-                    <a class="nav-link active" href="#i_{{card.id.value}}" data-bs-toggle="tab">I</a>
+                    <a class="nav-link active" href="#i_{{playerCard.id.value}}" data-bs-toggle="tab">I</a>
                 </li>
                 <li
                     class="nav-item">
-                    <a class="nav-link" href="#ii_{{card.id.value}}" data-bs-toggle="tab">II</a>
+                    <a class="nav-link" href="#ii_{{playerCard.id.value}}" data-bs-toggle="tab">II</a>
                 </li>
                 <li
                     class="nav-item">
-                    <a class="nav-link" href="#iii_{{card.id.value}}" data-bs-toggle="tab">III</a>
+                    <a class="nav-link" href="#iii_{{playerCard.id.value}}" data-bs-toggle="tab">III</a>
                 </li>
                 <li
                     class="nav-item">
-                    <a class="nav-link" href="#iv_{{card.id.value}}" data-bs-toggle="tab">IV</a>
+                    <a class="nav-link" href="#iv_{{playerCard.id.value}}" data-bs-toggle="tab">IV</a>
                 </li>
             </ul>
         </div>
         <div class="tab-content container-fluid" id="back-tabs-content">
             <div
                 class="tab-pane active"
-                id="i_{{card.id.value}}">
+                id="i_{{playerCard.id.value}}">
                 <app-tab-content
                     [datas]=iTabDatas()></app-tab-content>
             </div>
-            <div class="tab-pane" id="ii_{{card.id.value}}">
+            <div class="tab-pane" id="ii_{{playerCard.id.value}}">
                 <app-tab-content
                     [datas]=iiTabDatas()></app-tab-content>
             </div>
-            <div class="tab-pane" id="iii_{{card.id.value}}">
+            <div class="tab-pane" id="iii_{{playerCard.id.value}}">
                 <app-tab-content
                     [datas]=iiiTabDatas()></app-tab-content>
             </div>
-            <div class="tab-pane" id="iv_{{card.id.value}}">
+            <div class="tab-pane" id="iv_{{playerCard.id.value}}">
                 <app-tab-content
                     [datas]=ivTabDatas()></app-tab-content>
             </div>

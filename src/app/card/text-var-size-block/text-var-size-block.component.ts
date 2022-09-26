@@ -8,7 +8,7 @@ import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 })
 export class TextVarSizeBlockComponent implements OnInit, AfterViewInit {
 
-    @Input() card!: any;
+    @Input() playerCard!: any;
 
     constructor() {
     }
@@ -17,7 +17,7 @@ export class TextVarSizeBlockComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        const typeBlock = document.querySelector(`#type_${this.card.id.value}`);
+        const typeBlock = document.querySelector(`#type_${this.playerCard.id.value}`);
         //const typeBlock = document.querySelector('[id^="type_"]');
         this.calcTypeSize(typeBlock);
 
@@ -30,7 +30,7 @@ export class TextVarSizeBlockComponent implements OnInit, AfterViewInit {
         let fontSize = 18;
         let fontStyle = `bolder ${fontSize}pt roboto`;
         context.font = fontStyle;
-        let actualWidth = context.measureText(this.card.type.value).width;
+        let actualWidth = context.measureText(this.playerCard.card.value.type.value).width;
 
         // ráhagyás nélkül nem húzta ki teljesen
         while (element.clientWidth + 20 < actualWidth) {
@@ -38,7 +38,7 @@ export class TextVarSizeBlockComponent implements OnInit, AfterViewInit {
             fontSize--;
             fontStyle = `bolder ${fontSize}pt roboto`;
             context.font = fontStyle;
-            actualWidth = context.measureText(this.card.type.value).width;
+            actualWidth = context.measureText(this.playerCard.card.value.type.value).width;
         }
 
         element.style.fontSize = `${fontSize}pt`;

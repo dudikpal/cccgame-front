@@ -12,7 +12,7 @@ import {CardModel} from "../card.model";
 })
 export class PopupButtonComponent implements OnInit {
 
-    @Input() card!: CardModel;
+    @Input() playerCard!: CardModel;
 
 
     constructor(
@@ -27,6 +27,6 @@ export class PopupButtonComponent implements OnInit {
         // @ts-ignore
         event.stopPropagation();
         let dialogRef = this.dialog.open(PopupImgComponent);
-        dialogRef.componentInstance.popupCard = this.card;
+        dialogRef.componentInstance.playerCard = this.playerCard;
     }
 }

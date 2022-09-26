@@ -4,6 +4,7 @@ import {addWarning} from "@angular-devkit/build-angular/src/utils/webpack-diagno
 import {Event} from "@angular/router";
 import {EventService} from "../event.service";
 import {CardModel} from "./card.model";
+import {environment} from "../../environments/environment";
 
 @Component({
     selector: 'app-card',
@@ -12,8 +13,9 @@ import {CardModel} from "./card.model";
 })
 export class CardComponent implements OnInit {
 
-    @Input() card!: CardModel;
+    @Input() playerCard!: any;
 
+    manufacturerLogoUrlPrefix = environment.imgFilePrefix;
 
 
     constructor(
@@ -23,7 +25,7 @@ export class CardComponent implements OnInit {
 
 
     ngOnInit(): void {
-
+        console.log(this.playerCard);
         /*const image = document.querySelector(".img-car") as HTMLElement;
         image.style.width = this.card.objectWidth.value;
         image.style.height = this.card.objectHeight.value;
@@ -36,7 +38,9 @@ export class CardComponent implements OnInit {
 
     }
 
-
+public generateLogoUrl(filename: string) {
+        return this.manufacturerLogoUrlPrefix + filename;
+}
 
     public flipToFront(givenId: any) {
 
@@ -49,60 +53,60 @@ export class CardComponent implements OnInit {
     frontDatas() {
 
         return [
-            this.card.topSpeed,
-            this.card.acceleration,
-            this.card.driveWheel,
-            this.card.engineCapacity,
+            this.playerCard.card.value.topSpeed,
+            this.playerCard.card.value.acceleration,
+            this.playerCard.card.value.driveWheel,
+            this.playerCard.card.value.engineCapacity,
         ];
     }
 
     iTabDatas() {
 
         return [
-            this.card.acceleration,
-            this.card.topSpeed,
-            this.card.engineCapacity,
-            this.card.maxTorque,
-            this.card.weight,
-            this.card.fuelTankCapacity,
-            this.card.groundClearance,
+            this.playerCard.card.value.acceleration,
+            this.playerCard.card.value.topSpeed,
+            this.playerCard.card.value.engineCapacity,
+            this.playerCard.card.value.maxTorque,
+            this.playerCard.card.value.weight,
+            this.playerCard.card.value.fuelTankCapacity,
+            this.playerCard.card.value.groundClearance,
         ];
     }
 
     iiTabDatas() {
 
         return [
-            this.card.year,
-            this.card.country,
-            this.card.driveWheel,
-            this.card.fuelType,
-            this.card.abs,
-            this.card.tractionControl
+            this.playerCard.card.value.year,
+            this.playerCard.card.value.country,
+            this.playerCard.card.value.driveWheel,
+            this.playerCard.card.value.fuelType,
+            this.playerCard.card.value.abs,
+            this.playerCard.card.value.tractionControl,
         ];
     }
 
     iiiTabDatas() {
 
         return [
-            this.card.body,
-            this.card.doors,
-            this.card.seats,
-            this.card.length,
-            this.card.width,
-            this.card.height,
+            this.playerCard.card.value.body,
+            this.playerCard.card.value.doors,
+            this.playerCard.card.value.seats,
+            this.playerCard.card.value.length,
+            this.playerCard.card.value.width,
+            this.playerCard.card.value.height,
         ];
     }
 
     ivTabDatas() {
 
         return [
-            this.card.gear1st,
-            this.card.gear2nd,
-            this.card.gear3rd,
-            this.card.gear4th,
-            this.card.gear5th,
-            this.card.gear6th,
-            this.card.finalDrive
+            this.playerCard.card.value.gear1st,
+            this.playerCard.card.value.gear2nd,
+            this.playerCard.card.value.gear3rd,
+            this.playerCard.card.value.gear4th,
+            this.playerCard.card.value.gear5th,
+            this.playerCard.card.value.gear6th,
+            this.playerCard.card.value.finalDrive,
         ];
     }
 

@@ -31,8 +31,8 @@ export class EventService {
         return this.childClickEvent.asObservable();
     }
 
-    async getPlayerCards() {
 
+    async getPlayerCards() {
 
         const payLoad = `ccgamer=${sessionStorage.getItem('AuthToken')!.replace(/\"/g, '')}`;
 
@@ -44,18 +44,12 @@ export class EventService {
 
         const responseData = await response.json();
         let cards = [];
-        //console.log('fetchel');
-        for (let i = 0; i < 5; i++) {
-
-        for (const plazerCard of responseData.playerCards) {
-            cards.push(plazerCard.card);
-        }
-        }
+        this.playerCards = responseData.playerCards;
 
         /*setTimeout(() => {
             console.log('kokokokoko');
         }, 5000);*/
-        this.playerCards = cards;
+        //this.playerCards = cards;
 
         //console.log('fetch ending');
     }

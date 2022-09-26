@@ -8,7 +8,7 @@ import {CardModel} from "../card.model";
 })
 export class PopupImgComponent implements OnInit {
 
-    popupCard!: CardModel;
+    playerCard!: any;
     cardObjectPosition!: string;
     popupImageMultiplier = 1.5;
 
@@ -22,8 +22,8 @@ export class PopupImgComponent implements OnInit {
 
     positionImageToPopupWindow() {
 
-        let horizontalPosition = this.popupCard.objectPositionHorizontal.value;
-        let verticalPosition = this.popupCard.objectPositionVertical.value;
+        let horizontalPosition = this.playerCard.card.value.objectPositionHorizontal.value;
+        let verticalPosition = this.playerCard.card.value.objectPositionVertical.value;
 
         if (horizontalPosition.trim().toLowerCase() === 'center') {
             this.cardObjectPosition = horizontalPosition;

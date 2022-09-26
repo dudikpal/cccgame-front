@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  endpointPrefix: 'http://localhost:8080'
+  endpointPrefix: 'http://localhost:8080',
+  imgFilePrefix: 'assets/img/logos/',
+  mongoIdPrefix: 'id_'
 };
 
 /*
