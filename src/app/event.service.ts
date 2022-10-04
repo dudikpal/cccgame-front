@@ -18,6 +18,10 @@ export class EventService {
 
     public playerCards! : any[];
 
+    public tuningMultipliers!: any[];
+
+    public createdAt!: Date;
+
     public isLoading = false;
 
     constructor() {
@@ -45,6 +49,13 @@ export class EventService {
         const responseData = await response.json();
         let cards = [];
         this.playerCards = responseData.playerCards;
+
+        /*console.log(responseData.tuningMultipliers['ENGINE']);
+        console.log(responseData.tuningMultipliers.WEIGHT);
+        console.log(responseData.tuningMultipliers.CORNERING);*/
+
+        //console.log(responseData.tuningMultipliers);
+        //console.log(responseData);
 
         /*setTimeout(() => {
             console.log('kokokokoko');

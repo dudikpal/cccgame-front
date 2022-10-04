@@ -18,12 +18,12 @@ export type InitProps = {
     templateUrl: './admin-page.component.html',
     styleUrls: ['./admin-page.component.css']
 })
-export class AdminPageComponent implements OnInit, OnChanges {
+export class AdminPageComponent implements OnInit {
 
     cardDTO: CardModel = new CardModel();
     initProps!: InitProps[];
-    cardList!: CardModel[];
-    selectedCard: any;
+    cardList!: any[];
+    selectedCard: any = '';
     searchFieldsShow = false;
     toggleCheckField = false;
     url = environment.endpointPrefix + '/api/cards';
@@ -32,8 +32,10 @@ export class AdminPageComponent implements OnInit, OnChanges {
     constructor(
         private eventService: EventService,
         private http: HttpClient,
-    ) {
-    }
+    ) {}
+
+    // playerCardDTO-t be kell fúzni
+
 
     ngOnInit(): void {
 
@@ -43,12 +45,8 @@ export class AdminPageComponent implements OnInit, OnChanges {
         });
 
         this.dataExtractor();
-        this.selectedCard = new CardModel();
+        //this.selectedCard = new CardModel();
     }
-
-    ngOnChanges() {
-    }
-
 
     deleteCard() {
 
@@ -210,7 +208,8 @@ export class AdminPageComponent implements OnInit, OnChanges {
     fetchCards(params: any) {
 
         const result = async () => {
-            const response = await fetch(this.url + '/find', {
+            //const response = await fetch(this.url + '/find', {
+            const response = await fetch(environment.endpointPrefix + '/api/playerCards', {
                 method: "POST",
                 body: params,
                 headers: {
@@ -220,7 +219,8 @@ export class AdminPageComponent implements OnInit, OnChanges {
             const jsonResponse = await response.json();
             this.cardList = jsonResponse;
 
-            this.cardList.sort((a, b) => a.manufacturer.value.localeCompare(b.manufacturer.value));
+            //this.cardList.sort((a, b) => a.manufacturer.value.localeCompare(b.manufacturer.value));
+            console.log(this.cardList);
         };
 
         return result();

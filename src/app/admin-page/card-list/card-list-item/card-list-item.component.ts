@@ -10,8 +10,8 @@ import {EventService} from "../../../event.service";
 })
 export class CardListItemComponent implements OnInit {
 
-    @Input() cardList!: CardModel[];
-    selectedCard!: CardModel;
+    @Input() cardList!: any[];
+    selectedCard!: any;
 
     constructor(
         private eventService: EventService
@@ -19,10 +19,10 @@ export class CardListItemComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        console.log(this.cardList);
     }
 
-    onClick(card: CardModel) {
+    onClick(card: any) {
 
         return this.eventService.emitChildEvent(card);
     }

@@ -8,7 +8,7 @@ import {CardModel} from "../../card/card.model";
 })
 export class CardListComponent implements OnInit, AfterViewInit {
 
-    @Input() cardList!: CardModel[];
+    @Input() cardList!: any[];
 
 
   constructor(
