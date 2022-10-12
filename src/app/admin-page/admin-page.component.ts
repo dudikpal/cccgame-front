@@ -2,7 +2,7 @@ import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {CardModel} from "../card/card.model";
 import {EventService} from "../event.service";
 import {HttpClient} from "@angular/common/http";
-import {Observable, window} from "rxjs";
+import {isEmpty, Observable, window} from "rxjs";
 //import {log} from "util";
 import {CardMapper} from "../card/cardMapper";
 import {environment} from "../../environments/environment";
@@ -34,9 +34,6 @@ export class AdminPageComponent implements OnInit {
         private http: HttpClient,
     ) {}
 
-    // playerCardDTO-t be kell fúzni
-
-
     ngOnInit(): void {
 
         this.eventService.childEventListener().subscribe(item => {
@@ -44,8 +41,7 @@ export class AdminPageComponent implements OnInit {
             this.selectedCard = item;
         });
 
-        this.dataExtractor();
-        //this.selectedCard = new CardModel();
+        this.selectedCard = this.eventService.playerCardSkeleton;
     }
 
     deleteCard() {
@@ -54,7 +50,6 @@ export class AdminPageComponent implements OnInit {
             method: 'delete'
         });
     }
-
 
     resetCardsTable() {
 
@@ -65,7 +60,6 @@ export class AdminPageComponent implements OnInit {
             });
         }
     }
-
 
     readCardsFromFile() {
 
@@ -220,7 +214,7 @@ export class AdminPageComponent implements OnInit {
             this.cardList = jsonResponse;
 
             //this.cardList.sort((a, b) => a.manufacturer.value.localeCompare(b.manufacturer.value));
-            console.log(this.cardList);
+            //console.log(this.cardList);
         };
 
         return result();
@@ -329,19 +323,34 @@ export class AdminPageComponent implements OnInit {
     }
 
 
-    dataExtractor() {
+    cardPropertiesExtractor() {
 
-        const props = Object.entries(this.cardDTO);
+        if (Object.keys(this.selectedCard).length === 0) {
+            return;
+        }
+
+        //this.selectedCard = new CardModel();
+
+        const props: any = Object.entries(this.selectedCard);
+        //const cardObject = Object.entries((props[1][1] as any).value);
+        //const props = Object.entries(this.cardDTO);
         this.initProps = [];
-        for (const prop of props.values()) {
+        console.log(props);
+        //for (const prop of props.values()) {
+        /*for (const prop of cardObject.values()) {
 
             const [identifier, dataObject] = prop;
 
             this.initProps.push({
                 identifier: identifier,
-                name: dataObject.name,
-                value: dataObject.value
+                name: (dataObject as any).name,
+                value: (dataObject as any).value
             });
-        }
+        }*/
     }
+
+    /*playerCardPropertiesExtractor() {
+
+        const props = Object.entries(this.cardDTO.)
+    }*/
 }

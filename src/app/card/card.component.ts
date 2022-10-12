@@ -25,7 +25,7 @@ export class CardComponent implements OnInit {
 
 
     ngOnInit(): void {
-        console.log(this.playerCard);
+        //console.log(this.playerCard);
         /*const image = document.querySelector(".img-car") as HTMLElement;
         image.style.width = this.card.objectWidth.value;
         image.style.height = this.card.objectHeight.value;

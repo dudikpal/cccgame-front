@@ -19,7 +19,7 @@ export class CardListItemComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log(this.cardList);
+        //console.log(this.cardList);
     }
 
     onClick(card: any) {

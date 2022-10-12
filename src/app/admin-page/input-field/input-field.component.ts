@@ -21,7 +21,7 @@ export class InputFieldComponent implements OnInit, AfterViewInit, OnChanges {
 
 
     ngOnInit(): void {
-
+        //console.log(this.initProps);
     }
 
     ngAfterViewInit(): void {
@@ -34,7 +34,10 @@ export class InputFieldComponent implements OnInit, AfterViewInit, OnChanges {
 
     getPropValue(prop: String) {
 
+        console.log(this.selectedCard);
+        //console.log(this.selectedCard.card.value[`${prop}`].value);
         return this.selectedCard[`${prop}`].value;
+        //return null;
     }
 
 }

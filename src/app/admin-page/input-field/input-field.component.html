@@ -6,7 +6,7 @@
 
     </label>
     <input class="input-group" id="input_{{prop.identifier}}"
-           [(ngModel)]="selectedCard[prop.identifier].value"
-           [value]=selectedCard[prop.identifier].value
+           [(ngModel)]="selectedCard.card.value[prop.identifier].value"
+           [value]=selectedCard.card.value[prop.identifier].value
            [attr.data-input]=prop.identifier>
 </div>

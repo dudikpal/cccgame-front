@@ -18,11 +18,14 @@ export class EventService {
 
     public playerCards! : any[];
 
+    public playerCardSkeleton: any;
+
     public tuningMultipliers!: any[];
 
     public createdAt!: Date;
 
     public isLoading = false;
+
 
     constructor() {
     }
@@ -35,6 +38,12 @@ export class EventService {
         return this.childClickEvent.asObservable();
     }
 
+    async getPlayerCardSkeleton() {
+
+        const response = await fetch(environment.endpointPrefix + '/api/playercards');
+        const json = await response.json();
+        this.playerCardSkeleton = json;
+    }
 
     async getPlayerCards() {
 
@@ -49,7 +58,7 @@ export class EventService {
         const responseData = await response.json();
         let cards = [];
         this.playerCards = responseData.playerCards;
-
+        console.log(responseData);
         /*console.log(responseData.tuningMultipliers['ENGINE']);
         console.log(responseData.tuningMultipliers.WEIGHT);
         console.log(responseData.tuningMultipliers.CORNERING);*/
