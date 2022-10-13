@@ -1,12 +1,24 @@
 <div class="input-group row"
-     *ngFor="let prop of initProps"
+     *ngFor="let prop of initAllProps.cardProps"
 >
     <label for="input_{{prop.identifier}}"
            [innerHTML]='prop.name'>
 
     </label>
     <input class="input-group" id="input_{{prop.identifier}}"
-           [(ngModel)]="selectedCard.card.value[prop.identifier].value"
            [value]=selectedCard.card.value[prop.identifier].value
            [attr.data-input]=prop.identifier>
 </div>
+<div class="input-group row"
+     *ngFor="let prop of initAllProps.playerCardProps"
+>
+    <label for="input_{{prop.identifier}}"
+           [innerHTML]='prop.name'>
+
+    </label>
+    <input class="input-group" id="input_{{prop.identifier}}"
+           [value]=selectedCard[prop.identifier].value
+           [attr.data-input]=prop.identifier>
+</div>
+<!--
+[(ngModel)]="selectedCard.card.value[prop.identifier].value"-->

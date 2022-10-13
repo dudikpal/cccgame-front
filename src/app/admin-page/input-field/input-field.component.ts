@@ -10,7 +10,7 @@ import {InitProps} from "../../admin-page/admin-page.component";
 })
 export class InputFieldComponent implements OnInit, AfterViewInit, OnChanges {
 
-    @Input() initProps!: InitProps[];
+    @Input() initAllProps!: any;
 
     @Input() selectedCard: any;
 

@@ -21,7 +21,7 @@ export type InitProps = {
 export class AdminPageComponent implements OnInit {
 
     cardDTO: CardModel = new CardModel();
-    initProps!: InitProps[];
+    initAllProps: {cardProps: InitProps[]; playerCardProps: InitProps[]} = {cardProps: [], playerCardProps: []};
     cardList!: any[];
     selectedCard: any = '';
     searchFieldsShow = false;
@@ -42,6 +42,7 @@ export class AdminPageComponent implements OnInit {
         });
 
         this.selectedCard = this.eventService.playerCardSkeleton;
+        this.cardPropertiesExtractor();
     }
 
     deleteCard() {
@@ -203,7 +204,7 @@ export class AdminPageComponent implements OnInit {
 
         const result = async () => {
             //const response = await fetch(this.url + '/find', {
-            const response = await fetch(environment.endpointPrefix + '/api/playerCards', {
+            const response = await fetch(environment.endpointPrefix + '/api/playercards', {
                 method: "POST",
                 body: params,
                 headers: {
@@ -331,22 +332,33 @@ export class AdminPageComponent implements OnInit {
 
         //this.selectedCard = new CardModel();
 
-        const props: any = Object.entries(this.selectedCard);
-        //const cardObject = Object.entries((props[1][1] as any).value);
+        const playerCardProps: any = Object.entries(this.selectedCard);
+
+        const cardProps = Object.entries((playerCardProps[1][1]).value);
         //const props = Object.entries(this.cardDTO);
-        this.initProps = [];
-        console.log(props);
-        //for (const prop of props.values()) {
-        /*for (const prop of cardObject.values()) {
+        for (const prop of cardProps.values()) {
 
             const [identifier, dataObject] = prop;
 
-            this.initProps.push({
+            this.initAllProps.cardProps.push({
                 identifier: identifier,
                 name: (dataObject as any).name,
                 value: (dataObject as any).value
             });
-        }*/
+        }
+        // weight tuningnál vmiért elakad a kiírás
+        for (const prop of playerCardProps.values()) {
+            const [identifier, dataObject] = prop;
+            if (identifier === 'card' || identifier === 'id') {
+                continue;
+            }
+
+            this.initAllProps.playerCardProps.push({
+                identifier: identifier,
+                name: (dataObject as any).name,
+                value: (dataObject as any).value
+            });
+        }
     }
 
     /*playerCardPropertiesExtractor() {

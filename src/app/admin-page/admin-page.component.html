@@ -10,14 +10,14 @@
         </button>
         <app-check-field
             [hidden]="!toggleCheckField"
-            [initProps]=initProps></app-check-field>
+            [initProps]=initAllProps.cardProps></app-check-field>
         <button (click)="toggleSearchFields()"
 
         >Search fields</button>
         <app-search-fields
             id="block-search"
             [hidden]="!searchFieldsShow"
-            [initProps]=initProps>
+            [initProps]=initAllProps.cardProps>
         </app-search-fields>
         <button
             id="select-btn"
@@ -64,7 +64,7 @@
 <div class="container"
      style="border: 1px solid;">
     <app-input-field
-        [initProps]=initProps
+        [initAllProps]=initAllProps
         [selectedCard]=selectedCard></app-input-field>
     <button
         id="update-btn"
