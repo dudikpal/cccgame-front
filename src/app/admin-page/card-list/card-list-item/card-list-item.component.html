@@ -2,4 +2,4 @@
     class="list-group-item list-group-item-action"
     style="padding: 2px"
 *ngFor="let card of cardList"
-(click)="onClick(card)">{{card.card.value.manufacturer.value}} {{card.card.value.type.value}} {{card.card.value.year.value}}</button>
+(click)="selectCard(card)">{{card.card.value.manufacturer.value}} {{card.card.value.type.value}} {{card.card.value.year.value}}</button>

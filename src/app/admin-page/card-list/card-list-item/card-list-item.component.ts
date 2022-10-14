@@ -22,7 +22,7 @@ export class CardListItemComponent implements OnInit {
         //console.log(this.cardList);
     }
 
-    onClick(card: any) {
+    selectCard(card: any) {
 
         return this.eventService.emitChildEvent(card);
     }

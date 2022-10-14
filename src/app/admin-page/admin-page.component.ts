@@ -6,6 +6,7 @@ import {isEmpty, Observable, window} from "rxjs";
 //import {log} from "util";
 import {CardMapper} from "../card/cardMapper";
 import {environment} from "../../environments/environment";
+import {InputFieldComponent} from "./input-field/input-field.component";
 
 export type InitProps = {
     identifier: string,
@@ -39,6 +40,12 @@ export class AdminPageComponent implements OnInit {
         this.eventService.childEventListener().subscribe(item => {
 
             this.selectedCard = item;
+        });
+
+        this.eventService.updateCard.subscribe(updatedCard => {
+
+            this.selectedCard = updatedCard;
+            this.updateCard(updatedCard);
         });
 
         this.selectedCard = this.eventService.playerCardSkeleton;
@@ -232,46 +239,11 @@ export class AdminPageComponent implements OnInit {
     }
 
 
-    createCard() {
-
-        const createdCard = new CardMapper().mapToCard(this.selectedCard);
-
-        fetch(this.url, {
-            method: "POST",
-            body: createdCard,
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
-    }
-
-
-    update() {
-
-        const idInputField = (document.querySelector('#input_id') as HTMLInputElement).value;
-
-        if (idInputField === 'empty-id') {
-            this.updateBulkCards()
-
-        } else {
-            this.updateCard();
-        }
-    }
-
-
     updateCard(card?: any) {
-
-        let updatedCard;
-
-        if (card) {
-            updatedCard = card;
-        } else {
-            updatedCard = new CardMapper().mapToCard(this.selectedCard);
-        }
 
         fetch(this.url, {
             method: "PUT",
-            body: JSON.stringify(updatedCard),
+            body: JSON.stringify(card.card.value),
             headers: {
                 "Content-Type": "application/json"
             }
@@ -281,12 +253,16 @@ export class AdminPageComponent implements OnInit {
 
     updateBulkCards() {
 
+        const idInputField = (document.querySelector('#input_id') as HTMLInputElement).value;
+
+        if (idInputField !== 'empty-id') {
+            return;
+        }
+
         const attributes = Object.entries(this.selectedCard).map(item => item[0]);
-        const refCard = new CardMapper().mapToCard(new CardModel());
+        const refCard = this.eventService.playerCardSkeleton.card.value;
 
-        for (const cardModel of this.cardList) {
-
-            let card = new CardMapper().mapToCard(cardModel);
+        for (let card of this.cardList) {
 
             for (const attribute of attributes) {
 
@@ -302,7 +278,7 @@ export class AdminPageComponent implements OnInit {
 
     resetCardList() {
         this.cardList = [];
-        this.selectedCard = new CardModel();
+        this.selectedCard = this.eventService.playerCardSkeleton;
     }
 
 

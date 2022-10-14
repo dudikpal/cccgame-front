@@ -1,6 +1,6 @@
 import {BehaviorSubject} from "rxjs";
 import {environment} from "../environments/environment";
-import {Injectable} from "@angular/core";
+import {EventEmitter, Injectable} from "@angular/core";
 import {LoginComponent} from "./login/login.component";
 
 @Injectable()
@@ -25,6 +25,10 @@ export class EventService {
     public createdAt!: Date;
 
     public isLoading = false;
+
+    public updatedCard: any;
+
+    public updateCard = new EventEmitter<any>();
 
 
     constructor() {
