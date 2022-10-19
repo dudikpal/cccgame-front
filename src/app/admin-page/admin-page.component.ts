@@ -45,7 +45,7 @@ export class AdminPageComponent implements OnInit {
         this.eventService.updateCard.subscribe(updatedCard => {
 
             this.selectedCard = updatedCard;
-            this.updateCard(updatedCard);
+            //this.updateCard(updatedCard);
         });
 
         this.selectedCard = this.eventService.playerCardSkeleton;
@@ -54,7 +54,7 @@ export class AdminPageComponent implements OnInit {
 
     deleteCard() {
 
-        fetch(this.url + '/' + this.selectedCard.id.value, {
+        fetch(this.url + '/' + this.selectedCard.card.value.id.value, {
             method: 'delete'
         });
     }
@@ -239,7 +239,7 @@ export class AdminPageComponent implements OnInit {
     }
 
 
-    updateCard(card?: any) {
+   /* updateCard(card?: any) {
 
         fetch(this.url, {
             method: "PUT",
@@ -248,7 +248,7 @@ export class AdminPageComponent implements OnInit {
                 "Content-Type": "application/json"
             }
         });
-    }
+    }*/
 
 
     updateBulkCards() {
@@ -271,7 +271,7 @@ export class AdminPageComponent implements OnInit {
                     card[`${attribute}`] = this.selectedCard[`${attribute}`].value;
                 }
             }
-            this.updateCard(card);
+            //this.updateCard(card);
         }
     }
 
