@@ -42,11 +42,11 @@ export class AdminPageComponent implements OnInit {
             this.selectedCard = item;
         });
 
-        this.eventService.updateCard.subscribe(updatedCard => {
+        /*this.eventService.updateCard.subscribe(updatedCard => {
 
             this.selectedCard = updatedCard;
             //this.updateCard(updatedCard);
-        });
+        });*/
 
         this.selectedCard = this.eventService.playerCardSkeleton;
         this.cardPropertiesExtractor();
@@ -163,22 +163,20 @@ export class AdminPageComponent implements OnInit {
                     values: [...value.split(',')]
                 });
                 //(this.cardDTO as any)[attrName] = null;
-                (this.cardDTO as any)[attrName] = value.split(',');
+                //(this.cardDTO as any)[attrName] = value.split(',');
             } else if (value.includes('-')) {
                 betweenValues.push({
                     name: attrName,
                     values: [value.match(/^\d+(\.\d+)?/)![0], value.match(/(\d+\.)?\d+$/)![0]]
                 });
                 //(this.cardDTO as any)[attrName] = null;
-                (this.cardDTO as any)[attrName] = value;
+                //(this.cardDTO as any)[attrName] = value;
             } else if (value !== '') {
-            /*console.log(attrName);
-            console.log(value);*/
                 simpleValues.push({
                     name: attrName,
                     values: [value]
                 });
-                (this.cardDTO as any)[attrName] = this.convertEmptyToNull(value);
+                //(this.cardDTO as any)[attrName] = this.convertEmptyToNull(value);
             }
         }
 
@@ -188,7 +186,7 @@ export class AdminPageComponent implements OnInit {
         for (const checkField of Array.from(selectedCheckFields)) {
             const attrName = checkField.getAttribute('data-check')!;
             isNullFields.push(attrName);
-            (this.cardDTO as any)[attrName] = null;
+            //(this.cardDTO as any)[attrName] = null;
         }
 
         // in DTO just the simple values left
@@ -211,7 +209,7 @@ export class AdminPageComponent implements OnInit {
 
         const result = async () => {
             //const response = await fetch(this.url + '/find', {
-            const response = await fetch(environment.endpointPrefix + '/api/playercards', {
+            const response = await fetch(environment.endpointPrefix + '/api/cards/find', {
                 method: "POST",
                 body: params,
                 headers: {
@@ -255,23 +253,31 @@ export class AdminPageComponent implements OnInit {
 
         const idInputField = (document.querySelector('#input_id') as HTMLInputElement).value;
 
-        if (idInputField !== 'empty-id') {
+        if (idInputField !== 'empty_id') {
             return;
         }
 
-        const attributes = Object.entries(this.selectedCard).map(item => item[0]);
+        const attributes = Object.entries(this.selectedCard.card.value).map(item => item[0]);
         const refCard = this.eventService.playerCardSkeleton.card.value;
-
-        for (let card of this.cardList) {
-
+        //console.log(this.cardList.map(card => card.card.value));
+        //console.log(attributes);
+        //console.log(refCard);
+        for (let card of this.cardList.map(card => card.card.value)) {
+            //console.log('Módosítatlan card: ');
+            //console.log(card);
             for (const attribute of attributes) {
+                const attributeInputField = (document.querySelector(`#input_${attribute}`) as HTMLInputElement).value
 
-                if (this.selectedCard[`${attribute}`].value !== refCard[`${attribute}`]) {
-
-                    card[`${attribute}`] = this.selectedCard[`${attribute}`].value;
+                if (!attributeInputField.includes('empty') &&
+                    !attributeInputField.includes('placeholder') &&
+                    attributeInputField !== '' && card[`${attribute}`].value !== attributeInputField) {
+                    //console.log('Nem egyezés');
+                    card[`${attribute}`].value = attributeInputField;
                 }
             }
-            //this.updateCard(card);
+            //console.log('Módosított card: ');
+            //console.log(card);
+            this.eventService.updateCard(card);
         }
     }
 

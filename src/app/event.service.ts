@@ -28,7 +28,7 @@ export class EventService {
 
     public updatedCard: any;
 
-    public updateCard = new EventEmitter<any>();
+    //public updateCard = new EventEmitter<any>();
 
 
     constructor() {
@@ -76,5 +76,33 @@ export class EventService {
         //this.playerCards = cards;
 
         //console.log('fetch ending');
+    }
+
+
+    updateCard(updatedCard: any) {
+
+        //this.updateCardInLocal(updatedCard);
+        console.log('updatedCard in mainService: ');
+        console.log(updatedCard);
+        fetch(environment.endpointPrefix + '/api/cards', {
+            method: "PUT",
+            body: JSON.stringify(updatedCard),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+    }
+
+
+    updateCardInLocal(card: any) {
+
+        for (const playerCard of this.playerCards) {
+            console.log(playerCard.card.value.id.value + '===' + card.id.value);
+            if (playerCard.card.value.id.value === card.id.value) {
+                console.log(playerCard);
+                playerCard.card.value = card;
+                console.log(playerCard);
+            }
+        }
     }
 }

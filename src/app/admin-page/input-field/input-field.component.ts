@@ -75,21 +75,14 @@ export class InputFieldComponent implements OnInit, AfterViewInit, OnChanges {
 
     updateCard() {
 
-        const updatedCard = this.inputFieldsToCard();
-        console.log('in input field:');
-        console.log(updatedCard);
-        this.mainService.updateCard.emit(updatedCard);
+        /*const updatedCard = this.inputFieldsToCard();
+        this.mainService.updateCard.emit(updatedCard);*/
     }
+
     update() {
 
         let updatedCard = this.inputFieldsToCard();
 
-        fetch(this.url, {
-            method: "PUT",
-            body: JSON.stringify(updatedCard),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
+        this.mainService.updateCard(updatedCard);
     }
 }
