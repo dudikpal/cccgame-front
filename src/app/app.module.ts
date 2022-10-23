@@ -47,6 +47,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { HomeMainComponent } from './home/home-main/home-main.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgxPaginationModule } from 'ngx-pagination';
+import {AdminService} from "./services/admin.service";
 
 
 @NgModule({
@@ -101,7 +102,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     providers: [
         LoggedInGuardService,
         FormBuilder,
-        EventService],
+        EventService,
+        AdminService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

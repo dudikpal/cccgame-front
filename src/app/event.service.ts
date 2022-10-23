@@ -62,20 +62,7 @@ export class EventService {
         const responseData = await response.json();
         let cards = [];
         this.playerCards = responseData.playerCards;
-        console.log(responseData);
-        /*console.log(responseData.tuningMultipliers['ENGINE']);
-        console.log(responseData.tuningMultipliers.WEIGHT);
-        console.log(responseData.tuningMultipliers.CORNERING);*/
-
-        //console.log(responseData.tuningMultipliers);
         //console.log(responseData);
-
-        /*setTimeout(() => {
-            console.log('kokokokoko');
-        }, 5000);*/
-        //this.playerCards = cards;
-
-        //console.log('fetch ending');
     }
 
 
@@ -94,15 +81,5 @@ export class EventService {
     }
 
 
-    updateCardInLocal(card: any) {
 
-        for (const playerCard of this.playerCards) {
-            console.log(playerCard.card.value.id.value + '===' + card.id.value);
-            if (playerCard.card.value.id.value === card.id.value) {
-                console.log(playerCard);
-                playerCard.card.value = card;
-                console.log(playerCard);
-            }
-        }
-    }
 }

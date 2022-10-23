@@ -3,6 +3,7 @@ import {InitProps} from "../../admin-page/admin-page.component";
 import {environment} from "../../../environments/environment";
 import {EventService} from "../../event.service";
 import {main} from "@popperjs/core";
+import {AdminService} from "../../services/admin.service";
 
 
 
@@ -21,7 +22,8 @@ export class InputFieldComponent implements OnInit, AfterViewInit, OnChanges {
 
 
 
-    constructor(private mainService: EventService) {
+    constructor(private mainService: EventService,
+                private adminService: AdminService) {
     }
 
 
@@ -83,6 +85,6 @@ export class InputFieldComponent implements OnInit, AfterViewInit, OnChanges {
 
         let updatedCard = this.inputFieldsToCard();
 
-        this.mainService.updateCard(updatedCard);
+        this.adminService.updateCard(updatedCard);
     }
 }

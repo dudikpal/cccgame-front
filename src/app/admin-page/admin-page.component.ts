@@ -7,6 +7,8 @@ import {isEmpty, Observable, window} from "rxjs";
 import {CardMapper} from "../card/cardMapper";
 import {environment} from "../../environments/environment";
 import {InputFieldComponent} from "./input-field/input-field.component";
+import {AdminService} from "../services/admin.service";
+import {addWarning} from "@angular-devkit/build-angular/src/utils/webpack-diagnostics";
 
 export type InitProps = {
     identifier: string,
@@ -33,6 +35,7 @@ export class AdminPageComponent implements OnInit {
     constructor(
         private eventService: EventService,
         private http: HttpClient,
+        private adminService: AdminService
     ) {}
 
     ngOnInit(): void {
@@ -41,12 +44,6 @@ export class AdminPageComponent implements OnInit {
 
             this.selectedCard = item;
         });
-
-        /*this.eventService.updateCard.subscribe(updatedCard => {
-
-            this.selectedCard = updatedCard;
-            //this.updateCard(updatedCard);
-        });*/
 
         this.selectedCard = this.eventService.playerCardSkeleton;
         this.cardPropertiesExtractor();
@@ -197,15 +194,15 @@ export class AdminPageComponent implements OnInit {
             betweens: betweenValues,
             multipleValues: multipleValues
         });
-        /*console.log(this.cardDTO)
-        const tupleQuery = this.cardDTO;*/
 
-        console.log(tupleQuery)
-        this.fetchCards(tupleQuery);
+        (async () => {
+            await this.adminService.fetchCards(tupleQuery);
+            this.cardList = this.adminService.adminCards;
+        })();
     }
 
 
-    fetchCards(params: any) {
+    /*fetchCards(params: any) {
 
         const result = async () => {
             //const response = await fetch(this.url + '/find', {
@@ -224,7 +221,7 @@ export class AdminPageComponent implements OnInit {
         };
 
         return result();
-    }
+    }*/
 
 
     convertEmptyToNull(param: string) {
