@@ -202,50 +202,6 @@ export class AdminPageComponent implements OnInit {
     }
 
 
-    /*fetchCards(params: any) {
-
-        const result = async () => {
-            //const response = await fetch(this.url + '/find', {
-            const response = await fetch(environment.endpointPrefix + '/api/cards/find', {
-                method: "POST",
-                body: params,
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            });
-            const jsonResponse = await response.json();
-            this.cardList = jsonResponse;
-
-            //this.cardList.sort((a, b) => a.manufacturer.value.localeCompare(b.manufacturer.value));
-            //console.log(this.cardList);
-        };
-
-        return result();
-    }*/
-
-
-    convertEmptyToNull(param: string) {
-
-        if (param) {
-            return param;
-        }
-
-        return null;
-    }
-
-
-   /* updateCard(card?: any) {
-
-        fetch(this.url, {
-            method: "PUT",
-            body: JSON.stringify(card.card.value),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
-    }*/
-
-
     updateBulkCards() {
 
         const idInputField = (document.querySelector('#input_id') as HTMLInputElement).value;
@@ -309,12 +265,9 @@ export class AdminPageComponent implements OnInit {
             return;
         }
 
-        //this.selectedCard = new CardModel();
-
         const playerCardProps: any = Object.entries(this.selectedCard);
-
         const cardProps = Object.entries((playerCardProps[1][1]).value);
-        //const props = Object.entries(this.cardDTO);
+
         for (const prop of cardProps.values()) {
 
             const [identifier, dataObject] = prop;
@@ -325,9 +278,11 @@ export class AdminPageComponent implements OnInit {
                 value: (dataObject as any).value
             });
         }
-        // weight tuningnál vmiért elakad a kiírás
+
         for (const prop of playerCardProps.values()) {
+
             const [identifier, dataObject] = prop;
+
             if (identifier === 'card' || identifier === 'id') {
                 continue;
             }
@@ -339,9 +294,4 @@ export class AdminPageComponent implements OnInit {
             });
         }
     }
-
-    /*playerCardPropertiesExtractor() {
-
-        const props = Object.entries(this.cardDTO.)
-    }*/
 }

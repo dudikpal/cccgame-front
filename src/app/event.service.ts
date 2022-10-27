@@ -28,8 +28,6 @@ export class EventService {
 
     public updatedCard: any;
 
-    //public updateCard = new EventEmitter<any>();
-
 
     constructor() {
     }
@@ -62,7 +60,8 @@ export class EventService {
         const responseData = await response.json();
         let cards = [];
         this.playerCards = responseData.playerCards;
-        //console.log(responseData);
+        this.tuningMultipliers = responseData.tuningMultipliers;
+        console.log(this.tuningMultipliers);
     }
 
 

@@ -31,9 +31,9 @@ export class AdminService {
     }
 
 
-    updateCard(updatedCard: any) {
+    async updateCard(updatedCard: any) {
 
-        fetch(environment.endpointPrefix + '/api/cards', {
+        const response = await fetch(environment.endpointPrefix + '/api/cards', {
             method: "PUT",
             body: JSON.stringify(updatedCard),
             headers: {
@@ -41,7 +41,10 @@ export class AdminService {
             }
         });
 
-        this.updateCardInLocal(updatedCard);
+        if (response.status < 500) {
+            const savedUpdatedCard = await response.json();
+            this.updateCardInLocal(savedUpdatedCard);
+        }
     }
 
     private updateCardInLocal(card: any) {

@@ -7,7 +7,9 @@
     </label>
     <input class="input-group" id="input_{{prop.identifier}}"
            [value]=selectedCard.card.value[prop.identifier].value
-           [attr.data-input]=prop.identifier>
+           [attr.data-input]=prop.identifier
+    >
+
 </div>
 <div class="input-group row"
      *ngFor="let prop of initAllProps.playerCardProps"
@@ -16,7 +18,9 @@
            [innerHTML]='prop.name'>
 
     </label>
-    <input class="input-group" id="input_{{prop.identifier}}"
+    <input class="input-group" id="input_{{prop.identifier}}_playerCard"
+           (input)="calcField(prop.identifier)"
+           [(ngModel)]="multiplierFieldValue"
            [value]=selectedCard[prop.identifier].value
            [attr.data-input]=prop.identifier>
 </div>

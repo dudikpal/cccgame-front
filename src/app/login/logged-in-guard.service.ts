@@ -46,7 +46,7 @@ export class LoggedInGuardService implements CanActivate {
 
             const jsonData = await response.json();
             this.token = jsonData['jwt'].match(/(?<=ccgamer=).*?(?=;)/g).toString();
-            //console.log(jsonData);
+            console.log(jsonData);
             sessionStorage.setItem('AuthToken', JSON.stringify(this.token));
             this.mainService.userIsLoggedIn = true;
             await this.mainService.getPlayerCards();

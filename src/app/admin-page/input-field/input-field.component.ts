@@ -20,12 +20,13 @@ export class InputFieldComponent implements OnInit, AfterViewInit, OnChanges {
 
     url = environment.endpointPrefix + '/api/cards';
 
+    multiplierFieldValue: any;
+
 
 
     constructor(private mainService: EventService,
                 private adminService: AdminService) {
     }
-
 
     ngOnInit(): void {
         //console.log(this.initProps);
@@ -53,18 +54,15 @@ export class InputFieldComponent implements OnInit, AfterViewInit, OnChanges {
 
     inputFieldsToCard() {
 
-        console.log('in fieldstocard:');
-        console.log(this.selectedCard);
         let newCard = JSON.parse(JSON.stringify(this.selectedCard.card.value));
 
         for (const prop of this.initAllProps.cardProps) {
 
             newCard[prop.identifier].value = (document.querySelector(`#input_${prop.identifier}`) as HTMLInputElement).value;
         }
-        console.log(newCard);
+
         return newCard;
     }
-
 
 
     getPropValue(prop: String) {
@@ -74,6 +72,7 @@ export class InputFieldComponent implements OnInit, AfterViewInit, OnChanges {
         return this.selectedCard[`${prop}`].value;
         //return null;
     }
+
 
     updateCard() {
 
@@ -86,5 +85,25 @@ export class InputFieldComponent implements OnInit, AfterViewInit, OnChanges {
         let updatedCard = this.inputFieldsToCard();
 
         this.adminService.updateCard(updatedCard);
+    }
+
+
+    calcField(multiplierPropertyIdentifier: any) {
+
+        const calculatedPropertyIdentifier = multiplierPropertyIdentifier.replace('tuning', '').toLowerCase();
+        const calculatedPropertyName = calculatedPropertyIdentifier.toUpperCase();
+        const calculatedPropertyField = document.querySelector(`#input_${calculatedPropertyIdentifier}`) as HTMLInputElement;
+        const multiplier = this.mainService.tuningMultipliers[calculatedPropertyName];
+// @ts-ignore
+        this.selectedCard.card.value[`${calculatedPropertyIdentifier}`].value = calculatedPropertyField.value * this.multiplierFieldValue * multiplier
+        //calculatedPropertyField.value = this.multiplierFieldValue * multiplier;
+        //console.log('card value before change: ' + this.selectedCard.card.value[propName].value);
+        console.log(this.selectedCard);
+        /*console.log(calculatedPropertyIdentifier);
+        //console.log(propertyField.value);
+        console.log(Object.keys(multipliers));
+        console.log()*/
+        //console.log('card value before change: ' + this.selectedCard.card.value[propName].value);
+
     }
 }
