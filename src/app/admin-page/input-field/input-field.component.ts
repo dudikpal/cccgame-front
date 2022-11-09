@@ -4,7 +4,7 @@ import {environment} from "../../../environments/environment";
 import {EventService} from "../../event.service";
 import {main} from "@popperjs/core";
 import {AdminService} from "../../services/admin.service";
-
+import {coerceNumberProperty} from "@angular/cdk/coercion";
 
 
 @Component({
@@ -90,15 +90,36 @@ export class InputFieldComponent implements OnInit, AfterViewInit, OnChanges {
 
     calcField(multiplierPropertyIdentifier: any) {
 
-        const calculatedPropertyIdentifier = multiplierPropertyIdentifier.replace('tuning', '').toLowerCase();
-        const calculatedPropertyName = calculatedPropertyIdentifier.toUpperCase();
-        const calculatedPropertyField = document.querySelector(`#input_${calculatedPropertyIdentifier}`) as HTMLInputElement;
-        const multiplier = this.mainService.tuningMultipliers[calculatedPropertyName];
+        console.log('calcfield funtion: ');
+        console.log(multiplierPropertyIdentifier);
+const baseMultiplier = (this.mainService.tuningMultipliers as any)['ENGINE'];
+
+        let optionalMultiplierCell = document.querySelector(`#input_${multiplierPropertyIdentifier}_playerCard`)as HTMLInputElement;
+        let optionalMultiplierValue = Number(optionalMultiplierCell.value);
+        const baseValue = this.selectedCard.card.value[multiplierPropertyIdentifier].value;
+        const multipliedCell = document.querySelector(`#input_${multiplierPropertyIdentifier}`)as HTMLInputElement
+        const multipliedValue = Number(multipliedCell.value);
+        multipliedCell.value = String(multipliedValue * optionalMultiplierValue * baseMultiplier);
+        console.log(multipliedCell);
+
+        //const calculatedPropertyIdentifier = multiplierPropertyIdentifier.replace('tuning', '').toLowerCase();
+        //const calculatedPropertyName = calculatedPropertyIdentifier.toUpperCase();
+        //const calculatedPropertyField = document.querySelector(`#input_${calculatedPropertyIdentifier}`) as HTMLInputElement;
+        //const multiplier = this.mainService.tuningMultipliers[calculatedPropertyName];
 // @ts-ignore
-        this.selectedCard.card.value[`${calculatedPropertyIdentifier}`].value = calculatedPropertyField.value * this.multiplierFieldValue * multiplier
+        //this.selectedCard.card.value[`${calculatedPropertyIdentifier}`].value = calculatedPropertyField.value * this.multiplierFieldValue * multiplier
+        // = 0
+        // :
+        // {identifier: 'tuningWeight', name: 'Tuning Weight', value: 1}
+        // 1
+        // :
+        // {identifier: 'tuningEngine', name: 'Tuning Engine', value: 1}
+        // 2
+        // :
+        // {identifier: 'tuningCornering', name: 'Tuning Cornering', value: 1}
         //calculatedPropertyField.value = this.multiplierFieldValue * multiplier;
         //console.log('card value before change: ' + this.selectedCard.card.value[propName].value);
-        console.log(this.selectedCard);
+        //console.log(this.selectedCard);
         /*console.log(calculatedPropertyIdentifier);
         //console.log(propertyField.value);
         console.log(Object.keys(multipliers));

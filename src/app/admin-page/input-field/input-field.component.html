@@ -20,11 +20,13 @@
     </label>
     <input class="input-group" id="input_{{prop.identifier}}_playerCard"
            (input)="calcField(prop.identifier)"
-           [(ngModel)]="multiplierFieldValue"
-           [value]=selectedCard[prop.identifier].value
-           [attr.data-input]=prop.identifier>
+           [value]=prop.identifier
+           [attr.data-input]=prop.identifier
+    >
+
 </div>
 
+           <!--[(ngModel)]=multiplierFieldValue-->
 <button
         id="create-btn"
         (click)="createNewCard()">Create card
@@ -33,5 +35,3 @@
         id="update-btn"
         (click)="update()">Update card
 </button>
-<!--
-[(ngModel)]="selectedCard.card.value[prop.identifier].value"-->

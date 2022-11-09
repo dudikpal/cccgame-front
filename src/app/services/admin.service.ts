@@ -12,8 +12,7 @@ export class AdminService {
     fetchCards(params: any) {
 
         const result = async () => {
-            //const response = await fetch(this.url + '/find', {
-            const response = await fetch(environment.endpointPrefix + '/api/cards/find', {
+            const response = await fetch(environment.endpointPrefix + '/api/playercards', {
                 method: "POST",
                 body: params,
                 headers: {
@@ -22,9 +21,7 @@ export class AdminService {
             });
             const jsonResponse = await response.json();
             this.adminCards = jsonResponse;
-
             this.adminCards.sort((a, b) => a.card.value.manufacturer.value.localeCompare(b.card.value.manufacturer.value));
-            //console.log(this.cardList);
         };
 
         return result();

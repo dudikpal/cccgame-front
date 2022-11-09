@@ -13,6 +13,7 @@ export class LoggedInGuardService implements CanActivate {
     endpointPrefix = environment.endpointPrefix;
     public cards: any[] = [];
     public isLoading = false;
+    public playerCardSkeleton: any;
 
 
     constructor(private _router: Router,
@@ -22,6 +23,7 @@ export class LoggedInGuardService implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
 
         if (!this.mainService.userIsLoggedIn) {
+            //this.mainService.playerCardSkeleton = this.playerCardSkeleton;
             this._router.navigate(['/login']);
             return false;
         }
@@ -46,6 +48,7 @@ export class LoggedInGuardService implements CanActivate {
 
             const jsonData = await response.json();
             this.token = jsonData['jwt'].match(/(?<=ccgamer=).*?(?=;)/g).toString();
+            console.log('in auth guard: ');
             console.log(jsonData);
             sessionStorage.setItem('AuthToken', JSON.stringify(this.token));
             this.mainService.userIsLoggedIn = true;
@@ -54,6 +57,13 @@ export class LoggedInGuardService implements CanActivate {
             this.userId = jsonData['id'];
             this.garageId = jsonData['garageId'];
             //console.log(this.garageId);
+
+
+            /*const skeletonResponse = await fetch(environment.endpointPrefix + '/api/playercards');
+            console.log(skeletonResponse.body);
+            const skeletonJson = await response.json();
+            this.playerCardSkeleton = skeletonJson;*/
+
             this._router.navigate(['/home']);
             return true;
 

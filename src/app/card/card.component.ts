@@ -25,29 +25,19 @@ export class CardComponent implements OnInit {
 
 
     ngOnInit(): void {
-        //console.log(this.playerCard);
-        /*const image = document.querySelector(".img-car") as HTMLElement;
-        image.style.width = this.card.objectWidth.value;
-        image.style.height = this.card.objectHeight.value;
-        image.style.objectPosition = this.card.objectPositionHorizontal.value + ' ' + this.card.objectPositionVertical.value;
-        image.setAttribute("src", this.card.imageUrl.value);*/
-        /*[style.width]=
-            [style.height]=card.objectHeight.value
-            [style.object-position]="card.objectPositionHorizontal.value + ' ' + card.objectPositionVertical.value"
-            [src]=card.imageUrl.value*/
-
     }
 
-public generateLogoUrl(filename: string) {
-        return this.manufacturerLogoUrlPrefix + filename;
-}
+
+    public generateLogoUrl(filename: string) {
+            return this.manufacturerLogoUrlPrefix + filename;
+    }
+
 
     public flipToFront(givenId: any) {
 
-        let card = document.querySelector(`#${givenId}`)!;
+        let card = document.querySelector(`#${CSS.escape(givenId)}`)!;
         card.classList.remove('flipCard');
     }
-
 
 
     frontDatas() {
@@ -59,6 +49,7 @@ public generateLogoUrl(filename: string) {
             this.playerCard.card.value.engineCapacity,
         ];
     }
+
 
     iTabDatas() {
 
@@ -123,7 +114,7 @@ public generateLogoUrl(filename: string) {
     }
 
     frontClick(id: string) {
-        let card = document.querySelector(`#${id}`)!;
+        let card = document.querySelector(`#${CSS.escape(id)}`)!;
         card.classList.add('flipCard');
         /*const original = card.querySelector(`#select_btn_${id}`)!;
         let clone = <Element>original.cloneNode(true);

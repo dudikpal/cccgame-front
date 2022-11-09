@@ -20,7 +20,7 @@ export class EventService {
 
     public playerCardSkeleton: any;
 
-    public tuningMultipliers!: any[];
+    public tuningMultipliers!: {[key: string]: number}[];
 
     public createdAt!: Date;
 
@@ -30,6 +30,7 @@ export class EventService {
 
 
     constructor() {
+        this.playerCardSkeleton = this.getPlayerCardSkeleton();
     }
 
     emitChildEvent(item: any) {
@@ -61,15 +62,13 @@ export class EventService {
         let cards = [];
         this.playerCards = responseData.playerCards;
         this.tuningMultipliers = responseData.tuningMultipliers;
-        console.log(this.tuningMultipliers);
+        //await this.getPlayerCardSkeleton();
+        //console.log(this.playerCardSkeleton);
     }
 
 
     updateCard(updatedCard: any) {
 
-        //this.updateCardInLocal(updatedCard);
-        console.log('updatedCard in mainService: ');
-        console.log(updatedCard);
         fetch(environment.endpointPrefix + '/api/cards', {
             method: "PUT",
             body: JSON.stringify(updatedCard),

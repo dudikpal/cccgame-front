@@ -40,12 +40,17 @@ export class AdminPageComponent implements OnInit {
 
     ngOnInit(): void {
 
+        //this.eventService.getPlayerCardSkeleton();
         this.eventService.childEventListener().subscribe(item => {
 
             this.selectedCard = item;
         });
+        console.log('on admin page oninit: ');
+        console.log(this.eventService.playerCardSkeleton);
 
         this.selectedCard = this.eventService.playerCardSkeleton;
+
+        //console.log(this.selectedCard);
         this.cardPropertiesExtractor();
     }
 
@@ -282,16 +287,34 @@ export class AdminPageComponent implements OnInit {
         for (const prop of playerCardProps.values()) {
 
             const [identifier, dataObject] = prop;
+            /*console.log(identifier);
+            console.log(dataObject);*/
 
-            if (identifier === 'card' || identifier === 'id') {
-                continue;
-            }
+            if (identifier ==='tunings') {
+                //console.log('tunings: ' + identifier)
+                for (const dataObjectElement of Object.entries(dataObject)) {
 
-            this.initAllProps.playerCardProps.push({
-                identifier: identifier,
-                name: (dataObject as any).name,
-                value: (dataObject as any).value
-            });
+                    const [ident, dataObj] = dataObjectElement;
+                    //console.log((dataObj as any).name);
+                    //console.log((dataObj as any).value);
+                    this.initAllProps.playerCardProps.push({
+                        identifier: ident,
+                        name: (dataObj as any).name,
+                        value: (dataObj as any).value
+                    });
+                }
+            }/*
+             else if(identifier ==='card'){
+                //console.log('card: ' + identifier)
+                this.initAllProps.playerCardProps.push({
+                    identifier: identifier,
+                    name: (dataObject as any).name,
+                    value: (dataObject as any).value
+                });
+
+            }*/
+
         }
+        console.log(this.initAllProps);
     }
 }
