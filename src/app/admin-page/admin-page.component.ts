@@ -298,21 +298,26 @@ export class AdminPageComponent implements OnInit {
                     //console.log((dataObj as any).name);
                     //console.log((dataObj as any).value);
                     this.initAllProps.playerCardProps.push({
+                        identifier: 'tuning_' + ident,
+                        name: (dataObj as any).name,
+                        value: (dataObj as any).value
+                    });
+                }
+            }
+             else if(identifier ==='calculatedFields'){
+
+                for (const dataObjectElement of Object.entries(dataObject)) {
+
+                    const [ident, dataObj] = dataObjectElement;
+                    //console.log((dataObj as any).name);
+                    //console.log((dataObj as any).value);
+                    this.initAllProps.playerCardProps.push({
                         identifier: ident,
                         name: (dataObj as any).name,
                         value: (dataObj as any).value
                     });
                 }
-            }/*
-             else if(identifier ==='card'){
-                //console.log('card: ' + identifier)
-                this.initAllProps.playerCardProps.push({
-                    identifier: identifier,
-                    name: (dataObject as any).name,
-                    value: (dataObject as any).value
-                });
-
-            }*/
+            }
 
         }
         console.log(this.initAllProps);

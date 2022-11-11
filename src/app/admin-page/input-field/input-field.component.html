@@ -19,8 +19,8 @@
 
     </label>
     <input class="input-group" id="input_{{prop.identifier}}_playerCard"
-           (input)="calcField(prop.identifier)"
-           [value]=prop.identifier
+           (input)="calculateTuningField(prop.identifier)"
+           [value]=prop.value
            [attr.data-input]=prop.identifier
     >
 

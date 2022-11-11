@@ -30,6 +30,7 @@ export class InputFieldComponent implements OnInit, AfterViewInit, OnChanges {
 
     ngOnInit(): void {
         //console.log(this.initProps);
+
     }
 
     ngAfterViewInit(): void {
@@ -87,10 +88,23 @@ export class InputFieldComponent implements OnInit, AfterViewInit, OnChanges {
         this.adminService.updateCard(updatedCard);
     }
 
+    calculateTuningField(identifier: string) {
 
-    calcField(multiplierPropertyIdentifier: any) {
+        console.log(identifier);
+        const multiplierPropertyIdentifier = identifier.replace('tuning_', '');
+        console.log(multiplierPropertyIdentifier);
+        const baseMultiplier = Number((this.mainService.tuningMultipliers as any)[`${multiplierPropertyIdentifier.toUpperCase()}`]);
+        const optionalMultiplierValue = Number((document.querySelector(`#input_${identifier}_playerCard`)as HTMLInputElement).value);
+        const baseValue = Number((document.querySelector('#input_weight')as HTMLInputElement).value);
+        const calculatedCell = document.querySelector(`#input_weight_playerCard`)as HTMLInputElement;
 
-        console.log('calcfield funtion: ');
+        calculatedCell.value = String(baseValue * optionalMultiplierValue * baseMultiplier);
+    }
+
+    calcFieldsInit() {
+// mikor fusson le, clickkor a list'ban, de ay hol van?
+        this.calculateTuningField('ENGINE');
+        /*console.log('calcfield funtion: ');
         console.log(multiplierPropertyIdentifier);
 const baseMultiplier = (this.mainService.tuningMultipliers as any)['ENGINE'];
 
@@ -100,8 +114,23 @@ const baseMultiplier = (this.mainService.tuningMultipliers as any)['ENGINE'];
         const multipliedCell = document.querySelector(`#input_${multiplierPropertyIdentifier}`)as HTMLInputElement
         const multipliedValue = Number(multipliedCell.value);
         multipliedCell.value = String(multipliedValue * optionalMultiplierValue * baseMultiplier);
-        console.log(multipliedCell);
+        console.log(multipliedCell);*/
+        /*
+        Tunings:
+            weight:
+                --weight
+                ++top speed
+                ++acc
 
+            engine:
+                ++power
+                ++top speed
+                ++acc
+
+            cornering:
+                ++width
+                --height
+         */
         //const calculatedPropertyIdentifier = multiplierPropertyIdentifier.replace('tuning', '').toLowerCase();
         //const calculatedPropertyName = calculatedPropertyIdentifier.toUpperCase();
         //const calculatedPropertyField = document.querySelector(`#input_${calculatedPropertyIdentifier}`) as HTMLInputElement;
