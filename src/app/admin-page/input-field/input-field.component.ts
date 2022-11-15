@@ -84,21 +84,89 @@ export class InputFieldComponent implements OnInit, AfterViewInit, OnChanges {
     update() {
 
         let updatedCard = this.inputFieldsToCard();
-
         this.adminService.updateCard(updatedCard);
     }
 
     calculateTuningField(identifier: string) {
 
-        console.log(identifier);
         const multiplierPropertyIdentifier = identifier.replace('tuning_', '');
-        console.log(multiplierPropertyIdentifier);
-        const baseMultiplier = Number((this.mainService.tuningMultipliers as any)[`${multiplierPropertyIdentifier.toUpperCase()}`]);
-        const optionalMultiplierValue = Number((document.querySelector(`#input_${identifier}_playerCard`)as HTMLInputElement).value);
-        const baseValue = Number((document.querySelector('#input_weight')as HTMLInputElement).value);
-        const calculatedCell = document.querySelector(`#input_weight_playerCard`)as HTMLInputElement;
+        console.log(identifier);
+        switch (multiplierPropertyIdentifier) {
+            case 'chassis':
+                this.calculateChassisTuning(identifier, multiplierPropertyIdentifier);
+                break;
+            case 'engine':
+                this.calculateEngineTuning(identifier, multiplierPropertyIdentifier);
+                break;
+            case 'cornering':
+                this.calculateCorneringTuning(identifier, multiplierPropertyIdentifier);
+                break;
+        }
+    }
 
-        calculatedCell.value = String(baseValue * optionalMultiplierValue * baseMultiplier);
+    calculateEngineTuning(identifier: string, multiplierPropertyIdentifier: string) {
+        const optionalMultiplierValue = this.getOptionalMultiplierValue(identifier);
+        const baseMultiplierValue = this.getBaseMultiplierValue(multiplierPropertyIdentifier);
+        this.calculateCellValue('powerHP', optionalMultiplierValue, baseMultiplierValue);
+        this.calculateCellValue('acceleration', optionalMultiplierValue, baseMultiplierValue);
+        this.calculateCellValue('topSpeed', optionalMultiplierValue, baseMultiplierValue);
+    }
+
+    calculateCorneringTuning(identifier: string, multiplierPropertyIdentifier: string) {
+        const optionalMultiplierValue = this.getOptionalMultiplierValue(identifier);
+        const baseMultiplierValue = this.getBaseMultiplierValue(multiplierPropertyIdentifier);
+        this.calculateCellValue('width', optionalMultiplierValue, baseMultiplierValue);
+        this.calculateCellValue('height', optionalMultiplierValue, baseMultiplierValue);
+        this.calculateCellValue('groundClearance', optionalMultiplierValue, baseMultiplierValue);
+        this.calculateCornering();
+    }
+
+    calculateChassisTuning(identifier: string, multiplierPropertyIdentifier: string) {
+        const optionalMultiplierValue = this.getOptionalMultiplierValue(identifier);
+        const baseMultiplierValue = this.getBaseMultiplierValue(multiplierPropertyIdentifier)
+        this.calculateCellValue('weight', optionalMultiplierValue, baseMultiplierValue);
+        this.calculateCornering();
+    }
+
+    calculateCornering() {
+        const corneringCell = this.getCalculatedCell('cornering');
+        corneringCell.value = 'calculated';
+    }
+
+    calculateCellValue(identifier: string, optionalMultiplierValue: number, baseMultiplierValue: number) {
+        const baseValue = this.getBasicPropertyValue(identifier);
+        const calculatedCell = this.getCalculatedCell(identifier);
+
+        /* FALLTHROUGH */
+        switch (identifier) {
+            case 'weight':
+            case 'acceleration':
+            case 'groundClearance':
+            case 'height':
+                calculatedCell.value = String(baseValue * (1 - (optionalMultiplierValue * baseMultiplierValue)));
+                break;
+            case 'topSpeed':
+            case 'width':
+            case 'powerHP':
+                calculatedCell.value =  String(baseValue * (1 + (optionalMultiplierValue * baseMultiplierValue)));
+                break;
+        }
+    }
+
+    getCalculatedCell(identifier: string) {
+        return document.querySelector(`#input_${identifier}_playerCard`)as HTMLInputElement;
+    }
+
+    getOptionalMultiplierValue(identifier: string) {
+        return Number((document.querySelector(`#input_${identifier}_playerCard`)as HTMLInputElement).value);
+    }
+
+    getBasicPropertyValue(identifier: string) {
+        return Number((document.querySelector(`#input_${identifier}`)as HTMLInputElement).value);
+    }
+
+    getBaseMultiplierValue(multiplierPropertyIdentifier: string) {
+        return Number((this.mainService.tuningMultipliers as any)[`${multiplierPropertyIdentifier.toUpperCase()}`]);
     }
 
     calcFieldsInit() {
