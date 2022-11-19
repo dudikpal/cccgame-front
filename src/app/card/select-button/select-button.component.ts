@@ -18,8 +18,8 @@ export class SelectButtonComponent implements OnInit {
 
         event.stopPropagation();
 
-        const card = document.querySelector('#' + id)!;
-        const btn = card.querySelector(`#select_btn_${id}`)!;
+        const card = document.querySelector('#' + CSS.escape(id))!;
+        const btn = card.querySelector(`#select_btn_${CSS.escape(id)}`)!;
 
         btn.classList.toggle('selected');
     }

@@ -15,7 +15,7 @@ interface MultiplierValues {
 })
 
 
-export class InputFieldComponent implements OnInit, AfterViewInit, OnChanges {
+export class InputFieldComponent implements OnInit {
 
     @Input() initAllProps!: any;
 
@@ -28,13 +28,6 @@ export class InputFieldComponent implements OnInit, AfterViewInit, OnChanges {
     }
 
     ngOnInit(): void {
-    }
-
-    ngAfterViewInit(): void {
-    }
-
-    ngOnChanges(changes: SimpleChanges): void {
-
     }
 
     createNewCard() {

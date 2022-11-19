@@ -41,10 +41,9 @@ export class CardComponent implements OnInit {
 
 
     frontDatas() {
-
         return [
-            this.playerCard.card.value.topSpeed,
-            this.playerCard.card.value.acceleration,
+            this.playerCard.calculatedFields.topSpeed,
+            this.playerCard.calculatedFields.acceleration,
             this.playerCard.card.value.driveWheel,
             this.playerCard.card.value.engineCapacity,
         ];
@@ -54,13 +53,13 @@ export class CardComponent implements OnInit {
     iTabDatas() {
 
         return [
-            this.playerCard.card.value.acceleration,
-            this.playerCard.card.value.topSpeed,
+            this.playerCard.calculatedFields.acceleration,
+            this.playerCard.calculatedFields.topSpeed,
             this.playerCard.card.value.engineCapacity,
             this.playerCard.card.value.maxTorque,
-            this.playerCard.card.value.weight,
+            this.playerCard.calculatedFields.weight,
             this.playerCard.card.value.fuelTankCapacity,
-            this.playerCard.card.value.groundClearance,
+            this.playerCard.calculatedFields.groundClearance,
         ];
     }
 
@@ -83,8 +82,8 @@ export class CardComponent implements OnInit {
             this.playerCard.card.value.doors,
             this.playerCard.card.value.seats,
             this.playerCard.card.value.length,
-            this.playerCard.card.value.width,
-            this.playerCard.card.value.height,
+            this.playerCard.calculatedFields.width,
+            this.playerCard.calculatedFields.height,
         ];
     }
 

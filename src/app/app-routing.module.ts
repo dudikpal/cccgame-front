@@ -7,6 +7,7 @@ import {GarageComponent} from "./garage/garage.component";
 import {RegisterComponent} from "./register/register.component";
 import {AdminPageComponent} from "./admin-page/admin-page.component";
 import {HomeMainComponent} from "./home/home-main/home-main.component";
+import {UpgradeComponent} from "./upgrade/upgrade.component";
 
 const routes: Routes = [
     //{path: '/', redirectTo: 'login'},
@@ -19,6 +20,9 @@ const routes: Routes = [
             },
             {
                 path: 'garage', component: GarageComponent
+            },
+            {
+                path: 'upgrade', component: UpgradeComponent
             }
         ],
         canActivate: [LoggedInGuardService]
