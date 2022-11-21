@@ -28,6 +28,8 @@ export class EventService {
 
     public updatedCard: any;
 
+    public selectCardForUpgrade: any;
+
 
     constructor() {
         this.playerCardSkeleton = this.getPlayerCardSkeleton();

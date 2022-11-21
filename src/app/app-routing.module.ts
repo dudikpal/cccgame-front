@@ -21,12 +21,10 @@ const routes: Routes = [
             {
                 path: 'garage', component: GarageComponent
             },
-            {
-                path: 'upgrade', component: UpgradeComponent
-            }
         ],
         canActivate: [LoggedInGuardService]
     },
+    {path: 'upgrade', component: UpgradeComponent},
     {path: 'admin', component: AdminPageComponent, canActivate: [LoggedInGuardService]},
     {path: '**', redirectTo: 'login'},
 ];
