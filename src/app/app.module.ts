@@ -49,6 +49,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgxPaginationModule } from 'ngx-pagination';
 import {AdminService} from "./services/admin.service";
 import { UpgradeComponent } from './upgrade/upgrade.component';
+import { UpgradeButtonComponent } from './card/upgrade-button/upgrade-button.component';
 
 
 @NgModule({
@@ -76,6 +77,7 @@ import { UpgradeComponent } from './upgrade/upgrade.component';
         LockedImgComponent,
         HomeMainComponent,
         UpgradeComponent,
+        UpgradeButtonComponent,
     ],
     imports: [
         HttpClientModule,

@@ -1,12 +1,17 @@
 .upgrade-page {
-    background-color: #86b7fe;
-    /*color: white;*/
+    /*background-color: #86b7fe;
+    !*color: white;*!
     display: flex;
     position: absolute ;
     width: 100%;
-    padding-right: 56.25%; /* 16:9 Aspect Ratio */
+    padding-right: 56.25%; !* 16:9 Aspect Ratio *!
     top: 0;
     left: 0;
     bottom: 0;
-    right: 0;
+    right: 0;*/
+}
+
+.upgrade-field {
+    display: inline-flex;
+    width: 100%;
 }

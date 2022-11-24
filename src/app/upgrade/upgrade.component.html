@@ -2,19 +2,19 @@
     class="container">
 <div
 class="upgrade-page">
-    <div style="width: 100%">
+    <div>
         <app-card
         [playerCard]=selectedCard></app-card>
     </div>
-    <div>
+    <div class="container" style="display: inline-flex">
         <div>
-            <button>Engine</button>
+            <button (click)="calculateTuningField('engine')">Engine</button>
         </div>
         <div>
-            <button>Chassis</button>
+            <button (click)="calculateTuningField('chassis')">Chassis</button>
         </div>
         <div>
-            <button>Cornering</button>
+            <button (click)="calculateTuningField('cornering')">Cornering</button>
         </div>
     </div>
     <div><button>Do it</button></div>
@@ -22,6 +22,21 @@ class="upgrade-page">
         <button
         (click)=goToHome()>Home</button>
     </div>
-<span>ez egy sor</span>
+    <table class="table table-striped back-table">
+        <tbody>
+        <tr *ngFor="let field of calculatedFields">
+            <th scope="row" [innerHTML]=field.name></th>
+            <td>
+                <input id="input_{{field.identifier}}"
+                [value]="field.baseValue">
+            </td>
+            <td>-></td>
+            <td>
+                <input id="input_{{field.identifier}}_playerCard"
+                [value]="field.calculatedValue">
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </div>
