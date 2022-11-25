@@ -30,12 +30,10 @@ export class UpgradeComponent implements OnInit {
 
     ngOnInit(): void {
         this.selectedCard = this.mainService.selectCardForUpgrade;
-        console.log(this.selectedCard);
         this.calculatedFields = [];
 
         for (const calculatedField of Object.entries(this.selectedCard.calculatedFields).values()) {
             const [identifier, dataObject] = calculatedField;
-
             const name = (dataObject as any).name;
             const baseValue = (dataObject as any).value;
             const calcField = {
@@ -73,7 +71,6 @@ export class UpgradeComponent implements OnInit {
                 this.calculateCorneringTuning(identifier, multiplierPropertyIdentifier);
                 break;
         }
-        console.log(this.selectedTuningButton);
     }
 
     calculateEngineTuning(identifier: string, multiplierPropertyIdentifier: string) {
@@ -134,7 +131,12 @@ export class UpgradeComponent implements OnInit {
     }
 
     getOptionalMultiplierValue(identifier: string) {
-        return 1;
+        let actualTuningLevel = this.selectedCard.tunings['chassis'].value;
+
+        if (actualTuningLevel < this.tuningMaxLevel) {
+            actualTuningLevel++;
+        }
+        return actualTuningLevel;
     }
 
     getBasicPropertyValue(identifier: string) {
