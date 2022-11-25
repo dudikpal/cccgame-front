@@ -1,42 +1,58 @@
 <div
-    class="container">
-<div
-class="upgrade-page">
-    <div>
-        <app-card
-        [playerCard]=selectedCard></app-card>
-    </div>
-    <div class="container" style="display: inline-flex">
+        class="container">
+    <div
+            class="upgrade-page">
         <div>
-            <button (click)="calculateTuningField('engine')">Engine</button>
+            <app-card
+                    [playerCard]=selectedCard></app-card>
+        </div>
+        <div class="btn-group" role="group" style="display: inline-flex">
+            <div>
+                <button type="button" (click)="calculateTuningField('engine')">Engine</button>
+            </div>
+            <div>
+                <button type="button" (click)="calculateTuningField('chassis')">Chassis</button>
+            </div>
+            <div>
+                <button type="button" (click)="calculateTuningField('cornering')">Cornering</button>
+            </div>
         </div>
         <div>
-            <button (click)="calculateTuningField('chassis')">Chassis</button>
+            <button>Do it</button>
         </div>
         <div>
-            <button (click)="calculateTuningField('cornering')">Cornering</button>
+            <button
+                    (click)=goToHome()>Home
+            </button>
+        </div>
+        <table class="table table-striped back-table">
+            <tbody>
+            <tr *ngFor="let field of calculatedFields">
+                <th scope="row" [innerHTML]=field.name></th>
+                <td>
+                    <input id="input_{{field.identifier}}"
+                           [value]="field.baseValue">
+                </td>
+                <td>-></td>
+                <td>
+                    <input id="input_{{field.identifier}}_playerCard"
+                           [value]="field.calculatedValue">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
+                   (click)="calculateTuningField('engine')">
+            <label class="btn btn-outline-primary" for="btnradio1">Engine</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
+                   (click)="calculateTuningField('chassis')">
+            <label class="btn btn-outline-primary" for="btnradio2">Chassis</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"
+                   (click)="calculateTuningField('cornering')">
+            <label class="btn btn-outline-primary" for="btnradio3">Cornering</label>
         </div>
     </div>
-    <div><button>Do it</button></div>
-        <div>
-        <button
-        (click)=goToHome()>Home</button>
-    </div>
-    <table class="table table-striped back-table">
-        <tbody>
-        <tr *ngFor="let field of calculatedFields">
-            <th scope="row" [innerHTML]=field.name></th>
-            <td>
-                <input id="input_{{field.identifier}}"
-                [value]="field.baseValue">
-            </td>
-            <td>-></td>
-            <td>
-                <input id="input_{{field.identifier}}_playerCard"
-                [value]="field.calculatedValue">
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
 </div>

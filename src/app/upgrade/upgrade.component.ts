@@ -18,6 +18,10 @@ export class UpgradeComponent implements OnInit {
 
     calculatedFields: any;
 
+    tuningMaxLevel = 5;
+
+    selectedTuningButton!: string;
+
     constructor(
         private mainService: EventService,
         private router: Router
@@ -53,6 +57,10 @@ export class UpgradeComponent implements OnInit {
     calculateTuningField(identifier: string) {
 
         const multiplierPropertyIdentifier = identifier.replace('tuning_', '');
+        if (this.selectedTuningButton !== null) {
+            this.resetCalculatedFields();
+        }
+        this.selectedTuningButton = multiplierPropertyIdentifier;
 
         switch (multiplierPropertyIdentifier) {
             case 'chassis':
@@ -65,6 +73,7 @@ export class UpgradeComponent implements OnInit {
                 this.calculateCorneringTuning(identifier, multiplierPropertyIdentifier);
                 break;
         }
+        console.log(this.selectedTuningButton);
     }
 
     calculateEngineTuning(identifier: string, multiplierPropertyIdentifier: string) {
@@ -134,5 +143,11 @@ export class UpgradeComponent implements OnInit {
 
     getBaseMultiplierValue(multiplierPropertyIdentifier: string) {
         return Number((this.mainService.tuningMultipliers as any)[`${multiplierPropertyIdentifier.toUpperCase()}`]);
+    }
+
+    resetCalculatedFields() {
+        for (const calculatedField of this.calculatedFields) {
+            this.getCalculatedCell(calculatedField.identifier).value = String(this.getBasicPropertyValue(calculatedField.identifier));
+        }
     }
 }
