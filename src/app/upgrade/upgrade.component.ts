@@ -18,7 +18,7 @@ export class UpgradeComponent implements OnInit {
 
     calculatedFields: any;
 
-    tuningMaxLevel = 5;
+    tuningMaxLevel = 4;
 
     selectedTuningButton!: string;
 
@@ -45,19 +45,28 @@ export class UpgradeComponent implements OnInit {
 
             this.calculatedFields.push(calcField);
         }
-    }
+        console.log(this.calculatedFields);
+        for (const selectedCardElement of Object.entries(this.selectedCard.tunings)) {
+            const identifier = selectedCardElement[0];
+            const actualTuningLevel = (selectedCardElement[1] as any).value;
 
+            if (this.reachedMaxTuningLevel(actualTuningLevel)) {
+                this.disableTuningButton(identifier);
+            }
+        }
+    }
 
     goToHome() {
         this.router.navigate(['/home']);
     }
 
     calculateTuningField(identifier: string) {
-
         const multiplierPropertyIdentifier = identifier.replace('tuning_', '');
+
         if (this.selectedTuningButton !== null) {
             this.resetCalculatedFields();
         }
+
         this.selectedTuningButton = multiplierPropertyIdentifier;
 
         switch (multiplierPropertyIdentifier) {
@@ -91,6 +100,8 @@ export class UpgradeComponent implements OnInit {
     calculateChassisTuning(identifier: string, multiplierPropertyIdentifier: string) {
         const multiplierValues = this.getMultiplierValues(identifier, multiplierPropertyIdentifier);
         this.calculateCellValue('weight', multiplierValues);
+        this.calculateCellValue('acceleration', multiplierValues);
+        this.calculateCellValue('topSpeed', multiplierValues);
         this.calculateCornering();
     }
 
@@ -109,7 +120,8 @@ export class UpgradeComponent implements OnInit {
     calculateCellValue(identifier: string, multiplierValues: MultiplierValues) {
         const baseValue = this.getBasicPropertyValue(identifier);
         const calculatedCell = this.getCalculatedCell(identifier);
-
+        const calculatedPlayerCardField = this.selectedCard.calculatedFields[`${identifier}`];
+        console.log(identifier)
         /* FALLTHROUGH */
         switch (identifier) {
             case 'weight':
@@ -117,39 +129,68 @@ export class UpgradeComponent implements OnInit {
             case 'groundClearance':
             case 'height':
                 calculatedCell.value = String((baseValue * (1 - (multiplierValues.optionalMultiplierValue * multiplierValues.baseMultiplierValue))).toFixed(2));
+                this.calculatedFields.find((field: { identifier: string; }) => field.identifier === identifier).calculatedValue = calculatedCell.value;
                 break;
             case 'topSpeed':
             case 'width':
             case 'powerHP':
                 calculatedCell.value = String((baseValue * (1 + (multiplierValues.optionalMultiplierValue * multiplierValues.baseMultiplierValue))).toFixed(2));
+                this.calculatedFields.find((field: { identifier: string; }) => field.identifier === identifier).calculatedValue = calculatedCell.value;
                 break;
         }
     }
 
-    getCalculatedCell(identifier: string) {
+    private getCalculatedCell(identifier: string) {
         return document.querySelector(`#input_${identifier}_playerCard`) as HTMLInputElement;
     }
 
-    getOptionalMultiplierValue(identifier: string) {
-        let actualTuningLevel = this.selectedCard.tunings['chassis'].value;
+    private getOptionalMultiplierValue(identifier: string) {
+        let actualTuningLevel = this.selectedCard.tunings[`${identifier}`].value;
 
-        if (actualTuningLevel < this.tuningMaxLevel) {
+        if (!this.reachedMaxTuningLevel(actualTuningLevel)) {
             actualTuningLevel++;
         }
         return actualTuningLevel;
     }
 
-    getBasicPropertyValue(identifier: string) {
+    private getBasicPropertyValue(identifier: string) {
         return Number((document.querySelector(`#input_${identifier}`) as HTMLInputElement).value);
     }
 
-    getBaseMultiplierValue(multiplierPropertyIdentifier: string) {
+    private getBaseMultiplierValue(multiplierPropertyIdentifier: string) {
         return Number((this.mainService.tuningMultipliers as any)[`${multiplierPropertyIdentifier.toUpperCase()}`]);
     }
 
-    resetCalculatedFields() {
+    private resetCalculatedFields() {
         for (const calculatedField of this.calculatedFields) {
             this.getCalculatedCell(calculatedField.identifier).value = String(this.getBasicPropertyValue(calculatedField.identifier));
         }
+    }
+
+    private reachedMaxTuningLevel(tuningLevel: number) {
+        return tuningLevel == this.tuningMaxLevel;
+    }
+
+    private disableTuningButton(identifier: string) {
+        (document.querySelector(`#tuningButton_${identifier}`) as any).disabled = true;
+
+    }
+
+    upgradeTuningLevel() {
+
+        let tuningLevel = this.selectedCard.tunings[`${this.selectedTuningButton}`].value;
+
+        if (tuningLevel === this.tuningMaxLevel) {
+            return;
+        }
+
+        this.selectedCard.tunings[`${this.selectedTuningButton}`].value++;
+
+        for (const calculatedField of this.calculatedFields) {
+            this.selectedCard.calculatedFields[`${calculatedField.identifier}`].value = calculatedField.calculatedValue;
+        }
+        console.log(this.selectedCard.tunings);
+        console.log(this.selectedCard.calculatedFields);
+        //rest apit meghívni (tuningUpgrade)
     }
 }
