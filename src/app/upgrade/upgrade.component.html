@@ -23,6 +23,19 @@
                         (click)="calculateTuningField('cornering')">Cornering</button>
             </div>
         </div>-->
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="btnradio" id="tuningButton_engine" autocomplete="off"
+                   (click)="calculateTuningField('engine')">
+            <label class="btn btn-outline-primary" for="tuningButton_engine">Engine</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="tuningButton_chassis" autocomplete="off"
+                   (click)="calculateTuningField('chassis')">
+            <label class="btn btn-outline-primary" for="tuningButton_chassis">Chassis</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="tuningButton_cornering" autocomplete="off"
+                   (click)="calculateTuningField('cornering')">
+            <label class="btn btn-outline-primary" for="tuningButton_cornering">Cornering</label>
+        </div>
         <div>
             <button
             (click)="upgradeTuningLevel()">Do it</button>
@@ -48,19 +61,7 @@
             </tr>
             </tbody>
         </table>
-        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-            <input type="radio" class="btn-check" name="btnradio" id="tuningButton_engine" autocomplete="off"
-                   (click)="calculateTuningField('engine')">
-            <label class="btn btn-outline-primary" for="tuningButton_engine">Engine</label>
 
-            <input type="radio" class="btn-check" name="btnradio" id="tuningButton_chassis" autocomplete="off"
-                   (click)="calculateTuningField('chassis')">
-            <label class="btn btn-outline-primary" for="tuningButton_chassis">Chassis</label>
-
-            <input type="radio" class="btn-check" name="btnradio" id="tuningButton_cornering" autocomplete="off"
-                   (click)="calculateTuningField('cornering')">
-            <label class="btn btn-outline-primary" for="tuningButton_cornering">Cornering</label>
-        </div>
 
     </div>
 </div>

@@ -164,21 +164,16 @@ export class AdminPageComponent implements OnInit {
                     name: attrName,
                     values: [...value.split(',')]
                 });
-                //(this.cardDTO as any)[attrName] = null;
-                //(this.cardDTO as any)[attrName] = value.split(',');
             } else if (value.includes('-')) {
                 betweenValues.push({
                     name: attrName,
                     values: [value.match(/^\d+(\.\d+)?/)![0], value.match(/(\d+\.)?\d+$/)![0]]
                 });
-                //(this.cardDTO as any)[attrName] = null;
-                //(this.cardDTO as any)[attrName] = value;
             } else if (value !== '') {
                 simpleValues.push({
                     name: attrName,
                     values: [value]
                 });
-                //(this.cardDTO as any)[attrName] = this.convertEmptyToNull(value);
             }
         }
 
@@ -188,12 +183,10 @@ export class AdminPageComponent implements OnInit {
         for (const checkField of Array.from(selectedCheckFields)) {
             const attrName = checkField.getAttribute('data-check')!;
             isNullFields.push(attrName);
-            //(this.cardDTO as any)[attrName] = null;
         }
 
         // in DTO just the simple values left
         const tupleQuery = JSON.stringify({
-            //card: this.cardDTO,
             simpleValues: simpleValues,
             checks: isNullFields,
             betweens: betweenValues,
@@ -216,26 +209,20 @@ export class AdminPageComponent implements OnInit {
         }
 
         const attributes = Object.entries(this.selectedCard.card.value).map(item => item[0]);
-        const refCard = this.eventService.playerCardSkeleton.card.value;
-        //console.log(this.cardList.map(card => card.card.value));
-        //console.log(attributes);
-        //console.log(refCard);
+
         for (let card of this.cardList.map(card => card.card.value)) {
-            //console.log('Módosítatlan card: ');
-            //console.log(card);
+
             for (const attribute of attributes) {
                 const attributeInputField = (document.querySelector(`#input_${attribute}`) as HTMLInputElement).value
 
                 if (!attributeInputField.includes('empty') &&
                     !attributeInputField.includes('placeholder') &&
                     attributeInputField !== '' && card[`${attribute}`].value !== attributeInputField) {
-                    //console.log('Nem egyezés');
                     card[`${attribute}`].value = attributeInputField;
                 }
             }
-            //console.log('Módosított card: ');
-            //console.log(card);
-            this.eventService.updateCard(card);
+            //this.eventService.upgradePlayerCard(card);
+            this.adminService.updateCard(card);
         }
     }
 

@@ -22,7 +22,7 @@ const routes: Routes = [
                 path: 'garage', component: GarageComponent
             },
         ],
-        canActivate: [LoggedInGuardService]
+        //canActivate: [LoggedInGuardService]
     },
     {path: 'upgrade', component: UpgradeComponent},
     {path: 'admin', component: AdminPageComponent, canActivate: [LoggedInGuardService]},

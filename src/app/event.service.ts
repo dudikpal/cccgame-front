@@ -61,21 +61,22 @@ export class EventService {
         });
 
         const responseData = await response.json();
-        let cards = [];
         this.playerCards = responseData.playerCards;
+        console.log(this.playerCards);
         this.tuningMultipliers = responseData.tuningMultipliers;
-        //await this.getPlayerCardSkeleton();
-        //console.log(this.playerCardSkeleton);
     }
 
 
-    updateCard(updatedCard: any) {
+    upgradePlayerCard(updatedCard: any) {
 
-        fetch(environment.endpointPrefix + '/api/cards', {
+        const payLoad = `ccgamer=${sessionStorage.getItem('AuthToken')!.replace(/\"/g, '')}`;
+
+        fetch(environment.endpointPrefix + '/api/garage', {
             method: "PUT",
             body: JSON.stringify(updatedCard),
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                'Authorization': payLoad
             }
         });
     }
