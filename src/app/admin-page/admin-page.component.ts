@@ -1,14 +1,10 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CardModel} from "../card/card.model";
 import {EventService} from "../event.service";
 import {HttpClient} from "@angular/common/http";
-import {isEmpty, Observable, window} from "rxjs";
-//import {log} from "util";
 import {CardMapper} from "../card/cardMapper";
 import {environment} from "../../environments/environment";
-import {InputFieldComponent} from "./input-field/input-field.component";
 import {AdminService} from "../services/admin.service";
-import {addWarning} from "@angular-devkit/build-angular/src/utils/webpack-diagnostics";
 
 export type InitProps = {
     identifier: string,
@@ -23,7 +19,6 @@ export type InitProps = {
 })
 export class AdminPageComponent implements OnInit {
 
-    cardDTO: CardModel = new CardModel();
     initAllProps: {cardProps: InitProps[]; playerCardProps: InitProps[]} = {cardProps: [], playerCardProps: []};
     cardList!: any[];
     selectedCard: any = '';
@@ -40,17 +35,12 @@ export class AdminPageComponent implements OnInit {
 
     ngOnInit(): void {
 
-        //this.eventService.getPlayerCardSkeleton();
         this.eventService.childEventListener().subscribe(item => {
 
             this.selectedCard = item;
         });
-        console.log('on admin page oninit: ');
-        console.log(this.eventService.playerCardSkeleton);
 
         this.selectedCard = this.eventService.playerCardSkeleton;
-
-        //console.log(this.selectedCard);
         this.cardPropertiesExtractor();
     }
 
@@ -144,7 +134,6 @@ export class AdminPageComponent implements OnInit {
 
     findCards() {
 
-        const selectButton = document.querySelector('#select-btn') as HTMLElement;
         const inputFields = document.querySelectorAll('[data-search]');
         let simpleValues = [];
         let betweenValues = [];
@@ -221,7 +210,6 @@ export class AdminPageComponent implements OnInit {
                     card[`${attribute}`].value = attributeInputField;
                 }
             }
-            //this.eventService.upgradePlayerCard(card);
             this.adminService.updateCard(card);
         }
     }
@@ -274,30 +262,23 @@ export class AdminPageComponent implements OnInit {
         for (const prop of playerCardProps.values()) {
 
             const [identifier, dataObject] = prop;
-            /*console.log(identifier);
-            console.log(dataObject);*/
 
             if (identifier ==='tunings') {
-                //console.log('tunings: ' + identifier)
+
                 for (const dataObjectElement of Object.entries(dataObject)) {
 
                     const [ident, dataObj] = dataObjectElement;
-                    //console.log((dataObj as any).name);
-                    //console.log((dataObj as any).value);
                     this.initAllProps.playerCardProps.push({
                         identifier: 'tuning_' + ident,
                         name: (dataObj as any).name,
                         value: (dataObj as any).value
                     });
                 }
-            }
-             else if(identifier ==='calculatedFields'){
+            } else if (identifier ==='calculatedFields'){
 
                 for (const dataObjectElement of Object.entries(dataObject)) {
 
                     const [ident, dataObj] = dataObjectElement;
-                    //console.log((dataObj as any).name);
-                    //console.log((dataObj as any).value);
                     this.initAllProps.playerCardProps.push({
                         identifier: ident,
                         name: (dataObj as any).name,
@@ -305,8 +286,7 @@ export class AdminPageComponent implements OnInit {
                     });
                 }
             }
-
         }
-        console.log(this.initAllProps);
+        //console.log(this.initAllProps);
     }
 }

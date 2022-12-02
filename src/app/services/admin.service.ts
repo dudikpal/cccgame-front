@@ -30,17 +30,16 @@ export class AdminService {
 
     async updateCard(updatedCard: any) {
 
-        const response = await fetch(environment.endpointPrefix + '/api/cards', {
-            method: "PUT",
+        const response = await fetch(environment.endpointPrefix + '/api/garage', {
+            method: "POST",
             body: JSON.stringify(updatedCard),
             headers: {
                 "Content-Type": "application/json"
             }
         });
 
-        if (response.status < 500) {
-            const savedUpdatedCard = await response.json();
-            this.updateCardInLocal(savedUpdatedCard);
+        if (response.status == 200) {
+            this.updateCardInLocal(updatedCard);
         }
     }
 

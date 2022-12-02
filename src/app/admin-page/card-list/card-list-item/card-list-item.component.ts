@@ -1,7 +1,5 @@
-import {Component, EventEmitter, Output, Input, OnInit} from '@angular/core';
-import {CardModel} from "../../../card/card.model";
+import {Component, Input, OnInit} from '@angular/core';
 import {EventService} from "../../../event.service";
-
 
 @Component({
     selector: 'app-card-list-item',
@@ -11,21 +9,15 @@ import {EventService} from "../../../event.service";
 export class CardListItemComponent implements OnInit {
 
     @Input() cardList!: any[];
-    selectedCard!: any;
 
     constructor(
         private eventService: EventService
-    ) {
-    }
+    ) {}
 
-    ngOnInit() {
-        //console.log(this.cardList);
-    }
+    ngOnInit() {}
 
     selectCard(card: any) {
 
         return this.eventService.emitChildEvent(card);
     }
-
-
 }

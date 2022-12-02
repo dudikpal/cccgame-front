@@ -15,25 +15,12 @@ export class CardPreviewComponent implements OnInit, OnChanges {
     }
 
     ngOnInit(): void {
-       /* this.cardPlace = document.createElement('div');
-        this.cardPlace.style.width = '280px';
-        this.cardPlace.style.height = '420px';
-        this.cardPlace.style.backgroundColor = 'grey';
-        document.appendChild(this.cardPlace);*/
-        //console.log(this.selectedCard)
+
     }
 
     ngOnChanges(changes: SimpleChanges): void {
 
-
-
-        /*if (Object.entries(this.selectedCard).length) {
-            console.log(this.selectedCard)
-
-        } else {
-
-        }*/
-        //console.log(this.selectedCard)
+        //console.log(this.selectedCard.calculatedFields);
 
     }
 

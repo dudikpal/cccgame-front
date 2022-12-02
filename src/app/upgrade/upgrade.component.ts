@@ -175,7 +175,6 @@ export class UpgradeComponent implements OnInit {
 
     private disableTuningButton(identifier: string) {
         (document.querySelector(`#tuningButton_${identifier}`) as any).disabled = true;
-
     }
 
     upgradeTuningLevel() {
