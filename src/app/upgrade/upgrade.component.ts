@@ -1,6 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {EventService} from "../event.service";
 import {Router} from "@angular/router";
+import {environment} from "../../environments/environment";
+import {FormControl, FormGroup} from "@angular/forms";
+
 
 interface MultiplierValues {
     optionalMultiplierValue: number,
@@ -20,7 +23,11 @@ export class UpgradeComponent implements OnInit {
 
     tuningMaxLevel = 4;
 
+    tuningAllMaxLevel = 10;
+
     selectedTuningButton!: string;
+
+
 
     constructor(
         private mainService: EventService,
@@ -29,29 +36,46 @@ export class UpgradeComponent implements OnInit {
     }
 
     ngOnInit(): void {
+
+        this.refreshDatas();
+    }
+
+    refreshDatas() {
         this.selectedCard = this.mainService.selectCardForUpgrade;
         this.calculatedFields = [];
 
         for (const calculatedField of Object.entries(this.selectedCard.calculatedFields).values()) {
             const [identifier, dataObject] = calculatedField;
+            if (identifier === 'cornering') {
+                continue;
+            }
             const name = (dataObject as any).name;
-            const baseValue = (dataObject as any).value;
+            const calculatedValue = (dataObject as any).value;
             const calcField = {
                 name: name,
                 identifier: identifier,
-                baseValue: baseValue,
-                calculatedValue: baseValue
+                baseValue: this.selectedCard.card.value[`${identifier}`].value,
+                calculatedValue: calculatedValue
             };
 
             this.calculatedFields.push(calcField);
         }
 
+        let actualTuningAllLevel = 0;
+        let tuningIdentifiers: string[] = [];
+
         for (const selectedCardElement of Object.entries(this.selectedCard.tunings)) {
             const identifier = selectedCardElement[0];
             const actualTuningLevel = (selectedCardElement[1] as any).value;
+            tuningIdentifiers.push(identifier);
+            actualTuningAllLevel += actualTuningLevel;
 
             if (this.reachedMaxTuningLevel(actualTuningLevel)) {
                 this.disableTuningButton(identifier);
+            }
+
+            if (actualTuningAllLevel === this.tuningAllMaxLevel) {
+                this.disableAllTuningButton(tuningIdentifiers);
             }
         }
     }
@@ -60,9 +84,15 @@ export class UpgradeComponent implements OnInit {
         this.router.navigate(['/home']);
     }
 
-    calculateTuningField(identifier: string) {
-        const multiplierPropertyIdentifier = identifier.replace('tuning_', '');
+    disableAllTuningButton(identifiers: string[]) {
+        for (const identifier of identifiers) {
+            this.disableTuningButton(identifier);
+        }
+    }
 
+    calculateTuningField(identifier: string, event: Event) {
+        const multiplierPropertyIdentifier = identifier.replace('tuning_', '');
+        //console.log((event.target as HTMLInputElement).value);
         if (this.selectedTuningButton !== null) {
             this.resetCalculatedFields();
         }
@@ -83,26 +113,37 @@ export class UpgradeComponent implements OnInit {
     }
 
     calculateEngineTuning(identifier: string, multiplierPropertyIdentifier: string) {
+
+        /*this.selectedCard.tunings.engine.value += 1;
         const multiplierValues = this.getMultiplierValues(identifier, multiplierPropertyIdentifier);
         this.calculateCellValue('powerHP', multiplierValues);
         this.calculateCellValue('acceleration', multiplierValues);
-        this.calculateCellValue('topSpeed', multiplierValues);
+        this.calculateCellValue('topSpeed', multiplierValues);*/
     }
 
     calculateCorneringTuning(identifier: string, multiplierPropertyIdentifier: string) {
+
+        /*this.selectedCard.tunings.cornering.value += 1;
         const multiplierValues = this.getMultiplierValues(identifier, multiplierPropertyIdentifier);
         this.calculateCellValue('width', multiplierValues);
         this.calculateCellValue('height', multiplierValues);
         this.calculateCellValue('groundClearance', multiplierValues);
-        this.calculateCornering();
+        this.calculateCornering();*/
     }
 
-    calculateChassisTuning(identifier: string, multiplierPropertyIdentifier: string) {
-        const multiplierValues = this.getMultiplierValues(identifier, multiplierPropertyIdentifier);
+    async calculateChassisTuning(identifier: string, multiplierPropertyIdentifier: string) {
+        console.log((document.querySelector("input[type='radio'][name='tuningRadioButton']:checked") as HTMLInputElement).value);
+        console.log(this.selectedTuningButton);
+        /*this.selectedCard.tunings.chassis.value += 1;
+        console.log('send to back');
+        await this.mainService.calculatePlayerCardTuning(this.selectedTuningButton);
+        await this.refreshDatas();*/
+
+        /*const multiplierValues = this.getMultiplierValues(identifier, multiplierPropertyIdentifier);
         this.calculateCellValue('weight', multiplierValues);
         this.calculateCellValue('acceleration', multiplierValues);
         this.calculateCellValue('topSpeed', multiplierValues);
-        this.calculateCornering();
+        this.calculateCornering();*/
     }
 
     getMultiplierValues(identifier: string, multiplierPropertyIdentifier: string) {
@@ -177,9 +218,19 @@ export class UpgradeComponent implements OnInit {
         (document.querySelector(`#tuningButton_${identifier}`) as any).disabled = true;
     }
 
-    upgradeTuningLevel() {
+    async upgradeTuningLevel() {
+        const payLoad = `ccgamer=${sessionStorage.getItem('AuthToken')!.replace(/\"/g, '')}`;
 
-        let tuningLevel = this.selectedCard.tunings[`${this.selectedTuningButton}`].value;
+        const response = await fetch(environment.endpointPrefix + '/api/garage/calculate_tuning/' + this.selectedTuningButton, {
+        method: "POST",
+        body: JSON.stringify(this.selectedCard),
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": payLoad
+        }
+    });
+    const json = await response.json();
+        /*let tuningLevel = this.selectedCard.tunings[`${this.selectedTuningButton}`].value;
 
         if (tuningLevel === this.tuningMaxLevel) {
             return;
@@ -191,7 +242,11 @@ export class UpgradeComponent implements OnInit {
             this.selectedCard.calculatedFields[`${calculatedField.identifier}`].value = calculatedField.calculatedValue;
         }
 
-        this.mainService.upgradePlayerCard(this.selectedCard);
+        this.mainService.updatePlayerCard(this.selectedCard);*/
         this.router.navigate(['/home/garage']);
+    }
+
+    buttonIsChecked(value: any) {
+        return value === this.selectedTuningButton ? true : false;
     }
 }

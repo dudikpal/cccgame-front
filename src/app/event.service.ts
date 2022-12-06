@@ -67,7 +67,7 @@ export class EventService {
     }
 
 
-    upgradePlayerCard(updatedCard: any) {
+    updatePlayerCard(updatedCard: any) {
 
         const payLoad = `ccgamer=${sessionStorage.getItem('AuthToken')!.replace(/\"/g, '')}`;
 
@@ -82,5 +82,16 @@ export class EventService {
     }
 
 
+    async calculatePlayerCardTuning(tuningIdentifier: string) {
 
+        const response = await fetch(environment.endpointPrefix + '/api/playercards/tuning/' + tuningIdentifier, {
+            method: "POST",
+            body: JSON.stringify(this.selectCardForUpgrade),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const json = await response.json();
+        this.selectCardForUpgrade = json;
+    }
 }

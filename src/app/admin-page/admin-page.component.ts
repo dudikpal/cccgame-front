@@ -44,7 +44,7 @@ export class AdminPageComponent implements OnInit {
         this.cardPropertiesExtractor();
     }
 
-    deleteCard() {
+    async deleteCard() {
 
         fetch(this.url + '/' + this.selectedCard.card.value.id.value, {
             method: 'delete'
