@@ -3,6 +3,7 @@ import {EventService} from "../event.service";
 import {Router} from "@angular/router";
 import {environment} from "../../environments/environment";
 import {FormControl, FormGroup} from "@angular/forms";
+import {main} from "@popperjs/core";
 
 
 interface MultiplierValues {
@@ -36,12 +37,13 @@ export class UpgradeComponent implements OnInit {
 
     ngOnInit(): void {
 
+        this.mainService.updatedCard = this.mainService.selectCardForUpgrade;
         this.refreshDatas();
     }
 
     refreshDatas() {
-        this.selectedCard = this.mainService.selectCardForUpgrade;
         this.calculatedFields = [];
+        this.selectedCard = this.mainService.selectCardForUpgrade;
 
         for (const calculatedField of Object.entries(this.selectedCard.calculatedFields).values()) {
             const [identifier, dataObject] = calculatedField;
@@ -54,7 +56,7 @@ export class UpgradeComponent implements OnInit {
                 name: name,
                 identifier: identifier,
                 baseValue: this.selectedCard.calculatedFields[`${identifier}`].value,
-                calculatedValue: calculatedValue
+                calculatedValue: this.mainService.updatedCard.calculatedFields[`${identifier}`].value
             };
 
             this.calculatedFields.push(calcField);
@@ -133,9 +135,10 @@ export class UpgradeComponent implements OnInit {
     async calculateChassisTuning(identifier: string, multiplierPropertyIdentifier: string) {
         /*console.log((document.querySelector("input[type='radio'][name='tuningRadioButton']:checked") as HTMLInputElement).value);
         console.log(this.selectedTuningButton);*/
-        this.selectedCard.tunings.chassis.value += 1;
+        this.mainService.selectCardForUpgrade.tunings.chassis.value += 1;
         // működik, mert a refreshben ref szerinti átadás van
         await this.mainService.calculatePlayerCardTuning(this.selectedTuningButton);
+        this.mainService.selectCardForUpgrade.tunings.chassis.value -= 1;
         await this.refreshDatas();
 
         /*const multiplierValues = this.getMultiplierValues(identifier, multiplierPropertyIdentifier);
@@ -222,14 +225,16 @@ export class UpgradeComponent implements OnInit {
 
         const response = await fetch(environment.endpointPrefix + '/api/garage/calculate_tuning/' + this.selectedTuningButton, {
             method: "POST",
-            body: JSON.stringify(this.selectedCard),
+            body: JSON.stringify(this.mainService.updatedCard),
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": payLoad
             }
         });
-        const calculatedPlayerCard = await response.json();
-        this.mainService.playerCards.find(pCard => pCard.id.value === calculatedPlayerCard.id.value).calculatedFields = calculatedPlayerCard.calculatedFields;
+        this.selectedCard = this.mainService.updatedCard;
+        const index = this.mainService.playerCards.indexOf(this.mainService.playerCards.find(pCard => pCard.id.value === this.mainService.updatedCard.id.value));
+        this.mainService.playerCards[index] = this.mainService.updatedCard;
+        this.mainService.selectCardForUpgrade = this.mainService.updatedCard;
 
         /*let tuningLevel = this.selectedCard.tunings[`${this.selectedTuningButton}`].value;
 

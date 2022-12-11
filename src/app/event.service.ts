@@ -92,7 +92,6 @@ export class EventService {
             }
         });
         const json = await response.json();
-        this.selectCardForUpgrade = json;
-        console.log(this.playerCards);
+        this.updatedCard = json;
     }
 }
