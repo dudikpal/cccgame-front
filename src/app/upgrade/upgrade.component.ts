@@ -21,12 +21,11 @@ export class UpgradeComponent implements OnInit {
 
     calculatedFields: any;
 
-    tuningMaxLevel = 4;
+    tuningMaxLevel = 44;
 
-    tuningAllMaxLevel = 10;
+    tuningAllMaxLevel = 1000;
 
     selectedTuningButton!: string;
-
 
 
     constructor(
@@ -54,7 +53,7 @@ export class UpgradeComponent implements OnInit {
             const calcField = {
                 name: name,
                 identifier: identifier,
-                baseValue: this.selectedCard.card.value[`${identifier}`].value,
+                baseValue: this.selectedCard.calculatedFields[`${identifier}`].value,
                 calculatedValue: calculatedValue
             };
 
@@ -132,12 +131,12 @@ export class UpgradeComponent implements OnInit {
     }
 
     async calculateChassisTuning(identifier: string, multiplierPropertyIdentifier: string) {
-        console.log((document.querySelector("input[type='radio'][name='tuningRadioButton']:checked") as HTMLInputElement).value);
-        console.log(this.selectedTuningButton);
-        /*this.selectedCard.tunings.chassis.value += 1;
-        console.log('send to back');
+        /*console.log((document.querySelector("input[type='radio'][name='tuningRadioButton']:checked") as HTMLInputElement).value);
+        console.log(this.selectedTuningButton);*/
+        this.selectedCard.tunings.chassis.value += 1;
+        // működik, mert a refreshben ref szerinti átadás van
         await this.mainService.calculatePlayerCardTuning(this.selectedTuningButton);
-        await this.refreshDatas();*/
+        await this.refreshDatas();
 
         /*const multiplierValues = this.getMultiplierValues(identifier, multiplierPropertyIdentifier);
         this.calculateCellValue('weight', multiplierValues);
@@ -218,18 +217,20 @@ export class UpgradeComponent implements OnInit {
         (document.querySelector(`#tuningButton_${identifier}`) as any).disabled = true;
     }
 
-    async upgradeTuningLevel() {
+    async sendUpgradeToBackend() {
         const payLoad = `ccgamer=${sessionStorage.getItem('AuthToken')!.replace(/\"/g, '')}`;
 
         const response = await fetch(environment.endpointPrefix + '/api/garage/calculate_tuning/' + this.selectedTuningButton, {
-        method: "POST",
-        body: JSON.stringify(this.selectedCard),
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": payLoad
-        }
-    });
-    const json = await response.json();
+            method: "POST",
+            body: JSON.stringify(this.selectedCard),
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": payLoad
+            }
+        });
+        const calculatedPlayerCard = await response.json();
+        this.mainService.playerCards.find(pCard => pCard.id.value === calculatedPlayerCard.id.value).calculatedFields = calculatedPlayerCard.calculatedFields;
+
         /*let tuningLevel = this.selectedCard.tunings[`${this.selectedTuningButton}`].value;
 
         if (tuningLevel === this.tuningMaxLevel) {
