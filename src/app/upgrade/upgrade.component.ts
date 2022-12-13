@@ -220,17 +220,9 @@ export class UpgradeComponent implements OnInit {
         (document.querySelector(`#tuningButton_${identifier}`) as any).disabled = true;
     }
 
-    async sendUpgradeToBackend() {
-        const payLoad = `ccgamer=${sessionStorage.getItem('AuthToken')!.replace(/\"/g, '')}`;
+    saveCalculatedPlayerCard() {
 
-        const response = await fetch(environment.endpointPrefix + '/api/garage/calculate_tuning/' + this.selectedTuningButton, {
-            method: "POST",
-            body: JSON.stringify(this.mainService.updatedCard),
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": payLoad
-            }
-        });
+        this.mainService.saveCalculatedPlayerCard(this.selectedTuningButton);
         this.selectedCard = this.mainService.updatedCard;
         const index = this.mainService.playerCards.indexOf(this.mainService.playerCards.find(pCard => pCard.id.value === this.mainService.updatedCard.id.value));
         this.mainService.playerCards[index] = this.mainService.updatedCard;

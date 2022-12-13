@@ -94,4 +94,20 @@ export class EventService {
         const json = await response.json();
         this.updatedCard = json;
     }
+
+
+    async saveCalculatedPlayerCard(tuningIdentifier: string) {
+
+        const payLoad = `ccgamer=${sessionStorage.getItem('AuthToken')!.replace(/\"/g, '')}`;
+        const response = await fetch(environment.endpointPrefix + '/api/garage/calculate_tuning/' + tuningIdentifier, {
+            method: "POST",
+            body: JSON.stringify(this.updatedCard),
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": payLoad
+            }
+        });
+        const json = await response.json();
+        this.updatedCard = json;
+    }
 }
