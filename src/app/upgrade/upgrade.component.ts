@@ -1,9 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {EventService} from "../event.service";
 import {Router} from "@angular/router";
-import {environment} from "../../environments/environment";
-import {FormControl, FormGroup} from "@angular/forms";
-import {main} from "@popperjs/core";
 
 
 interface MultiplierValues {
@@ -28,6 +25,8 @@ export class UpgradeComponent implements OnInit {
 
     selectedTuningButton!: string;
 
+    doitButton!: HTMLButtonElement;
+
 
     constructor(
         private mainService: EventService,
@@ -36,9 +35,14 @@ export class UpgradeComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
-        this.mainService.updatedCard = this.mainService.selectCardForUpgrade;
+        this.initFields();
         this.refreshDatas();
+    }
+
+    private initFields() {
+        this.doitButton = (document.querySelector('#saveToDatabaseButton') as HTMLButtonElement);
+        this.doitButton.disabled = true;
+        this.mainService.updatedCard = this.mainService.selectCardForUpgrade;
     }
 
     refreshDatas() {
@@ -51,7 +55,6 @@ export class UpgradeComponent implements OnInit {
                 continue;
             }
             const name = (dataObject as any).name;
-            const calculatedValue = (dataObject as any).value;
             const calcField = {
                 name: name,
                 identifier: identifier,
@@ -93,7 +96,7 @@ export class UpgradeComponent implements OnInit {
 
     calculateTuningField(identifier: string, event: Event) {
         const multiplierPropertyIdentifier = identifier.replace('tuning_', '');
-        //console.log((event.target as HTMLInputElement).value);
+
         if (this.selectedTuningButton !== null) {
             this.resetCalculatedFields();
         }
@@ -113,39 +116,37 @@ export class UpgradeComponent implements OnInit {
         }
     }
 
-    calculateEngineTuning(identifier: string, multiplierPropertyIdentifier: string) {
-
-        /*this.selectedCard.tunings.engine.value += 1;
-        const multiplierValues = this.getMultiplierValues(identifier, multiplierPropertyIdentifier);
-        this.calculateCellValue('powerHP', multiplierValues);
-        this.calculateCellValue('acceleration', multiplierValues);
-        this.calculateCellValue('topSpeed', multiplierValues);*/
+    private resetCalculatedFields() {
+        for (const calculatedField of this.calculatedFields) {
+            this.getCalculatedCell(calculatedField.identifier).value = String(this.getBasicPropertyValue(calculatedField.identifier));
+        }
     }
 
-    calculateCorneringTuning(identifier: string, multiplierPropertyIdentifier: string) {
+    async calculateEngineTuning(identifier: string, multiplierPropertyIdentifier: string) {
+        this.doitButton.disabled = false;
+        this.mainService.selectCardForUpgrade.tunings.engine.value += 1;
+        // működik, mert a refreshben ref szerinti átadás van
+        await this.mainService.calculatePlayerCardTuning(this.selectedTuningButton);
+        this.mainService.selectCardForUpgrade.tunings.engine.value -= 1;
+        await this.refreshDatas();
+    }
 
-        /*this.selectedCard.tunings.cornering.value += 1;
-        const multiplierValues = this.getMultiplierValues(identifier, multiplierPropertyIdentifier);
-        this.calculateCellValue('width', multiplierValues);
-        this.calculateCellValue('height', multiplierValues);
-        this.calculateCellValue('groundClearance', multiplierValues);
-        this.calculateCornering();*/
+    async calculateCorneringTuning(identifier: string, multiplierPropertyIdentifier: string) {
+        this.doitButton.disabled = false;
+        this.mainService.selectCardForUpgrade.tunings.cornering.value += 1;
+        // működik, mert a refreshben ref szerinti átadás van
+        await this.mainService.calculatePlayerCardTuning(this.selectedTuningButton);
+        this.mainService.selectCardForUpgrade.tunings.cornering.value -= 1;
+        await this.refreshDatas();
     }
 
     async calculateChassisTuning(identifier: string, multiplierPropertyIdentifier: string) {
-        /*console.log((document.querySelector("input[type='radio'][name='tuningRadioButton']:checked") as HTMLInputElement).value);
-        console.log(this.selectedTuningButton);*/
+        this.doitButton.disabled = false;
         this.mainService.selectCardForUpgrade.tunings.chassis.value += 1;
         // működik, mert a refreshben ref szerinti átadás van
         await this.mainService.calculatePlayerCardTuning(this.selectedTuningButton);
         this.mainService.selectCardForUpgrade.tunings.chassis.value -= 1;
         await this.refreshDatas();
-
-        /*const multiplierValues = this.getMultiplierValues(identifier, multiplierPropertyIdentifier);
-        this.calculateCellValue('weight', multiplierValues);
-        this.calculateCellValue('acceleration', multiplierValues);
-        this.calculateCellValue('topSpeed', multiplierValues);
-        this.calculateCornering();*/
     }
 
     getMultiplierValues(identifier: string, multiplierPropertyIdentifier: string) {
@@ -160,31 +161,6 @@ export class UpgradeComponent implements OnInit {
         corneringCell.value = 'calculated';
     }
 
-    calculateCellValue(identifier: string, multiplierValues: MultiplierValues) {
-        const baseValue = this.getBasicPropertyValue(identifier);
-        const calculatedCell = this.getCalculatedCell(identifier);
-
-        /* FALLTHROUGH */
-        switch (identifier) {
-            case 'acceleration':
-                calculatedCell.value = String((baseValue * (1 - (multiplierValues.optionalMultiplierValue * multiplierValues.baseMultiplierValue))).toFixed(2));
-                this.calculatedFields.find((field: { identifier: string; }) => field.identifier === identifier).calculatedValue = calculatedCell.value;
-                break;
-            case 'weight':
-            case 'groundClearance':
-            case 'height':
-                calculatedCell.value = String((baseValue * (1 - (multiplierValues.optionalMultiplierValue * multiplierValues.baseMultiplierValue))).toFixed(0));
-                this.calculatedFields.find((field: { identifier: string; }) => field.identifier === identifier).calculatedValue = calculatedCell.value;
-                break;
-            case 'topSpeed':
-            case 'width':
-            case 'powerHP':
-                calculatedCell.value = String((baseValue * (1 + (multiplierValues.optionalMultiplierValue * multiplierValues.baseMultiplierValue))).toFixed(0));
-                this.calculatedFields.find((field: { identifier: string; }) => field.identifier === identifier).calculatedValue = calculatedCell.value;
-                break;
-        }
-    }
-
     private getCalculatedCell(identifier: string) {
         return document.querySelector(`#input_${identifier}_playerCard`) as HTMLInputElement;
     }
@@ -195,6 +171,7 @@ export class UpgradeComponent implements OnInit {
         if (!this.reachedMaxTuningLevel(actualTuningLevel)) {
             actualTuningLevel++;
         }
+
         return actualTuningLevel;
     }
 
@@ -206,12 +183,6 @@ export class UpgradeComponent implements OnInit {
         return Number((this.mainService.tuningMultipliers as any)[`${multiplierPropertyIdentifier.toUpperCase()}`]);
     }
 
-    private resetCalculatedFields() {
-        for (const calculatedField of this.calculatedFields) {
-            this.getCalculatedCell(calculatedField.identifier).value = String(this.getBasicPropertyValue(calculatedField.identifier));
-        }
-    }
-
     private reachedMaxTuningLevel(tuningLevel: number) {
         return tuningLevel == this.tuningMaxLevel;
     }
@@ -221,26 +192,14 @@ export class UpgradeComponent implements OnInit {
     }
 
     saveCalculatedPlayerCard() {
-
+        if (this.selectedTuningButton === null) {
+            return;
+        }
         this.mainService.saveCalculatedPlayerCard(this.selectedTuningButton);
         this.selectedCard = this.mainService.updatedCard;
         const index = this.mainService.playerCards.indexOf(this.mainService.playerCards.find(pCard => pCard.id.value === this.mainService.updatedCard.id.value));
         this.mainService.playerCards[index] = this.mainService.updatedCard;
         this.mainService.selectCardForUpgrade = this.mainService.updatedCard;
-
-        /*let tuningLevel = this.selectedCard.tunings[`${this.selectedTuningButton}`].value;
-
-        if (tuningLevel === this.tuningMaxLevel) {
-            return;
-        }
-
-        this.selectedCard.tunings[`${this.selectedTuningButton}`].value++;
-
-        for (const calculatedField of this.calculatedFields) {
-            this.selectedCard.calculatedFields[`${calculatedField.identifier}`].value = calculatedField.calculatedValue;
-        }
-
-        this.mainService.updatePlayerCard(this.selectedCard);*/
         this.router.navigate(['/home/garage']);
     }
 

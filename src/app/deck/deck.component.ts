@@ -39,7 +39,7 @@ export class DeckComponent implements OnInit {
     }
 
     onDataChange(event: any) {
-        //this.page = event;
+        this.page = event;
     }
 
     getAllCard() {
