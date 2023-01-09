@@ -90,13 +90,9 @@ export class CardComponent implements OnInit {
     ivTabDatas() {
 
         return [
-            this.playerCard.card.value.gear1st,
-            this.playerCard.card.value.gear2nd,
-            this.playerCard.card.value.gear3rd,
-            this.playerCard.card.value.gear4th,
-            this.playerCard.card.value.gear5th,
-            this.playerCard.card.value.gear6th,
-            this.playerCard.card.value.finalDrive,
+            this.playerCard.tunings.chassis,
+            this.playerCard.tunings.engine,
+            this.playerCard.tunings.cornering
         ];
     }
 
