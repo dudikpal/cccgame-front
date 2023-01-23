@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, Input, OnInit} from '@angular/core';
 
 
 @Component({
@@ -6,9 +6,13 @@ import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
     templateUrl: './text-var-size-block.component.html',
     styleUrls: ['./text-var-size-block.component.css']
 })
-export class TextVarSizeBlockComponent implements OnInit, AfterViewInit {
+export class TextVarSizeBlockComponent implements OnInit, AfterViewChecked {
 
     @Input() playerCard!: any;
+
+    titleStyles = {'font-size': '18px'};
+
+    title!:string;
 
     constructor() {
     }
@@ -16,11 +20,19 @@ export class TextVarSizeBlockComponent implements OnInit, AfterViewInit {
     ngOnInit(): void {
     }
 
-    ngAfterViewInit() {
+    ngAfterViewChecked(): void {
+        /*const titleDiv = document.querySelector('.card-subtitle');
+        const width = titleDiv.offsetWidth;
+        const textWidth = titleDiv.textContent.length;
+
+        if (textWidth > width) {
+            this.titleStyles['font-size'] = '12px';
+        } else {
+            this.titleStyles['font-size'] = '14px';
+        }*/
         const typeBlock = document.querySelector(`#type_${this.playerCard.id.value}`);
         //const typeBlock = document.querySelector('[id^="type_"]');
         this.calcTypeSize(typeBlock);
-
     }
 
     calcTypeSize(element: any) {
