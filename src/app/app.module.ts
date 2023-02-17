@@ -15,6 +15,7 @@ import {MatDividerModule} from "@angular/material/divider";
 import {MatGridListModule} from "@angular/material/grid-list";
 
 import {NgModule} from '@angular/core';
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -50,6 +51,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import {AdminService} from "./services/admin.service";
 import { UpgradeComponent } from './upgrade/upgrade.component';
 import { UpgradeButtonComponent } from './card/upgrade-button/upgrade-button.component';
+import { RacesComponent } from './home/home-main/races/races.component';
 
 
 @NgModule({
@@ -78,6 +80,7 @@ import { UpgradeButtonComponent } from './card/upgrade-button/upgrade-button.com
         HomeMainComponent,
         UpgradeComponent,
         UpgradeButtonComponent,
+        RacesComponent,
     ],
     imports: [
         HttpClientModule,
@@ -102,6 +105,10 @@ import { UpgradeButtonComponent } from './card/upgrade-button/upgrade-button.com
         MatDialogModule,
         MatProgressSpinnerModule,
         NgxPaginationModule,
+        LoggerModule.forRoot({
+            level: NgxLoggerLevel.INFO,
+            serverLogLevel: NgxLoggerLevel.INFO,
+        }),
     ],
     providers: [
         LoggedInGuardService,

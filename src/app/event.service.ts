@@ -62,7 +62,6 @@ export class EventService {
 
         const responseData = await response.json();
         this.playerCards = responseData.playerCards;
-        console.log(this.playerCards);
         this.tuningMultipliers = responseData.tuningMultipliers;
     }
 

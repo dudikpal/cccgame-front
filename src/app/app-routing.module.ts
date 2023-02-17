@@ -8,6 +8,7 @@ import {RegisterComponent} from "./register/register.component";
 import {AdminPageComponent} from "./admin-page/admin-page.component";
 import {HomeMainComponent} from "./home/home-main/home-main.component";
 import {UpgradeComponent} from "./upgrade/upgrade.component";
+import {RacesComponent} from "./home/home-main/races/races.component";
 
 const routes: Routes = [
     //{path: '/', redirectTo: 'login'},
@@ -15,12 +16,9 @@ const routes: Routes = [
     {path: 'register', component: RegisterComponent},
     {path: 'home', component: HomeComponent,
         children: [
-            {
-                path: '', component: HomeMainComponent
-            },
-            {
-                path: 'garage', component: GarageComponent
-            },
+            {path: '', component: HomeMainComponent},
+            {path: 'garage', component: GarageComponent},
+            {path: 'races', component: RacesComponent}
         ],
         //canActivate: [LoggedInGuardService]
     },

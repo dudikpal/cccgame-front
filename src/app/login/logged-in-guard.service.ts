@@ -3,6 +3,7 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {EventService} from "../event.service";
+import {NGXLogger} from "ngx-logger";
 
 @Injectable()
 export class LoggedInGuardService implements CanActivate {
@@ -17,7 +18,8 @@ export class LoggedInGuardService implements CanActivate {
 
 
     constructor(private _router: Router,
-                private mainService: EventService) {
+                private mainService: EventService,
+                private logger: NGXLogger) {
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
@@ -48,21 +50,14 @@ export class LoggedInGuardService implements CanActivate {
 
             const jsonData = await response.json();
             this.token = jsonData['jwt'].match(/(?<=ccgamer=).*?(?=;)/g).toString();
-            console.log('in auth guard: ');
-            console.log(jsonData);
+            this.logger.info("Login successful");
+            this.logger.info("Response content: ", jsonData);
             sessionStorage.setItem('AuthToken', JSON.stringify(this.token));
             this.mainService.userIsLoggedIn = true;
             await this.mainService.getPlayerCards();
             await this.mainService.getPlayerCardSkeleton();
             this.userId = jsonData['id'];
             this.garageId = jsonData['garageId'];
-            //console.log(this.garageId);
-
-
-            /*const skeletonResponse = await fetch(environment.endpointPrefix + '/api/playercards');
-            console.log(skeletonResponse.body);
-            const skeletonJson = await response.json();
-            this.playerCardSkeleton = skeletonJson;*/
 
             this._router.navigate(['/home']);
             return true;
