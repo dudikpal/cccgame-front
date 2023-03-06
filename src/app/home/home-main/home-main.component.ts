@@ -9,10 +9,10 @@ import {Router} from "@angular/router";
 export class HomeMainComponent implements OnInit {
 
   centerTiles = [
-    {text: 'Races', cols: 2, rows: 1, color: '#142A5C', click: 'garage', routerlink: 'races', image: '../assets/img/menus/races_home.jpg'},
-    {text: 'My garage', cols: 1, rows: 1, color: '#B7A0E8', click: 'garage', routerlink: 'garage', image: '../assets/img/mygarage.webp'},
-    {text: 'Three', cols: 1, rows: 2, color: '#FF0000', click: 'garage', routerlink: 'garage', image: 'https://i.stack.imgur.com/cDxxV.jpg?s=64&g=1'},
-    {text: 'Four', cols: 3, rows: 1, color: '#D9EDD9', click: 'garage', routerlink: 'garage', image: 'https://i.stack.imgur.com/cDxxV.jpg?s=64&g=1'},
+    {text: 'Races', cols: 2, rows: 1, color: '#142A5C', routerlink: 'races', image: '../assets/img/menus/races_home.jpg'},
+    {text: 'My garage', cols: 1, rows: 1, color: '#B7A0E8', routerlink: 'garage', image: '../assets/img/mygarage.webp'},
+    {text: 'Three', cols: 1, rows: 2, color: '#FF0000', routerlink: 'garage', image: 'https://i.stack.imgur.com/cDxxV.jpg?s=64&g=1'},
+    {text: 'Four', cols: 3, rows: 1, color: '#D9EDD9', routerlink: 'garage', image: 'https://i.stack.imgur.com/cDxxV.jpg?s=64&g=1'},
   ];
 
   constructor(private router: Router) { }

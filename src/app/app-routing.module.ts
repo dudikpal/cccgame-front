@@ -9,6 +9,7 @@ import {AdminPageComponent} from "./admin-page/admin-page.component";
 import {HomeMainComponent} from "./home/home-main/home-main.component";
 import {UpgradeComponent} from "./upgrade/upgrade.component";
 import {RacesComponent} from "./home/home-main/races/races.component";
+import {FightTableComponent} from "./fight-table/fight-table.component";
 
 const routes: Routes = [
     //{path: '/', redirectTo: 'login'},
@@ -18,10 +19,11 @@ const routes: Routes = [
         children: [
             {path: '', component: HomeMainComponent},
             {path: 'garage', component: GarageComponent},
-            {path: 'races', component: RacesComponent}
+            {path: 'races', component: RacesComponent},
         ],
         //canActivate: [LoggedInGuardService]
     },
+    {path: 'fight', component: FightTableComponent},
     {path: 'upgrade', component: UpgradeComponent},
     {path: 'admin', component: AdminPageComponent, canActivate: [LoggedInGuardService]},
     {path: '**', redirectTo: 'login'},

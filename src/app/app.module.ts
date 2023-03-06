@@ -52,6 +52,7 @@ import {AdminService} from "./services/admin.service";
 import { UpgradeComponent } from './upgrade/upgrade.component';
 import { UpgradeButtonComponent } from './card/upgrade-button/upgrade-button.component';
 import { RacesComponent } from './home/home-main/races/races.component';
+import {DragDropModule} from "@angular/cdk/drag-drop";
 
 
 @NgModule({
@@ -109,6 +110,7 @@ import { RacesComponent } from './home/home-main/races/races.component';
             level: NgxLoggerLevel.INFO,
             serverLogLevel: NgxLoggerLevel.INFO,
         }),
+        DragDropModule
     ],
     providers: [
         LoggedInGuardService,
