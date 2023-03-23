@@ -1,0 +1,29 @@
+<!--<div [innerHTML]=baseCards[0]>
+
+</div>
+<div>
+    <ul *ngFor="let baseCard of baseCards">
+        <li>nev</li>
+        <li [innerHTML]="baseCard"></li>
+        <ul *ngFor="let prop of getObjectEntries(baseCard)">
+            <li [innerHTML]="prop[0]"></li>
+            <ul>
+                <li [innerHTML]="prop[1]"></li>
+            </ul>
+        </ul>
+    </ul>
+</div>-->
+<div class="input-group row "
+     id="block-search"
+     *ngFor="let cardProperty of getObjectEntries(baseCardSkeleton)"
+>
+    <label for="search_{{cardProperty[0]}}"
+           [innerHTML]='cardProperty[0]'>
+
+    </label>
+    <input
+            class="input-group"
+            type="text"
+            id="search_{{cardProperty[0]}}"
+            [attr.data-search]=cardProperty[0]>
+</div>

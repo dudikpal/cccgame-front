@@ -9,6 +9,7 @@ export class AdminComponent {
 
 	isCollapsed = false;
 	url = "http://localhost:8080/api/basecard"
+	searchFieldsVisibility = false;
 
 	constructor() {
 	}
@@ -43,5 +44,9 @@ export class AdminComponent {
 				method: "DELETE"
 			});
 		}
+	}
+
+	toggleSearchFields() {
+		this.searchFieldsVisibility = ! this.searchFieldsVisibility;
 	}
 }

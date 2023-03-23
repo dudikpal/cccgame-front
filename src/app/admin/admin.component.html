@@ -18,8 +18,8 @@
                             <li class="w-100" (click)="loadBaseCardsFromFile()">
                                 <button class="nav-link px-0">Load from file</button>
                             </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 2</a>
+                            <li (click)="toggleSearchFields()">
+                                <button class="nav-link px-0">Search fields</button>
                             </li>
                             <li>
                                 <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 3</a>
@@ -106,7 +106,8 @@
             </div>
         </div>
         <div class="col py-3">
-            <router-outlet></router-outlet>
+            <app-manage-basecards
+            [hidden]="searchFieldsVisibility"></app-manage-basecards>
         </div>
     </div>
 </div>
