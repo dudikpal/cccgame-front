@@ -11,6 +11,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { BaseCardListComponent } from './admin/manage-basecards/base-card-list/base-card-list.component';
+import { SearchFieldsComponent } from './admin/manage-basecards/search-fields/search-fields.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { BaseCardListComponent } from './admin/manage-basecards/base-card-list/b
     CardComponent,
     AdminComponent,
     ManageBasecardsComponent,
-    BaseCardListComponent
+    BaseCardListComponent,
+    SearchFieldsComponent
   ],
   imports: [
     HttpClientModule,

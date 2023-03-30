@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit, Output} from '@angular/core';
 import {AdminService} from "../../services/admin.service.";
 import {MainService} from "../../services/main.service";
 import {IBaseCard} from "../../models/IBaseCard.";
@@ -8,9 +8,10 @@ import {IBaseCard} from "../../models/IBaseCard.";
     templateUrl: './manage-basecards.component.html',
     styleUrls: ['./manage-basecards.component.css']
 })
-export class ManageBasecardsComponent implements OnInit{
+export class ManageBasecardsComponent implements OnInit, AfterViewInit{
 
     @Input() baseCards!: IBaseCard[];
+    @Input() searchFieldsVisibility!: boolean;
     baseCardSkeleton!: IBaseCard;
 
     constructor(
@@ -23,12 +24,13 @@ export class ManageBasecardsComponent implements OnInit{
         this.adminService.getFilteredBaseCards()
             .then(() => {
                 this.baseCards = this.adminService.baseCards;
-        this.baseCardSkeleton = this.mainService.baseCardSkeleton;
+                this.baseCardSkeleton = this.mainService.baseCardSkeleton;
             });
     }
 
-
-    getObjectEntries(baseCard: any) {
-        return Object.entries(baseCard);
+    ngAfterViewInit(): void {
     }
+
+
+
 }
