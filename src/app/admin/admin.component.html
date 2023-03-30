@@ -21,8 +21,8 @@
                             <li (click)="toggleSearchFields()">
                                 <button class="nav-link px-0">Search fields</button>
                             </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 3</a>
+                            <li (click)="getFilteredBaseCards()">
+                                <button class="nav-link px-0">Filtered baseCards</button>
                             </li>
                             <li>
                                 <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 4</a>
@@ -107,7 +107,8 @@
         </div>
         <div class="col py-3">
             <app-manage-basecards
-            [hidden]="searchFieldsVisibility"></app-manage-basecards>
+            [hidden]="searchFieldsVisibility"
+            [baseCards]="baseCards"></app-manage-basecards>
         </div>
     </div>
 </div>

@@ -10,13 +10,15 @@ import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { BaseCardListComponent } from './admin/manage-basecards/base-card-list/base-card-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CardComponent,
     AdminComponent,
-    ManageBasecardsComponent
+    ManageBasecardsComponent,
+    BaseCardListComponent
   ],
   imports: [
     HttpClientModule,

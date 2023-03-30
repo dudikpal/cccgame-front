@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {AdminService} from "../services/admin.service.";
+import {IBaseCard} from "../models/IBaseCard.";
 
 @Component({
 	selector: 'app-admin',
@@ -10,8 +12,11 @@ export class AdminComponent {
 	isCollapsed = false;
 	url = "http://localhost:8080/api/basecard"
 	searchFieldsVisibility = false;
+	baseCards!: IBaseCard[];
 
-	constructor() {
+	constructor(
+		private adminService: AdminService
+	) {
 	}
 
 	loadBaseCardsFromFile() {
@@ -48,5 +53,9 @@ export class AdminComponent {
 
 	toggleSearchFields() {
 		this.searchFieldsVisibility = ! this.searchFieldsVisibility;
+	}
+
+	getFilteredBaseCards() {
+		 this.baseCards = this.adminService.baseCards;
 	}
 }

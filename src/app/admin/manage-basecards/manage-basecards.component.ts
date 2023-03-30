@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {AdminService} from "../../services/admin.service.";
 import {MainService} from "../../services/main.service";
 import {IBaseCard} from "../../models/IBaseCard.";
@@ -10,7 +10,7 @@ import {IBaseCard} from "../../models/IBaseCard.";
 })
 export class ManageBasecardsComponent implements OnInit{
 
-    baseCards!: IBaseCard[];
+    @Input() baseCards!: IBaseCard[];
     baseCardSkeleton!: IBaseCard;
 
     constructor(
@@ -29,8 +29,6 @@ export class ManageBasecardsComponent implements OnInit{
 
 
     getObjectEntries(baseCard: any) {
-        const re = Object.entries(baseCard);
-        
-        return re;
+        return Object.entries(baseCard);
     }
 }
