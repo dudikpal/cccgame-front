@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpRequest} from "@angular/common/http";
 import {IBaseCard} from "../models/IBaseCard.";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ import {BehaviorSubject} from "rxjs";
 export class AdminService {
 
 
-  searchFieldsVisibility = false;
+  searchFieldsVisibility = true;
 
   baseCards!: IBaseCard[];
 

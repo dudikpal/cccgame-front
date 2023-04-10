@@ -11,7 +11,6 @@ import {IBaseCard} from "../../models/IBaseCard.";
 export class ManageBasecardsComponent implements OnInit, AfterViewInit{
 
     @Input() baseCards!: IBaseCard[];
-    @Input() searchFieldsVisibility!: boolean;
     baseCardSkeleton!: IBaseCard;
 
     constructor(
@@ -26,11 +25,15 @@ export class ManageBasecardsComponent implements OnInit, AfterViewInit{
                 this.baseCards = this.adminService.baseCards;
                 this.baseCardSkeleton = this.mainService.baseCardSkeleton;
             });
+
     }
 
     ngAfterViewInit(): void {
     }
 
+    searchFieldsVisible(): boolean {
+        return this.adminService.searchFieldsVisibility;
+    }
 
 
 }

@@ -13,7 +13,6 @@ export class AdminComponent {
 	url = "http://localhost:8080/api/basecard"
 	baseCards!: IBaseCard[];
 	isCollapsed = false;
-	searchFieldsVisibility = this.adminService.searchFieldsVisibility;
 
 	constructor(
 		private adminService: AdminService
@@ -57,8 +56,8 @@ export class AdminComponent {
 	}
 
 
-	toggleSearchFields() {
+
+	toggleSearchFieldVisibility() {
 		this.adminService.toggleSearchFieldsVisibility();
-		this.searchFieldsVisibility = this.adminService.searchFieldsVisibility;
 	}
 }

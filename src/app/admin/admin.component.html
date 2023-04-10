@@ -18,7 +18,7 @@
                             <li class="w-100" (click)="loadBaseCardsFromFile()">
                                 <button class="nav-link px-0">Load from file</button>
                             </li>
-                            <li (click)="toggleSearchFields()">
+                            <li (click)="toggleSearchFieldVisibility()">
                                 <button class="nav-link px-0">Search fields</button>
                             </li>
                             <li (click)="getFilteredBaseCards()">
@@ -108,7 +108,6 @@
         <div class="col py-3">
             <app-manage-basecards
             [baseCards]="baseCards"
-            [searchFieldsVisibility]="searchFieldsVisibility"
             ></app-manage-basecards>
         </div>
     </div>
