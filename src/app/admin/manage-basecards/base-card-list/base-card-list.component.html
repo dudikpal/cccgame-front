@@ -1,5 +1,8 @@
-<div>
-    <ul *ngFor="let baseCard of baseCards">
-        <li [innerHTML]="baseCard.baseCardId"></li>
-    </ul>
+<div class="list-group">
+        <button *ngFor="let baseCard of getFilteredBaseCards()"
+                type="button"
+                class="list-group-item list-group-item-action"
+                style="padding: 2px"
+        >{{baseCard.manufacturer}} {{baseCard.type}} {{baseCard.year}}</button>
+
 </div>
