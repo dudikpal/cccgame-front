@@ -10,7 +10,8 @@ import {IBaseCard} from "../../models/IBaseCard.";
 })
 export class ManageBasecardsComponent implements OnInit, AfterViewInit{
 
-    @Input() baseCards!: IBaseCard[];
+    baseCard!: IBaseCard;
+    baseCards!: IBaseCard[];
     baseCardSkeleton!: IBaseCard;
 
     constructor(
@@ -20,11 +21,13 @@ export class ManageBasecardsComponent implements OnInit, AfterViewInit{
     }
 
     ngOnInit(): void {
+        // ez csak a teszt idejére kell, admin page loadra betölti a card listet
         this.adminService.getFilteredBaseCards()
             .then(() => {
                 this.baseCards = this.adminService.baseCards;
-                this.baseCardSkeleton = this.mainService.baseCardSkeleton;
             });
+            this.baseCardSkeleton = this.mainService.baseCardSkeleton;
+            this.baseCard = this.baseCardSkeleton;
 
     }
 
@@ -35,5 +38,8 @@ export class ManageBasecardsComponent implements OnInit, AfterViewInit{
         return this.adminService.searchFieldsVisibility;
     }
 
-
+    getSelectedCard() {
+        //console.log(this.adminService.selectedCard);
+        return this.adminService.selectedCard;
+    }
 }

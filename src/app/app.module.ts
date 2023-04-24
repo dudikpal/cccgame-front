@@ -9,9 +9,11 @@ import { ManageBasecardsComponent } from './admin/manage-basecards/manage-baseca
 import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { BaseCardListComponent } from './admin/manage-basecards/base-card-list/base-card-list.component';
 import { SearchFieldsComponent } from './admin/manage-basecards/search-fields/search-fields.component';
+import {AdminService} from "./services/admin.service.";
+import {MainService} from "./services/main.service";
 
 @NgModule({
   declarations: [
@@ -31,7 +33,7 @@ import { SearchFieldsComponent } from './admin/manage-basecards/search-fields/se
     ReactiveFormsModule,
 
   ],
-  providers: [],
+  providers: [FormBuilder, AdminService, MainService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

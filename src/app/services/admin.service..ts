@@ -10,8 +10,9 @@ export class AdminService {
 
 
   searchFieldsVisibility = true;
-
   baseCards!: IBaseCard[];
+  selectedCard!: IBaseCard;
+  filter!: any;
 
   constructor() { }
 
