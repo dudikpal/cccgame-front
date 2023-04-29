@@ -2,6 +2,8 @@ import {AfterViewInit, Component, Input, OnInit, Output} from '@angular/core';
 import {AdminService} from "../../services/admin.service.";
 import {MainService} from "../../services/main.service";
 import {IBaseCard} from "../../models/IBaseCard.";
+import {IFilter, ISimpleValue} from "../../models/IFilter";
+import {min} from "rxjs";
 
 @Component({
     selector: 'app-manage-basecards',
@@ -13,6 +15,7 @@ export class ManageBasecardsComponent implements OnInit, AfterViewInit{
     baseCard!: IBaseCard;
     baseCards!: IBaseCard[];
     baseCardSkeleton!: IBaseCard;
+    filters: IFilter = {simpleValues: [], multipleValues: [], betweens: []};
 
     constructor(
         private adminService: AdminService,
@@ -27,8 +30,8 @@ export class ManageBasecardsComponent implements OnInit, AfterViewInit{
                 this.baseCards = this.adminService.baseCards;
             });
             this.baseCardSkeleton = this.mainService.baseCardSkeleton;
-            this.baseCard = this.baseCardSkeleton;
-
+            this.baseCard = JSON.parse(JSON.stringify(this.baseCardSkeleton));
+        console.log(this.baseCard);
     }
 
     ngAfterViewInit(): void {
@@ -42,4 +45,61 @@ export class ManageBasecardsComponent implements OnInit, AfterViewInit{
         //console.log(this.adminService.selectedCard);
         return this.adminService.selectedCard;
     }
+
+    getFilteredCards() {
+
+		/*let cardFilter = JSON.parse(JSON.stringify(this.mainService.baseCardSkeleton));
+		for (const cardAttribute of this.getObjectEntries(this.baseCardSkeleton)) {
+		  const inputField = document.querySelector(`#search_${cardAttribute[0]}`);
+
+		  console.log(cardAttribute[1]);
+		  console.log(inputField);
+		}*/
+        const inputFields = document.querySelectorAll('[data-search]');
+        for (const inputField of Array.from(inputFields)) {
+            this.addFilter(inputField);
+        }
+        console.log(this.filters);
+    }
+
+    private addFilter(inputField: Element) {
+        const attributeName = inputField.getAttribute('data-search')!;
+        const value = (inputField as HTMLInputElement).value.trim();
+
+        if (!value) {
+            return;
+        }
+        if (value.includes('+')) {
+            this.addBetweenFilter(attributeName, value);
+        } else if (value.includes(',')) {
+            this.addMultipleValuesFilter(attributeName, value);
+        } else {
+            this.addSimpleValueFilter(attributeName, value);
+        }
+    }
+
+    addBetweenFilter(attributeName: string, value: string) {
+        const values = value.split('+').map(Number);
+        const min = Math.min(...values);
+        const max = Math.max(...values);
+        this.filters.betweens?.push({
+            name: attributeName,
+            min: min,
+            max: max
+        });
+    }
+
+    addMultipleValuesFilter(attributeName: string, value: string) {
+        const values = value.split(',').map(str => str.trim());
+        this.filters.multipleValues?.push({
+            name: attributeName,
+            values: values
+        });
+    }
+
+    addSimpleValueFilter(attributeName: string, value: string) {
+        const simpleValue: ISimpleValue = {name: attributeName, value: value};
+        this.filters.simpleValues?.push(simpleValue);
+    }
+
 }
