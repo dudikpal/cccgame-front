@@ -52,10 +52,8 @@ export class AdminComponent {
 	}
 
 	getFilteredBaseCards() {
-		this.baseCards = this.adminService.baseCards;
+		this.adminService.getFilteredBaseCards();
 	}
-
-
 
 	toggleSearchFieldVisibility() {
 		this.adminService.toggleSearchFieldsVisibility();

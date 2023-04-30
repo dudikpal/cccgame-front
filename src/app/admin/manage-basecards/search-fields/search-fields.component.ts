@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {IBaseCard} from "../../../models/IBaseCard.";
 import {AdminService} from "../../../services/admin.service.";
 import {MainService} from "../../../services/main.service";
@@ -13,7 +13,7 @@ export class SearchFieldsComponent implements OnInit{
 
   url = "http://localhost:8080/api/basecard"
 
-  baseCardSkeleton!: IBaseCard;
+  @Input() baseCardSkeleton!: IBaseCard;
 
   constructor(
       private adminService: AdminService,
@@ -22,7 +22,7 @@ export class SearchFieldsComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.baseCardSkeleton = this.mainService.baseCardSkeleton;
+    //this.baseCardSkeleton = this.mainService.baseCardSkeleton;
   }
 
 
@@ -30,4 +30,7 @@ export class SearchFieldsComponent implements OnInit{
   getObjectEntries(baseCard: any) {
     return Object.entries(baseCard);
   }
+
+
+
 }

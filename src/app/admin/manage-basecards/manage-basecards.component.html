@@ -13,8 +13,11 @@
         </ul>
     </ul>
 </div>-->
+<button
+        (click)="getFilteredCards()">FILTER</button>
 <app-search-fields
         [hidden]="searchFieldsVisible()"
+        [baseCardSkeleton]="baseCardSkeleton"
         ></app-search-fields>
 
 
