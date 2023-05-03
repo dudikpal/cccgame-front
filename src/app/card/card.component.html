@@ -1,40 +1,26 @@
-<div class="grids">
-    <div class="card-one"
-    (click)="rotateCards()">
-        <div class="card">
-            <div class="card__side card__side--front" id="front-1">
-                <div class="text-box">
-                    <h3 class="text-box-top">Flipping Cards</h3>
-                    <h1 class="text-box-middle">Awesome!</h1>
-                    <h3 class="text-box-lower">--- More Text ---</h3>
-                </div>
-            </div>
-            <div class="card__side card__side--back" id="back-1">
-                <div class="text-box">
-                    <h3 class="text-box-top">Cards Flipped</h3>
-                    <h1 class="text-box-middle">Great!</h1>
-                    <h3 class="text-box-lower">--- More Text ---</h3>
-                </div>
+<div class='container'>
+    <div class='flip_box'>
+        <div class='front'>
+            <div
+                    class="img-container">
+                <img
+                        class="img-car"
+                        [style.width]=baseCard.objectWidth
+                        [style.height]=baseCard.objectHeight
+                        [style.object-position]="baseCard.objectPositionHorizontal + ' ' + baseCard.objectPositionVertical"
+                        [src]=baseCard.imageUrl
+                />
             </div>
         </div>
-    </div>
-    <div class="card-two">
-        <div class="card">
-            <div class="card__side card__side--front" id="front-2">
-                <div class="text-box">
-                    <h3 class="text-box-top">Flipping Cards</h3>
-                    <h1 class="text-box-middle">Awesome!</h1>
-                    <h3 class="text-box-lower">--- More Text ---</h3>
-                </div>
-            </div>
-            <div class="card__side card__side--back" id="back-2">
-                <div class="text-box">
-                    <h3 class="text-box-top">Cards Flipped</h3>
-                    <h1 class="text-box-middle">Great!</h1>
-                    <h3 class="text-box-lower">--- More Text ---</h3>
-                </div>
-            </div>
+        <div class='back'>
+            <h1 class='b_headline'>Absolute safety</h1>
+            <button class='b_button'><span>Buy now</span></button>
         </div>
     </div>
-
+    <div class='r_wrap'>
+        <div class='b_round'></div>
+        <div class='s_round'>
+            <div class='s_arrow'></div>
+        </div>
+    </div>
 </div>

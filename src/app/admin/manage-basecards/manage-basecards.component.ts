@@ -26,13 +26,12 @@ export class ManageBasecardsComponent implements OnInit, AfterViewInit {
 
 	ngOnInit(): void {
 		// ez csak a teszt idejére kell, admin page loadra betölti a card listet
-		this.adminService.getFilteredBaseCards()
+		this.fetchFilteredCards()
 			.then(() => {
 				this.baseCards = this.adminService.baseCards;
 			});
 		this.baseCardSkeleton = this.mainService.baseCardSkeleton;
 		this.baseCard = JSON.parse(JSON.stringify(this.baseCardSkeleton));
-		console.log(this.baseCard);
 	}
 
 	ngAfterViewInit(): void {
@@ -60,7 +59,7 @@ export class ManageBasecardsComponent implements OnInit, AfterViewInit {
 		for (const inputField of Array.from(inputFields)) {
 			this.addFilter(inputField);
 		}
-		console.log(this.filters);
+		//console.log(this.filters);
 		this.fetchFilteredCards();
 	}
 
@@ -75,7 +74,6 @@ export class ManageBasecardsComponent implements OnInit, AfterViewInit {
 			});
 		const data = await response.json();
 		this.adminService.baseCards = data;
-		console.log(data);
 	}
 
 	private addFilter(inputField: Element) {

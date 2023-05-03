@@ -8,7 +8,6 @@ import {BehaviorSubject, Subject} from "rxjs";
 })
 export class AdminService {
 
-
   searchFieldsVisibility = true;
   baseCards!: IBaseCard[];
   selectedCard!: IBaseCard;
