@@ -14,6 +14,7 @@ import { BaseCardListComponent } from './admin/manage-basecards/base-card-list/b
 import { SearchFieldsComponent } from './admin/manage-basecards/search-fields/search-fields.component';
 import {AdminService} from "./services/admin.service.";
 import {MainService} from "./services/main.service";
+import { CardAttrFieldsComponent } from './admin/card-attr-fields/card-attr-fields.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {MainService} from "./services/main.service";
     AdminComponent,
     ManageBasecardsComponent,
     BaseCardListComponent,
-    SearchFieldsComponent
+    SearchFieldsComponent,
+    CardAttrFieldsComponent
   ],
   imports: [
     HttpClientModule,
