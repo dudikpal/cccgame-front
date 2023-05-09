@@ -27,10 +27,21 @@ export class AdminService {
 	}
 
 	async updateBaseCard(baseCard: IBaseCard) {
-		const response = await fetch(environment.endpointPrefix + '/api/basecard',
+		fetch(environment.endpointPrefix + '/api/basecard',
 			{
 				method: "PUT",
 				body: JSON.stringify(baseCard),
+				headers: {
+					"Content-Type": "application/json"
+				}
+			});
+	}
+
+	deleteBaseCard(baseCard: IBaseCard) {
+		fetch(environment.endpointPrefix + '/api/basecard',
+			{
+				method: "DELETE",
+				body: JSON.stringify(baseCard.id),
 				headers: {
 					"Content-Type": "application/json"
 				}

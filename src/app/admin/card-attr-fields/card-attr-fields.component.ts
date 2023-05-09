@@ -30,4 +30,8 @@ export class CardAttrFieldsComponent {
 		}
 		this.adminService.updateBaseCard(this.baseCard);
 	}
+
+	deleteBaseCard() {
+		this.adminService.deleteBaseCard(this.baseCard);
+	}
 }
