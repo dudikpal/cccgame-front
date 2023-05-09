@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {IBaseCard} from "../../models/IBaseCard.";
 import {environment} from "../../../environments/environment";
+import {AdminService} from "../../services/admin.service.";
 
 @Component({
 	selector: 'app-card-attr-fields',
@@ -10,6 +11,11 @@ import {environment} from "../../../environments/environment";
 export class CardAttrFieldsComponent {
 
 	@Input() baseCard!: IBaseCard;
+
+	constructor(
+		private adminService: AdminService
+	) {
+	}
 
 	getObjectEntries(baseCard: any) {
 		return Object.entries(baseCard);
@@ -22,14 +28,6 @@ export class CardAttrFieldsComponent {
 			const value = (attrField as HTMLInputElement).value.trim();
 			(this.baseCard as any)[attributeName] = value;
 		}
-		const response = await fetch(environment.endpointPrefix + '/api/basecard',
-			{
-				method: "PUT",
-				body: JSON.stringify(this.baseCard),
-				headers: {
-					"Content-Type": "application/json"
-				}
-			});
-		const data = await response.json();
+		this.adminService.updateBaseCard(this.baseCard);
 	}
 }
