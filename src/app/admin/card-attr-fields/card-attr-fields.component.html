@@ -1,3 +1,7 @@
+<button
+        (click)="updateBaseCard()"
+>Update card
+</button>
 <div class="input-group row "
      id="block-card-attributes"
      *ngFor="let cardProperty of getObjectEntries(baseCard)"
