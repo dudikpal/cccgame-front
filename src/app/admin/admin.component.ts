@@ -45,7 +45,7 @@ export class AdminComponent {
 
 	dropBaseCardsTable() {
 		if (confirm('Will be delete all baseCards from collection!!\nAre you sure?')) {
-			fetch(this.url, {
+			fetch(this.url + '/droptable', {
 				method: "DELETE"
 			});
 		}
