@@ -51,7 +51,7 @@ span {
 }
 
 .container,
-.flip-box,
+.flip_box,
 .front,
 .back {
     width: 300px;
@@ -119,6 +119,7 @@ span {
 .b_round,
 .s_round {
     position: absolute;
+    /*width: 300px;*/
     width: 300px;
     height: 52px;
     border-radius: 0px 0px 15px 15px;
@@ -160,4 +161,18 @@ span {
 
 .img-car {
     object-fit: cover;
+}
+
+.front-table {
+    color: white;
+    width: 96%;
+    margin: 2%;
+}
+
+td {
+    padding: 1%;
+}
+
+.manufacturer-name {
+    font-size: 30px;
 }

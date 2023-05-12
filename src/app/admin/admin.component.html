@@ -16,16 +16,16 @@
                             <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">BaseCards</span> </a>
                         <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100" (click)="loadBaseCardsFromFile()">
-                                <button class="nav-link px-0">Load from file</button>
+                                <button class="nav-link submenu-item">Load from file</button>
                             </li>
                             <li (click)="toggleSearchFieldVisibility()">
-                                <button class="nav-link px-0">Search fields</button>
+                                <button class="nav-link submenu-item">Search fields</button>
                             </li>
                             <li (click)="getFilteredBaseCards()">
-                                <button class="nav-link px-0">Filtered baseCards</button>
+                                <button class="nav-link submenu-item">Filtered baseCards</button>
                             </li>
                             <li (click)="dropBaseCardsTable()">
-                                <button class="nav-link px-0">Drop table</button>
+                                <button class="nav-link submenu-item">Drop table</button>
                             </li>
                         </ul>
                     </li>
@@ -64,7 +64,7 @@
                         </ul>
                     </li>
                     <li>
-                        <button (click)="dropBaseCardsTable()" class="nav-link px-0">Drop basecards table</button>
+                        <button class="nav-link px-0">Menuitem</button>
                     </li>
                     <li>
                         <p>

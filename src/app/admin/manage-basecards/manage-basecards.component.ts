@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, Input, OnInit, Output} from '@angular/core';
 import {AdminService} from "../../services/admin.service.";
 import {MainService} from "../../services/main.service";
-import {IBaseCard} from "../../models/IBaseCard.";
+import {BaseCard} from "../../models/BaseCard";
 import {IFilter, ISimpleValue} from "../../models/IFilter";
 import {min} from "rxjs";
 import {environment} from "../../../environments/environment";
@@ -13,9 +13,9 @@ import {environment} from "../../../environments/environment";
 })
 export class ManageBasecardsComponent implements OnInit, AfterViewInit {
 
-	baseCard!: IBaseCard;
-	baseCards!: IBaseCard[];
-	baseCardSkeleton!: IBaseCard;
+	@Input() baseCard!: BaseCard;
+	baseCards!: BaseCard[];
+	baseCardSkeleton!: BaseCard;
 	filters: IFilter = {simpleValues: [], multipleValues: [], betweens: []};
 
 	constructor(
@@ -26,12 +26,12 @@ export class ManageBasecardsComponent implements OnInit, AfterViewInit {
 
 	ngOnInit(): void {
 		// ez csak a teszt idejére kell, admin page loadra betölti a card listet
-		this.fetchFilteredCards()
+		/*this.fetchFilteredCards()
 			.then(() => {
 				this.baseCards = this.adminService.baseCards;
-			});
+			});*/
 		this.baseCardSkeleton = this.mainService.baseCardSkeleton;
-		this.baseCard = JSON.parse(JSON.stringify(this.baseCardSkeleton));
+		this.adminService.selectedCard = JSON.parse(JSON.stringify(this.baseCardSkeleton));
 	}
 
 	ngAfterViewInit(): void {

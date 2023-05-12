@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpRequest} from "@angular/common/http";
-import {IBaseCard} from "../models/IBaseCard.";
+import {BaseCard} from "../models/BaseCard";
 import {BehaviorSubject, Subject} from "rxjs";
 import {environment} from "../../environments/environment";
 
@@ -9,9 +9,9 @@ import {environment} from "../../environments/environment";
 })
 export class AdminService {
 
-	searchFieldsVisibility = true;
-	baseCards!: IBaseCard[];
-	selectedCard!: IBaseCard;
+	searchFieldsVisibility = false;
+	baseCards!: BaseCard[];
+	selectedCard!: BaseCard;
 	filter!: any;
 
 	constructor() {
@@ -26,7 +26,7 @@ export class AdminService {
 		this.searchFieldsVisibility = !this.searchFieldsVisibility;
 	}
 
-	async updateBaseCard(baseCard: IBaseCard) {
+	async updateBaseCard(baseCard: BaseCard) {
 		fetch(environment.endpointPrefix + '/api/basecard',
 			{
 				method: "PUT",
@@ -37,7 +37,18 @@ export class AdminService {
 			});
 	}
 
-	deleteBaseCard(baseCard: IBaseCard) {
+	async bulkUpdateBaseCard(baseCards: BaseCard[]) {
+		fetch(environment.endpointPrefix + '/api/basecard/bulk',
+			{
+				method: "PUT",
+				body: JSON.stringify(baseCards),
+				headers: {
+					"Content-Type": "application/json"
+				}
+			});
+	}
+
+	deleteBaseCard(baseCard: BaseCard) {
 		fetch(environment.endpointPrefix + '/api/basecard',
 			{
 				method: "DELETE",

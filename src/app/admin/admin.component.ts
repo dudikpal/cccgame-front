@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {AdminService} from "../services/admin.service.";
-import {IBaseCard} from "../models/IBaseCard.";
+import {BaseCard} from "../models/BaseCard";
 import {SearchFieldsComponent} from "./manage-basecards/search-fields/search-fields.component";
 
 @Component({
@@ -11,7 +11,7 @@ import {SearchFieldsComponent} from "./manage-basecards/search-fields/search-fie
 export class AdminComponent {
 
 	url = "http://localhost:8080/api/basecard"
-	baseCards!: IBaseCard[];
+	baseCards!: BaseCard[];
 	isCollapsed = false;
 
 	constructor(

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment";
-import {IBaseCard} from "../models/IBaseCard.";
+import {BaseCard} from "../models/BaseCard";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MainService {
 
-  baseCardSkeleton!: IBaseCard;
+  baseCardSkeleton!: BaseCard;
 
   constructor() {
     this.getBaseCardSkeleton().then((skeleton) => {

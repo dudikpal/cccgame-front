@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {IBaseCard} from "../../../models/IBaseCard.";
+import {BaseCard} from "../../../models/BaseCard";
 import {AdminService} from "../../../services/admin.service.";
 
 @Component({
@@ -9,7 +9,7 @@ import {AdminService} from "../../../services/admin.service.";
 })
 export class BaseCardListComponent {
 
-  @Input() baseCards!: IBaseCard[];
+  @Input() baseCards!: BaseCard[];
 
   constructor(
       private adminService: AdminService
@@ -20,7 +20,7 @@ export class BaseCardListComponent {
     return this.adminService.baseCards;
   }
 
-  selectCard(baseCard: IBaseCard) {
+  selectCard(baseCard: BaseCard) {
     this.adminService.selectedCard = baseCard;
   }
 }
