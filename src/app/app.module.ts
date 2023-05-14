@@ -15,6 +15,9 @@ import { SearchFieldsComponent } from './admin/manage-basecards/search-fields/se
 import {AdminService} from "./services/admin.service.";
 import {MainService} from "./services/main.service";
 import { CardAttrFieldsComponent } from './admin/card-attr-fields/card-attr-fields.component';
+import { HomeComponent } from './pages/home/home.component';
+import { GarageComponent } from './pages/garage/garage.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { CardAttrFieldsComponent } from './admin/card-attr-fields/card-attr-fiel
     ManageBasecardsComponent,
     BaseCardListComponent,
     SearchFieldsComponent,
-    CardAttrFieldsComponent
+    CardAttrFieldsComponent,
+    HomeComponent,
+    GarageComponent
   ],
   imports: [
     HttpClientModule,
@@ -33,7 +38,7 @@ import { CardAttrFieldsComponent } from './admin/card-attr-fields/card-attr-fiel
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-
+    NgxPaginationModule
   ],
   providers: [FormBuilder, AdminService, MainService],
   bootstrap: [AppComponent]

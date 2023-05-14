@@ -1,0 +1,51 @@
+.grid-container {
+    display: grid;
+    grid-gap: 10px;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100% - 40px); /* Subtracting the header and footer height */
+    /*grid-template-columns: repeat(auto-fit, minmax(calc(33% - 10px), 1fr));*/
+    grid-template-columns: repeat(3, 1fr);
+
+}
+
+.grid-item {
+    background-color: #eaeaea;
+    display: flex;
+    /*padding: 20px;*/
+    /*padding: 33%;*/
+    height: 100%;
+    background-size: cover;
+}
+
+.grid-item h2 {
+    position: relative; /* Add position absolute */
+    bottom: 0; /* Align content to the bottom */
+    right: 0; /* Align content to the right */
+}
+
+
+header, footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+}
+
+.races {
+    background-image: url("src/assets/img/menus/daily-race.jpg");
+}
+
+.garage {
+    background-image: url("src/assets/img/menus/mygarage.webp");
+}
