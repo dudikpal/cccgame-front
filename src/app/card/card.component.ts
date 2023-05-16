@@ -1,116 +1,127 @@
-import {Component, Input} from '@angular/core';
-import {IBaseCard} from "../models/IBaseCard.";
+import {
+	AfterViewChecked,
+	AfterViewInit,
+	Component, ElementRef,
+	Input,
+	OnChanges,
+	OnInit, Renderer2,
+	SimpleChanges,
+	ViewChild
+} from '@angular/core';
+import {BaseCard} from "../models/BaseCard";
 import {environment} from "../../environments/environment";
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+	selector: 'app-card',
+	templateUrl: './card.component.html',
+	styleUrls: ['./card.component.css']
 })
-export class CardComponent {
+export class CardComponent implements OnInit {
 
-  @Input() baseCard!: IBaseCard;
-  manufacturerLogoUrlPrefix = environment.imgFilePrefix;
-  isFlipped = false;
-  s_round = '.s_round';
+	@ViewChild('manufacturerDiv', { static: true }) manufacturerDiv!: ElementRef;
+	@Input() baseCard!: BaseCard;
+	manufacturerLogoUrlPrefix = environment.imgFilePrefix;
+	isFlipped = false;
+	private _defaultFontSize = 35;
 
-  constructor(
-      //private eventService: EventService,
-  ) {
-  }
+	constructor() {
+	}
 
+	get defaultFontSize(): number {
+		return this._defaultFontSize;
+	}
 
-  ngOnInit(): void {
-    const sRound = document.querySelectorAll(this.s_round);
+	ngOnInit(): void {
+	}
 
-    sRound.forEach((elem) => {
-      elem.addEventListener('mouseenter', () => {
-        document.querySelector('.b_round')?.classList.toggle('b_round_hover');
-      });
+	public flipCard() {
+		document.querySelector(`#card_${CSS.escape(this.baseCard.id)}`)?.classList.toggle('flipped');
+		document.querySelector(`#flip_button_${CSS.escape(this.baseCard.id)}`)?.classList.toggle('flipped');
+	}
 
-      elem.addEventListener('click', () => {
-        document.querySelector('.flip_box')?.classList.toggle('flipped');
-        document.querySelector('.s_round')?.classList.toggle('flipped');
-        //document.querySelector('.r_wrap')?.classList.toggle('flipped');
-        elem.classList.add('s_round_click');
-        document.querySelector('.s_arrow')?.classList.toggle('s_arrow_rotate');
-        document.querySelector('.b_round')?.classList.toggle('b_round_back_hover');
-      });
+	cssEscape(rawString: string) {
+		return CSS.escape(rawString);
+	}
 
-      elem.addEventListener('transitionend', () => {
-        elem.classList.remove('s_round_click');
-        elem.classList.add('s_round_back');
-      });
-    });
-  }
+	// mindet összeveszi, nem csak azt ami kiléógna
+	flexFont() {
+		var divs: HTMLCollectionOf<Element> = document.getElementsByClassName("manufacturer-name");
+		for (let i = 0; i < divs.length; i++) {
+			const div = divs[i] as HTMLDivElement;
+			var relFontsize = div.offsetWidth * 0.05;
+			div.style.fontSize = relFontsize + 'px';
+		}
+	}
 
-  flipCard() {
-    this.isFlipped = !this.isFlipped;
-  }
-
-  public generateLogoUrl(filename: string) {
-    return this.manufacturerLogoUrlPrefix + filename;
-  }
-
-  public flipToFront(givenId: any) {
-
-    let card = document.querySelector(`#${CSS.escape(givenId)}`)!;
-    card.classList.remove('flipCard');
-  }
-
-  /*frontDatas() {
-    return [
-      this.playerCard.calculatedFields.topSpeed,
-      this.playerCard.calculatedFields.acceleration,
-      this.playerCard.card.value.driveWheel,
-      this.playerCard.card.value.engineCapacity,
-    ];
-  }
+	public generateLogoUrl(filename: string) {
+		return this.manufacturerLogoUrlPrefix + filename;
+	}
 
 
-  iTabDatas() {
 
-    return [
-      this.playerCard.calculatedFields.acceleration,
-      this.playerCard.calculatedFields.topSpeed,
-      this.playerCard.card.value.engineCapacity,
-      this.playerCard.card.value.maxTorque,
-      this.playerCard.calculatedFields.weight,
-      this.playerCard.card.value.fuelTankCapacity,
-      this.playerCard.calculatedFields.groundClearance,
-    ];
-  }
+	private shrinkTextIntoContainer() {
+		const manufacturerDiv = document.querySelector('#manufacturer-div') as HTMLDivElement;
+		let fontSize = this.defaultFontSize;
+		console.log("manufacturerDiv.scrollWidth");
+		console.log(manufacturerDiv.scrollWidth);
+		console.log("manufacturerDiv.offsetWidth");
+		console.log(manufacturerDiv.offsetWidth);
+		while (manufacturerDiv.scrollWidth > manufacturerDiv.offsetWidth
+		|| manufacturerDiv.scrollHeight > manufacturerDiv.offsetHeight) {
+			fontSize--;
+			manufacturerDiv.style.fontSize = fontSize + "px";
+			console.log("fontSize");
+			console.log(fontSize);
+		}
+	}
 
-  iiTabDatas() {
+	/*frontDatas() {
+	  return [
+		this.playerCard.calculatedFields.topSpeed,
+		this.playerCard.calculatedFields.acceleration,
+		this.playerCard.card.value.driveWheel,
+		this.playerCard.card.value.engineCapacity,
+	  ];
+	}*/
 
-    return [
-      this.playerCard.card.value.year,
-      this.playerCard.card.value.country,
-      this.playerCard.card.value.driveWheel,
-      this.playerCard.card.value.fuelType,
-      this.playerCard.card.value.abs,
-      this.playerCard.card.value.tractionControl,
-    ];
-  }
+	iTabDatas() {
+	  return [
+		this.baseCard.acceleration,
+		this.baseCard.topSpeed,
+		this.baseCard.engineCapacity,
+		this.baseCard.maxTorque,
+		this.baseCard.weight,
+		this.baseCard.fuelTankCapacity,
+		this.baseCard.groundClearance,
+	  ];
+	}
 
-  iiiTabDatas() {
+	iiTabDatas() {
+	  return [
+		this.baseCard.year,
+		this.baseCard.country,
+		this.baseCard.driveWheel,
+		this.baseCard.fuelType,
+		this.baseCard.abs,
+		this.baseCard.tractionControl,
+	  ];
+	}
 
-    return [
-      this.playerCard.card.value.body,
-      this.playerCard.card.value.doors,
-      this.playerCard.card.value.seats,
-      this.playerCard.card.value.length,
-      this.playerCard.calculatedFields.width,
-      this.playerCard.calculatedFields.height,
-    ];
-  }
+	iiiTabDatas() {
+	  return [
+		this.baseCard.body,
+		this.baseCard.doors,
+		this.baseCard.seats,
+		this.baseCard.length,
+		this.baseCard.width,
+		this.baseCard.height,
+	  ];
+	}
 
-  ivTabDatas() {
+	ivTabDatas() {
+	  return [
+		this.baseCard.year
+	  ];
+	}
 
-    return [
-      this.playerCard.tunings.chassis,
-      this.playerCard.tunings.engine,
-      this.playerCard.tunings.cornering
-    ];
-  }*/
 }

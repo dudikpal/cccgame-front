@@ -1,5 +1,5 @@
 <div class='container'>
-    <div class='flip_box'>
+    <div class='flip_box' id="card_{{baseCard.id}}">
         <div class='front'>
             <div
                     class="img-container"
@@ -23,7 +23,7 @@
                      id="manufacturer-type"
                      [innerHTML]="baseCard.type"></div>
             </div>
-            <!--<table class="front-table"
+            <table class="front-table"
                    style="border: #86b7fe solid 2px">
                 <tr>
                     <td>Top spped (km/h)</td>
@@ -41,28 +41,26 @@
                     <td>Top spped (km/h)</td>
                     <td>{{baseCard.objectPositionVertical}}</td>
                 </tr>
-            </table>-->
+            </table>
         </div>
         <div class='back'>
-            <!--<h1 class='b_headline'>Absolute safety</h1>
-            <button class='b_button'><span>Buy now</span></button>-->
             <div class="container-fluid">
                 <ul class="nav nav-tabs nav-fill nav-justified" id="back-tabs_{{baseCard.id}}">
                     <li
                             class="nav-item">
-                        <a class="nav-link active" href="#i_{{baseCard.id}}" data-bs-toggle="tab">I</a>
+                        <a class="nav-link active" [href]="cssEscape('#i_' + baseCard.id)" data-bs-toggle="tab">I</a>
                     </li>
                     <li
                             class="nav-item">
-                        <a class="nav-link" href="#ii_{{baseCard.id}}" data-bs-toggle="tab">II</a>
+                        <a class="nav-link" [href]="cssEscape('#ii_' + baseCard.id)" data-bs-toggle="tab">II</a>
                     </li>
                     <li
                             class="nav-item">
-                        <a class="nav-link" href="#iii_{{baseCard.id}}" data-bs-toggle="tab">III</a>
+                        <a class="nav-link" [href]="cssEscape('#iii_' + baseCard.id)" data-bs-toggle="tab">III</a>
                     </li>
                     <li
                             class="nav-item">
-                        <a class="nav-link" href="#iv_{{baseCard.id}}" data-bs-toggle="tab">IV</a>
+                        <a class="nav-link" [href]="cssEscape('#iv_' + baseCard.id)" data-bs-toggle="tab">IV</a>
                     </li>
                 </ul>
             </div>
@@ -118,7 +116,8 @@
     </div>
     <div class='r_wrap'>
         <div class='b_round'></div>
-        <div class='s_round'>
+        <div class='s_round' id="flip_button_{{baseCard.id}}"
+        (click)=flipCard()>
             <div class='s_arrow'></div>
         </div>
     </div>
