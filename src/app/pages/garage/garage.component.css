@@ -8,7 +8,7 @@
 
 html,
 body {
-    display: grid;
+
     height: 100%;
     width: 100%;
 
@@ -23,4 +23,16 @@ body {
 
 ngb-pagination {
     max-height: 100%;
+}
+
+.grid-container {
+    display: grid;
+    grid-gap: 10px;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100% - 140px);  /*Subtracting the header and footer height*/
+    /*grid-template-columns: repeat(auto-fit, minmax(calc(33% - 10px), 1fr));*/
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(5, 1fr);
 }

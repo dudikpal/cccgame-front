@@ -4,7 +4,7 @@
     padding: 20px;
     align-items: center;
     justify-content: center;
-    min-height: calc(100% - 40px); /* Subtracting the header and footer height */
+    min-height: calc(100% - 128px); /* Subtracting the header and footer height */
     /*grid-template-columns: repeat(auto-fit, minmax(calc(33% - 10px), 1fr));*/
     grid-template-columns: repeat(3, 1fr);
 
@@ -13,10 +13,9 @@
 .grid-item {
     background-color: #eaeaea;
     display: flex;
-    /*padding: 20px;*/
-    /*padding: 33%;*/
     height: 100%;
     background-size: cover;
+
 }
 
 .grid-item h2 {
