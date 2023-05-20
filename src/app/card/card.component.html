@@ -16,8 +16,13 @@
                 <div></div>
                 <div class="manufacturer-name"
                      style="white-space: nowrap;"
-                     id="manufacturer-div"
+                     [id]="cssEscape('#card_' + baseCard.id)"
                      [innerHTML]="baseCard.id"></div>
+                <!--<div [ngStyle]="{ 'width.px': 300, 'white-space': 'nowrap', 'font-size.px': calculateFontSize() }">
+                    {{ baseCard.id }}
+                </div>-->
+
+
                 <div class="manufacturer-name"
                      style="white-space: nowrap;"
                      id="manufacturer-type"

@@ -1,5 +1,5 @@
 .main-frame {
-    max-width: 1600px;
+    max-width: 1900px;
     margin: 0 auto;
 }
 
@@ -11,6 +11,7 @@
     background-image: url("src/assets/img/menus/home-screen-background3.webp");
     background-size: cover;
 }
+
 .ratio-16x9 > div {
     position: absolute;
     top: 0;
@@ -28,3 +29,4 @@
     height: 100%;
     padding: 20px;
 }
+

@@ -16,13 +16,16 @@ import {environment} from "../../environments/environment";
 	templateUrl: './card.component.html',
 	styleUrls: ['./card.component.css']
 })
-export class CardComponent implements OnInit {
+export class CardComponent implements OnInit, AfterViewInit {
 
 	@ViewChild('manufacturerDiv', { static: true }) manufacturerDiv!: ElementRef;
 	@Input() baseCard!: BaseCard;
 	manufacturerLogoUrlPrefix = environment.imgFilePrefix;
 	isFlipped = false;
 	private _defaultFontSize = 35;
+	fontSize: number = 20;
+
+	@ViewChild('baseCardIdElement', { static: false }) baseCardIdElement!: ElementRef;
 
 	constructor() {
 	}
@@ -32,7 +35,40 @@ export class CardComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+		//this.flexFont();
+		//this.shrinkTextIntoContainer();
+		//this.resizeText();
 	}
+
+	ngAfterViewInit(): void {
+		/*setTimeout(() => {
+			this.resizeText();
+		});*/
+		this.calculateFontSize();
+	}
+
+	calculateFontSize() {
+		// vmiért nem kicsinít, de már megtalálja id alapján a diveket
+		const manufacturerDiv = document.querySelector(`#card_${this.cssEscape(this.baseCard.id)}`) as HTMLDivElement;
+		let fontSize = this.fontSize;
+		while (manufacturerDiv.scrollWidth > manufacturerDiv.offsetWidth
+		|| manufacturerDiv.scrollHeight > manufacturerDiv.offsetHeight) {
+			fontSize--;
+			manufacturerDiv.style.fontSize = fontSize + "px";
+		}
+	}
+
+	private resizeText() {
+		const elementWidth = this.baseCardIdElement.nativeElement.offsetWidth;
+		const parentWidth = this.baseCardIdElement.nativeElement.parentElement.offsetWidth;
+
+		while (elementWidth > parentWidth && this.fontSize > 0) {
+			this.fontSize--;
+			this.baseCardIdElement.nativeElement.style.fontSize = `${this.fontSize}px`;
+		}
+
+	}
+
 
 	public flipCard() {
 		document.querySelector(`#card_${CSS.escape(this.baseCard.id)}`)?.classList.toggle('flipped');
@@ -45,12 +81,13 @@ export class CardComponent implements OnInit {
 
 	// mindet összeveszi, nem csak azt ami kiléógna
 	flexFont() {
-		var divs: HTMLCollectionOf<Element> = document.getElementsByClassName("manufacturer-name");
-		for (let i = 0; i < divs.length; i++) {
+		//var divs: HTMLCollectionOf<Element> = document.getElementsByClassName("manufacturer-name");
+		var div: HTMLDivElement = document.querySelector("#manufacturer-div")!;
+		/*for (let i = 0; i < divs.length; i++) {
 			const div = divs[i] as HTMLDivElement;
 			var relFontsize = div.offsetWidth * 0.05;
 			div.style.fontSize = relFontsize + 'px';
-		}
+		}*/
 	}
 
 	public generateLogoUrl(filename: string) {
