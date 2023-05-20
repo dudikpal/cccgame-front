@@ -1,0 +1,31 @@
+<button
+        type="button"
+        (click)="updateBaseCard()"
+>Update card
+</button>
+<button
+        type="button"
+        (click)="bulkUpdateBaseCard()"
+>Bul Update card
+</button>
+<button
+        type="button"
+    (click)="deleteBaseCard()"
+    >Delete card</button>
+<div class="input-group row "
+     id="block-card-attributes"
+     *ngFor="let cardProperty of getObjectEntries(baseCard)"
+>
+    <label for="card_attribute_{{cardProperty[0]}}"
+           [innerHTML]='cardProperty[0]'>
+
+    </label>
+    <input
+            class="card-attribute-group"
+            type="text"
+            id="card_attribute_{{cardProperty[0]}}"
+            [attr.data-card_attribute]=cardProperty[0]
+            [innerHTML]="cardProperty[1]"
+            [value]="cardProperty[1]"
+    >
+</div>

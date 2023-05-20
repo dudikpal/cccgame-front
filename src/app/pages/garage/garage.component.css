@@ -1,0 +1,38 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    background-color: gray;
+}
+
+html,
+body {
+
+    height: 100%;
+    width: 100%;
+
+    place-items: center;
+    background: linear-gradient(375deg, #1cc7d0, #2ede98);
+}
+
+::selection {
+    color: #fff;
+    background: #1cc7d0;
+}
+
+ngb-pagination {
+    max-height: 100%;
+}
+
+.grid-container {
+    display: grid;
+    grid-gap: 10px;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100% - 140px);  /*Subtracting the header and footer height*/
+    /*grid-template-columns: repeat(auto-fit, minmax(calc(33% - 10px), 1fr));*/
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+}

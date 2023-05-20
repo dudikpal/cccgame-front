@@ -1,0 +1,21 @@
+.nav-item:active {
+    color: white;
+}
+
+.navbar-text {
+
+}
+
+.nav-link {
+    color: white;
+}
+
+.submenu-item {
+    background-color: #0a58ca;
+    margin: 5px 10px;
+    padding: .5rem;
+}
+
+.submenu-item:hover {
+    background-color: royalblue;
+}
