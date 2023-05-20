@@ -1,0 +1,179 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+}
+
+*:focus {
+    outline: none;
+}
+
+body {
+    margin-top: 70px;
+    background-color: #f4f4f4;
+    font-family: 'Raleway', sans-serif;
+    font-size: 62.5%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+p,
+a,
+span {
+    color: #fff;
+    letter-spacing: 0.02em;
+    font-weight: 600;
+}
+
+h1,
+p,
+a {
+    padding-left: 40px;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+p {
+    font-size: 1.5em;
+    line-height: 25px;
+}
+
+button {
+    border: 0;
+    border-radius: 26px;
+    padding-bottom: 2px;
+}
+
+span {
+    font-size: 1.6em;
+}
+
+.container,
+.flip_box,
+.front,
+.back {
+    width: 300px;
+    height: 360px;
+    border-radius: 15px;
+}
+
+.container,
+.flip_box {
+    position: relative;
+}
+
+.front,
+.back {
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.container {
+    -moz-transform: perspective(1200px);
+    -webkit-perspective: 1200px;
+    perspective: 1200px;
+}
+
+.flip_box,
+.r_wrap {
+    transition: all 0.5s ease-out;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.front {
+    background-color: #024395;
+    /*background-image: url('https://img-fotki.yandex.ru/get/194550/29644339.5/0_d6c5f_c9f15850_orig');*/
+}
+
+.back {
+    background-color: #D21849;
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.b_button:hover {
+    background-color: #E30143;
+}
+
+.flipped {
+    -webkit-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -ms-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+
+.r_wrap {
+    position: absolute;
+    transition: all 0.5s ease-out;
+    bottom: 52px;
+}
+
+.b_round,
+.s_round {
+    position: absolute;
+    width: 300px;
+    height: 52px;
+    border-radius: 0px 0px 15px 15px;
+    transition: all 0.5s ease-out;
+    background-color: #D21849;
+}
+
+/*ez kell*/
+.b_round {
+    opacity: 0;
+    background-color: #D21849;
+}
+
+.b_round_back_hover {
+    background-color: #F60044;
+}
+
+.s_round_back {
+    background-color: #C30C3D;
+}
+
+.s_arrow {
+    width: 52px;
+    height: 52px;
+    background-image: url('https://img-fotki.yandex.ru/get/194549/29644339.5/0_d6c60_1d7815f0_orig');
+    background-color: transparent;
+}
+
+.s_arrow_back {
+    transform: rotate(180deg);
+
+}
+
+.img-container {
+    height: 45%;
+    overflow-x: hidden;
+    border-radius: 15px 15px 0px 0px;
+}
+
+.img-car {
+    object-fit: cover;
+}
+
+.front-table {
+    color: white;
+    width: 96%;
+    margin: 2%;
+}
+
+td {
+    padding: 1%;
+}
+
+.manufacturer-name {
+    max-width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+}

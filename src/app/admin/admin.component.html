@@ -2,24 +2,30 @@
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <a [routerLink]="['../']" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <span class="fs-5 d-none d-sm-inline">Menu</span>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
-                        <a href="#" class="nav-link align-middle px-0">
+                        <a [routerLink]="['../']" class="nav-link align-middle px-0">
                             <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline text-white">Home</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                        <a data-bs-target="#submenu1" [routerLink]="['./admin/manage-basecards']" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">BaseCards</span> </a>
-                        <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1 </a>
+                        <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                            <li class="w-100" (click)="loadBaseCardsFromFile()">
+                                <button class="nav-link submenu-item">Load from file</button>
                             </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2 </a>
+                            <li (click)="toggleSearchFieldVisibility()">
+                                <button class="nav-link submenu-item">Search fields</button>
+                            </li>
+                            <li (click)="getFilteredBaseCards()">
+                                <button class="nav-link submenu-item">Filtered baseCards</button>
+                            </li>
+                            <li (click)="dropBaseCardsTable()">
+                                <button class="nav-link submenu-item">Drop table</button>
                             </li>
                         </ul>
                     </li>
@@ -58,8 +64,27 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
+                        <button class="nav-link px-0">Menuitem</button>
+                    </li>
+                    <li>
+                        <p>
+                            <a routerLink="manage-basecards" class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                Link with href
+                            </a>
+                        </p>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body">
+                                Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                            </div>
+                        </div>
+                        <button routerLink="manage-basecards" class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
+                            Button with data-bs-target
+                        </button>
+                        <div class="collapse" id="collapseExample2">
+                            <div class="card card-body">
+                                Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                            </div>
+                        </div>
                     </li>
                 </ul>
                 <hr>
@@ -81,7 +106,8 @@
             </div>
         </div>
         <div class="col py-3">
-            Content area...
+            <app-manage-basecards
+            ></app-manage-basecards>
         </div>
     </div>
 </div>

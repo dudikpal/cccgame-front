@@ -1,20 +1,28 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {MainService} from "./services/main.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+	selector: 'app-root',
+	templateUrl: './app.component.html',
+	styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'cccgame-front';
+export class AppComponent implements OnInit {
+	title = 'cccgame-front';
 
-  constructor(
-      private router: Router
-  ) {
-  }
+	constructor(
+		private router: Router,
+		private mainService: MainService
+	) {
+	}
 
-    toAdminPage() {
-      this.router.navigate(['/admin']);
-    }
+	ngOnInit(): void {
+		this.mainService.getBaseCardSkeleton();
+		this.mainService.getPlayerCards();
+	}
+
+
+	toAdminPage() {
+		this.router.navigate(['/admin']);
+	}
 }

@@ -1,0 +1,129 @@
+<div class='container'>
+    <div class='flip_box' id="card_{{baseCard.id}}">
+        <div class='front'>
+            <div
+                    class="img-container"
+            >
+                <img
+                        class="img-car"
+                        [style.width]=baseCard.objectWidth
+                        [style.height]=baseCard.objectHeight
+                        [style.object-position]="baseCard.objectPositionHorizontal + ' ' + baseCard.objectPositionVertical"
+                        [src]=baseCard.imageUrl
+                />
+            </div>
+            <div>
+                <div></div>
+                <div class="manufacturer-name"
+                     style="white-space: nowrap;"
+                     [id]="cssEscape('#card_' + baseCard.id)"
+                     [innerHTML]="baseCard.id"></div>
+                <!--<div [ngStyle]="{ 'width.px': 300, 'white-space': 'nowrap', 'font-size.px': calculateFontSize() }">
+                    {{ baseCard.id }}
+                </div>-->
+
+
+                <div class="manufacturer-name"
+                     style="white-space: nowrap;"
+                     id="manufacturer-type"
+                     [innerHTML]="baseCard.type"></div>
+            </div>
+            <table class="front-table"
+                   style="border: #86b7fe solid 2px">
+                <tr>
+                    <td>Top spped (km/h)</td>
+                    <td>{{baseCard.objectWidth}}</td>
+                </tr>
+                <tr>
+                    <td>Top spped (km/h)</td>
+                    <td>{{baseCard.objectHeight}}</td>
+                </tr>
+                <tr>
+                    <td>Top spped (km/h)</td>
+                    <td>{{baseCard.objectPositionHorizontal}}</td>
+                </tr>
+                <tr>
+                    <td>Top spped (km/h)</td>
+                    <td>{{baseCard.objectPositionVertical}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class='back'>
+            <div class="container-fluid">
+                <ul class="nav nav-tabs nav-fill nav-justified" id="back-tabs_{{baseCard.id}}">
+                    <li
+                            class="nav-item">
+                        <a class="nav-link active" [href]="cssEscape('#i_' + baseCard.id)" data-bs-toggle="tab">I</a>
+                    </li>
+                    <li
+                            class="nav-item">
+                        <a class="nav-link" [href]="cssEscape('#ii_' + baseCard.id)" data-bs-toggle="tab">II</a>
+                    </li>
+                    <li
+                            class="nav-item">
+                        <a class="nav-link" [href]="cssEscape('#iii_' + baseCard.id)" data-bs-toggle="tab">III</a>
+                    </li>
+                    <li
+                            class="nav-item">
+                        <a class="nav-link" [href]="cssEscape('#iv_' + baseCard.id)" data-bs-toggle="tab">IV</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content container-fluid" id="back-tabs-content">
+                <div
+                        class="tab-pane active"
+                        id="i_{{baseCard.id}}">
+                    <table class="table table-striped back-table"
+                           style="height: 100%">
+                        <tbody>
+                        <tr *ngFor="let data of iTabDatas()">
+                            <th scope="row" [innerHTML]=data></th>
+                            <td>{{data}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="ii_{{baseCard.id}}">
+                    <table class="table table-striped back-table"
+                           style="height: 100%">
+                        <tbody>
+                        <tr *ngFor="let data of iiTabDatas()">
+                            <th scope="row" [innerHTML]=data></th>
+                            <td>{{data}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="iii_{{baseCard.id}}">
+                    <table class="table table-striped back-table"
+                           style="height: 100%">
+                        <tbody>
+                        <tr *ngFor="let data of iiiTabDatas()">
+                            <th scope="row" [innerHTML]=data></th>
+                            <td>{{data}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="iv_{{baseCard.id}}">
+                    <table class="table table-striped back-table"
+                           style="height: 100%">
+                        <tbody>
+                        <tr *ngFor="let data of ivTabDatas()">
+                            <th scope="row" [innerHTML]=data></th>
+                            <td>{{data}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='r_wrap'>
+        <div class='b_round'></div>
+        <div class='s_round' id="flip_button_{{baseCard.id}}"
+        (click)=flipCard()>
+            <div class='s_arrow'></div>
+        </div>
+    </div>
+</div>

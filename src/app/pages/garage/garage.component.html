@@ -1,0 +1,25 @@
+<div class="grid-container">
+    <!--<div class="container-fluid">-->
+    <!--<app-font-size-variable></app-font-size-variable>-->
+    <app-card
+            *ngFor="let playerCard of playerCards | paginate : {
+                itemsPerPage: itemsPerPage,
+                  currentPage: page,
+                  totalItems: count
+};"
+
+            [baseCard]="playerCard"
+    >
+
+    </app-card>
+    <!--<app-popup-img
+        [hidden]="showPopup"
+    [popupCard]="popupCard"></app-popup-img>-->
+    <pagination-controls
+            previousLabel="Prev"
+            nextLabel="Next"
+            (pageChange)="onDataChange($event)"
+    >
+    </pagination-controls>
+    <!--</div>-->
+</div>
