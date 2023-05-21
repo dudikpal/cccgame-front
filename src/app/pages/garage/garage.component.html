@@ -1,25 +1,57 @@
 <div class="grid-container">
-    <!--<div class="container-fluid">-->
-    <!--<app-font-size-variable></app-font-size-variable>-->
     <app-card
             *ngFor="let playerCard of playerCards | paginate : {
-                itemsPerPage: itemsPerPage,
-                  currentPage: page,
-                  totalItems: count
-};"
-
+            itemsPerPage: itemsPerPage,
+            currentPage: page,
+            totalItems: count
+        };"
             [baseCard]="playerCard"
     >
 
     </app-card>
-    <!--<app-popup-img
-        [hidden]="showPopup"
-    [popupCard]="popupCard"></app-popup-img>-->
-    <pagination-controls
-            previousLabel="Prev"
-            nextLabel="Next"
-            (pageChange)="onDataChange($event)"
-    >
-    </pagination-controls>
-    <!--</div>-->
 </div>
+<pagination-template #p="paginationApi"
+                     (pageChange)="onDataChange($event)"
+                     [maxSize]=12
+>
+    <div class="my-pagination d-flex">
+
+        <button class="pagination-button">
+                  <span (click)="p.setCurrent(1)">
+                    First
+                  </span>
+        </button>
+        <button class="pagination-button"
+                (click)="p.getCurrent() > 100 ? p.setCurrent(p.getCurrent() - 100) : p.setCurrent(1)"> 100 <
+        </button>
+        <button class="pagination-button"
+                (click)="p.getCurrent() > 10 ? p.setCurrent(p.getCurrent() - 10) : p.setCurrent(1)"> 10 <
+        </button>
+        <button class="pagination-button" [class.disabled]="p.isFirstPage()">
+                <span *ngIf="!p.isFirstPage()" (click)="p.previous()">
+                  <
+                    </span>
+        </button>
+        <button class="page-number" *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value">
+            <div class="pagination-page" (click)="p.setCurrent(page.value)"
+                 *ngIf="p.getCurrent() !== page.value">{{ page.label }}</div>
+            <div *ngIf="p.getCurrent() === page.value">
+                <button class="pagination-active-page">{{ page.label }}</button>
+            </div>
+        </button>
+        <button class="pagination-button" [class.disabled]="p.isLastPage()">
+            <span *ngIf="!p.isLastPage()" (click)="p.next()"> > </span>
+        </button>
+        <button class="pagination-button"
+                (click)="p.getCurrent() < p.getTotalItems() - 10 ? p.setCurrent(p.getCurrent() + 10) : p.setCurrent(p.getLastPage())"> > 10
+        </button>
+        <button class="pagination-button"
+                (click)="p.getCurrent() < p.getTotalItems() - 100 ? p.setCurrent(p.getCurrent() + 100) : p.setCurrent(p.getLastPage())"> > 100
+        </button>
+        <button class="pagination-button">
+                  <span (click)="p.setCurrent(p.getLastPage())">
+                    Last Page
+                  </span>
+        </button>
+    </div>
+</pagination-template>
