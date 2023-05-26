@@ -7,7 +7,6 @@
     height: calc(100% - 128px); /* Subtracting the header and footer height */
     /*grid-template-columns: repeat(auto-fit, minmax(calc(33% - 10px), 1fr));*/
     grid-template-columns: repeat(3, 1fr);
-
 }
 
 .grid-item {
@@ -15,7 +14,6 @@
     display: flex;
     height: 100%;
     background-size: cover;
-
 }
 
 .grid-item h2 {
@@ -23,8 +21,6 @@
     bottom: 0; /* Align content to the bottom */
     right: 0; /* Align content to the right */
 }
-
-
 
 .flex-container {
     display: flex;
