@@ -31,8 +31,30 @@ ngb-pagination {
     padding: 20px;
     align-items: center;
     justify-content: center;
-    min-height: calc(100% - 140px);  /*Subtracting the header and footer height*/
-    /*grid-template-columns: repeat(auto-fit, minmax(calc(33% - 10px), 1fr));*/
+    height: calc(100% - 128px); /* Subtracting the header and footer height */
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: repeat(5, 1fr);
 }
+
+.my-pagination {
+    background-color: white;
+    justify-content: center;
+}
+
+.pagination-button {
+    padding: 0 5px;
+    margin: 2px 5px;
+}
+
+.pagination-page {
+    background-color: slateblue;
+    color: black;
+    padding: 0 5px;
+}
+
+.pagination-active-page {
+    background-color: #6610f2;
+    color: white;
+    padding: 0 5px;
+}
+

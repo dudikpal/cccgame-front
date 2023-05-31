@@ -4,10 +4,9 @@
     padding: 20px;
     align-items: center;
     justify-content: center;
-    min-height: calc(100% - 128px); /* Subtracting the header and footer height */
+    height: calc(100% - 128px); /* Subtracting the header and footer height */
     /*grid-template-columns: repeat(auto-fit, minmax(calc(33% - 10px), 1fr));*/
     grid-template-columns: repeat(3, 1fr);
-
 }
 
 .grid-item {
@@ -15,21 +14,12 @@
     display: flex;
     height: 100%;
     background-size: cover;
-
 }
 
 .grid-item h2 {
     position: relative; /* Add position absolute */
     bottom: 0; /* Align content to the bottom */
     right: 0; /* Align content to the right */
-}
-
-
-header, footer {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
 }
 
 .flex-container {
@@ -47,4 +37,12 @@ header, footer {
 
 .garage {
     background-image: url("src/assets/img/menus/mygarage.webp");
+}
+
+.shop {
+    background-image: url("src/assets/img/menus/shop.webp");
+}
+
+.challenges {
+    background-image: url("src/assets/img/menus/challenges.webp");
 }
