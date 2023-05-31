@@ -1,9 +1,9 @@
 <div class="list-group">
-        <button *ngFor="let baseCard of getFilteredBaseCards()"
+        <button *ngFor="let playerCard of getFilteredBaseCards()"
                 type="button"
                 class="list-group-item list-group-item-action"
                 style="padding: 2px"
-                (click)="selectCard(baseCard)"
-        >{{baseCard.manufacturer}} {{baseCard.type}} {{baseCard.year}}</button>
+                (click)="selectCard(playerCard)"
+        >{{playerCard.baseCard.manufacturer}} {{playerCard.baseCard.type}} {{playerCard.baseCard.year}}</button>
 
 </div>

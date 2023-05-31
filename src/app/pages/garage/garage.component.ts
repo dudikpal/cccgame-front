@@ -22,6 +22,7 @@ export class GarageComponent implements OnInit {
   ngOnInit(): void {
     this.playerCards = this.mainService.playerCards;
     this.count = this.playerCards.length;
+    console.log(this.playerCards);
   }
 
   onDataChange(event: any) {

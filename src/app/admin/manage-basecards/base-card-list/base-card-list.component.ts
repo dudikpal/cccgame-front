@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {BaseCard} from "../../../models/BaseCard";
 import {AdminService} from "../../../services/admin.service.";
+import {PlayerCard} from "../../../models/PlayerCard";
 
 @Component({
   selector: 'app-base-card-list',
@@ -9,7 +10,7 @@ import {AdminService} from "../../../services/admin.service.";
 })
 export class BaseCardListComponent {
 
-  @Input() baseCards!: BaseCard[];
+  @Input() playerCards!: PlayerCard[];
 
   constructor(
       private adminService: AdminService
@@ -17,10 +18,10 @@ export class BaseCardListComponent {
   }
 
   getFilteredBaseCards() {
-    return this.adminService.baseCards;
+    return this.adminService.playerCards;
   }
 
-  selectCard(baseCard: BaseCard) {
-    this.adminService.selectedCard = baseCard;
+  selectCard(playerCard: PlayerCard) {
+    this.adminService.selectedCard = playerCard;
   }
 }

@@ -5,6 +5,7 @@ import {BaseCard} from "../../models/BaseCard";
 import {IFilter, ISimpleValue} from "../../models/IFilter";
 import {min} from "rxjs";
 import {environment} from "../../../environments/environment";
+import {PlayerCard} from "../../models/PlayerCard";
 
 @Component({
 	selector: 'app-manage-basecards',
@@ -13,15 +14,16 @@ import {environment} from "../../../environments/environment";
 })
 export class ManageBasecardsComponent implements OnInit, AfterViewInit {
 
-	@Input() baseCard!: BaseCard;
-	baseCards!: BaseCard[];
-	baseCardSkeleton!: BaseCard;
+	playerCard!: PlayerCard;
+	playerCards!: PlayerCard[];
+	baseCard!: BaseCard;
 	filters: IFilter = {simpleValues: [], multipleValues: [], betweens: []};
 
 	constructor(
 		private adminService: AdminService,
 		private mainService: MainService
 	) {
+		this.baseCard = mainService.playerCardSkeleton.baseCard;
 	}
 
 	ngOnInit(): void {
@@ -30,8 +32,8 @@ export class ManageBasecardsComponent implements OnInit, AfterViewInit {
 			.then(() => {
 				this.baseCards = this.adminService.baseCards;
 			});*/
-		this.baseCardSkeleton = this.mainService.baseCardSkeleton;
-		this.adminService.selectedCard = JSON.parse(JSON.stringify(this.baseCardSkeleton));
+		this.playerCard = this.mainService.playerCardSkeleton;
+		this.adminService.selectedCard = JSON.parse(JSON.stringify(this.playerCard));
 	}
 
 	ngAfterViewInit(): void {
@@ -64,7 +66,7 @@ export class ManageBasecardsComponent implements OnInit, AfterViewInit {
 	}
 
 	async fetchFilteredCards() {
-		const response = await fetch(environment.endpointPrefix + '/api/basecard',
+		const response = await fetch(environment.endpointPrefix + '/api/playercard',
 			{
 				method: "POST",
 				body: JSON.stringify(this.filters),
@@ -73,7 +75,7 @@ export class ManageBasecardsComponent implements OnInit, AfterViewInit {
 				}
 			});
 		const data = await response.json();
-		this.adminService.baseCards = data;
+		this.adminService.playerCards = data;
 	}
 
 	private addFilter(inputField: Element) {

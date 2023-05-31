@@ -3,23 +3,24 @@ import {HttpRequest} from "@angular/common/http";
 import {BaseCard} from "../models/BaseCard";
 import {BehaviorSubject, Subject} from "rxjs";
 import {environment} from "../../environments/environment";
+import {PlayerCard} from "../models/PlayerCard";
 
 @Injectable({
 	providedIn: 'root'
 })
 export class AdminService {
 
-	searchFieldsVisibility = false;
-	baseCards!: BaseCard[];
-	selectedCard!: BaseCard;
+	searchFieldsVisibility = true;
+	playerCards!: PlayerCard[];
+	selectedCard!: PlayerCard;
 	filter!: any;
 
 	constructor() {
 	}
 
 	async getFilteredBaseCards() {
-		const response = await fetch('http://localhost:8080/api/basecard');
-		this.baseCards = await response.json();
+		const response = await fetch('http://localhost:8080/api/playercard');
+		this.playerCards = await response.json();
 	}
 
 	toggleSearchFieldsVisibility() {

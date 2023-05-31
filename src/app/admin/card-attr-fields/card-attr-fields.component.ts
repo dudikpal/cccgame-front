@@ -47,12 +47,13 @@ export class CardAttrFieldsComponent implements OnInit{
 	bulkUpdateBaseCard() {
 		const attrFields = document.querySelectorAll('[data-card_attribute]');
 		let baseCards: BaseCard[] = [];
-		for (const baseCard of this.adminService.baseCards) {
+		for (const playerCard of this.adminService.playerCards) {
 
 			for (const attrField of Array.from(attrFields)) {
 
 				const attributeName = attrField.getAttribute('data-card_attribute')!;
 				const value = (attrField as HTMLInputElement).value.trim();
+				const baseCard: BaseCard = playerCard.baseCard;
 
 				if (!!value) {
 					(baseCard as any)[attributeName] = value;

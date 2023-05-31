@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AdminService} from "../services/admin.service.";
 import {BaseCard} from "../models/BaseCard";
 import {SearchFieldsComponent} from "./manage-basecards/search-fields/search-fields.component";
@@ -8,9 +8,10 @@ import {SearchFieldsComponent} from "./manage-basecards/search-fields/search-fie
 	templateUrl: './admin.component.html',
 	styleUrls: ['./admin.component.css']
 })
-export class AdminComponent {
+export class AdminComponent implements OnInit{
 
 	url = "http://localhost:8080/api/basecard"
+	urlPC = "http://localhost:8080/api/playercard"
 	baseCards!: BaseCard[];
 	isCollapsed = false;
 
@@ -18,6 +19,12 @@ export class AdminComponent {
 		private adminService: AdminService
 	) {
 	}
+
+	ngOnInit(): void {
+
+	}
+
+
 
 	loadBaseCardsFromFile() {
 		let input = document.createElement('input');
@@ -57,5 +64,16 @@ export class AdminComponent {
 
 	toggleSearchFieldVisibility() {
 		this.adminService.toggleSearchFieldsVisibility();
+	}
+
+	testing() {
+		const content = JSON.stringify(this.adminService.playerCards);
+		fetch(this.urlPC + "/bulk", {
+			method: "POST",
+			body: content,
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
 	}
 }

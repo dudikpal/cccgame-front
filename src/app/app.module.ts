@@ -18,6 +18,11 @@ import { CardAttrFieldsComponent } from './admin/card-attr-fields/card-attr-fiel
 import { HomeComponent } from './pages/home/home.component';
 import { GarageComponent } from './pages/garage/garage.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { MainComponent } from './pages/main/main.component';
+import { HeaderComponent } from './pages/header/header.component';
+import { FooterComponent } from './pages/footer/footer.component';
+import { SearchAndFilterBarComponent } from './pages/garage/search-and-filter-bar/search-and-filter-bar.component';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -29,7 +34,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
     SearchFieldsComponent,
     CardAttrFieldsComponent,
     HomeComponent,
-    GarageComponent
+    GarageComponent,
+    MainComponent,
+    HeaderComponent,
+    FooterComponent,
+    SearchAndFilterBarComponent
   ],
   imports: [
     HttpClientModule,
@@ -38,7 +47,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   providers: [FormBuilder, AdminService, MainService],
   bootstrap: [AppComponent]
