@@ -35,7 +35,9 @@ export class CardAttrFieldsComponent implements OnInit{
 		for (const attrField of Array.from(attrFields)) {
 			const attributeName = attrField.getAttribute('data-card_attribute')!;
 			const value = (attrField as HTMLInputElement).value.trim();
-			(this.baseCard as any)[attributeName] = value;
+			if (!!value) {
+				(this.baseCard as any)[attributeName] = value;
+			}
 		}
 		this.adminService.updateBaseCard(this.baseCard);
 	}
