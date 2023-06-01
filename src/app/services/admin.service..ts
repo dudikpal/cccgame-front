@@ -58,5 +58,10 @@ export class AdminService {
 					"Content-Type": "application/json"
 				}
 			});
+		this.deletePlayerCardFromAdminCardsByBaseCardId(baseCard);
+	}
+
+	deletePlayerCardFromAdminCardsByBaseCardId(baseCard: BaseCard) {
+		this.playerCards = this.playerCards.filter(playerCard => playerCard.baseCard.id !== baseCard.id);
 	}
 }
