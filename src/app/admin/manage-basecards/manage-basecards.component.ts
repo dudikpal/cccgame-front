@@ -48,7 +48,7 @@ export class ManageBasecardsComponent implements OnInit, AfterViewInit {
 		return this.adminService.selectedCard;
 	}
 
-	getFilteredCards() {
+	public getFilters() {
 
 		/*let cardFilter = JSON.parse(JSON.stringify(this.mainService.baseCardSkeleton));
 		for (const cardAttribute of this.getObjectEntries(this.baseCardSkeleton)) {
@@ -62,20 +62,12 @@ export class ManageBasecardsComponent implements OnInit, AfterViewInit {
 			this.addFilter(inputField);
 		}
 		//console.log(this.filters);
-		this.fetchFilteredCards();
+		this.adminService.filters = this.filters;
+		return this.filters;
 	}
 
 	async fetchFilteredCards() {
-		const response = await fetch(environment.endpointPrefix + '/api/playercard',
-			{
-				method: "POST",
-				body: JSON.stringify(this.filters),
-				headers: {
-					"Content-Type": "application/json"
-				}
-			});
-		const data = await response.json();
-		this.adminService.playerCards = data;
+		//admin service playerCards-ban már elvileg benne van
 	}
 
 	private addFilter(inputField: Element) {

@@ -4,6 +4,7 @@ import {BaseCard} from "../models/BaseCard";
 import {BehaviorSubject, Subject} from "rxjs";
 import {environment} from "../../environments/environment";
 import {PlayerCard} from "../models/PlayerCard";
+import {IFilter} from "../models/IFilter";
 
 @Injectable({
 	providedIn: 'root'
@@ -13,14 +14,22 @@ export class AdminService {
 	searchFieldsVisibility = true;
 	playerCards!: PlayerCard[];
 	selectedCard!: PlayerCard;
-	filter!: any;
+	filters: IFilter = {};
 
 	constructor() {
 	}
 
-	async getFilteredBaseCards() {
-		const response = await fetch('http://localhost:8080/api/playercard');
-		this.playerCards = await response.json();
+	async getFilteredPlayerCards(filters: IFilter) {
+		const response = await fetch(environment.endpointPrefix + '/api/playercard',
+			{
+				method: "POST",
+				body: JSON.stringify(filters),
+				headers: {
+					"Content-Type": "application/json"
+				}
+			});
+		const data = await response.json();
+		this.playerCards = data;
 	}
 
 	toggleSearchFieldsVisibility() {

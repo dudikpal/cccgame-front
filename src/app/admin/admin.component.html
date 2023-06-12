@@ -21,7 +21,7 @@
                             <li (click)="toggleSearchFieldVisibility()">
                                 <button class="nav-link submenu-item">Search fields</button>
                             </li>
-                            <li (click)="getFilteredBaseCards()">
+                            <li (click)="getFilteredPlayerCards(manageBaseCards.getFilters())">
                                 <button class="nav-link submenu-item">Filtered baseCards</button>
                             </li>
                             <li (click)="dropBaseCardsTable()">
@@ -107,7 +107,7 @@
             </div>
         </div>
         <div class="col py-3">
-            <app-manage-basecards
+            <app-manage-basecards #manageBaseCards
             ></app-manage-basecards>
         </div>
     </div>
