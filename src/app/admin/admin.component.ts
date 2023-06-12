@@ -1,23 +1,33 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AdminService} from "../services/admin.service.";
 import {BaseCard} from "../models/BaseCard";
 import {SearchFieldsComponent} from "./manage-basecards/search-fields/search-fields.component";
+import {IFilter} from "../models/IFilter";
+import {ManageBasecardsComponent} from "./manage-basecards/manage-basecards.component";
 
 @Component({
 	selector: 'app-admin',
 	templateUrl: './admin.component.html',
 	styleUrls: ['./admin.component.css']
 })
-export class AdminComponent {
+export class AdminComponent implements OnInit{
 
 	url = "http://localhost:8080/api/basecard"
+	urlPC = "http://localhost:8080/api/playercard"
 	baseCards!: BaseCard[];
 	isCollapsed = false;
+
 
 	constructor(
 		private adminService: AdminService
 	) {
 	}
+
+	ngOnInit(): void {
+
+	}
+
+
 
 	loadBaseCardsFromFile() {
 		let input = document.createElement('input');
@@ -31,7 +41,7 @@ export class AdminComponent {
 			reader.onload = readerEvent => {
 				let content = readerEvent.target!.result;
 
-				fetch(this.url + '/bulk', {
+				fetch(this.urlPC + '/bulk', {
 					method: "POST",
 					body: content,
 					headers: {
@@ -51,11 +61,22 @@ export class AdminComponent {
 		}
 	}
 
-	getFilteredBaseCards() {
-		this.adminService.getFilteredBaseCards();
+	getFilteredPlayerCards(filters: IFilter) {
+		this.adminService.getFilteredPlayerCards(filters);
 	}
 
 	toggleSearchFieldVisibility() {
 		this.adminService.toggleSearchFieldsVisibility();
+	}
+
+	testing() {
+		const content = JSON.stringify(this.adminService.playerCards);
+		fetch(this.urlPC + "/bulk", {
+			method: "POST",
+			body: content,
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
 	}
 }

@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import {BaseCard} from "../models/BaseCard";
 import {environment} from "../../environments/environment";
+import {PlayerCard} from "../models/PlayerCard";
 
 @Component({
 	selector: 'app-card',
@@ -19,7 +20,8 @@ import {environment} from "../../environments/environment";
 export class CardComponent implements OnInit, AfterViewInit {
 
 	@ViewChild('manufacturerDiv', { static: true }) manufacturerDiv!: ElementRef;
-	@Input() baseCard!: BaseCard;
+	@Input() playerCard!: PlayerCard;
+	baseCard!: BaseCard;
 	manufacturerLogoUrlPrefix = environment.imgFilePrefix;
 	isFlipped = false;
 	private _defaultFontSize = 35;
@@ -35,6 +37,7 @@ export class CardComponent implements OnInit, AfterViewInit {
 	}
 
 	ngOnInit(): void {
+		this.baseCard = this.playerCard.baseCard;
 		//this.flexFont();
 		//this.shrinkTextIntoContainer();
 		//this.resizeText();
@@ -49,13 +52,13 @@ export class CardComponent implements OnInit, AfterViewInit {
 
 	calculateFontSize() {
 		// vmiért nem kicsinít, de már megtalálja id alapján a diveket
-		const manufacturerDiv = document.querySelector(`#card_${this.cssEscape(this.baseCard.id)}`) as HTMLDivElement;
+		/*const manufacturerDiv = document.querySelector(`#card_${this.cssEscape(this.baseCard.id)}`) as HTMLDivElement;
 		let fontSize = this.fontSize;
 		while (manufacturerDiv.scrollWidth > manufacturerDiv.offsetWidth
 		|| manufacturerDiv.scrollHeight > manufacturerDiv.offsetHeight) {
 			fontSize--;
 			manufacturerDiv.style.fontSize = fontSize + "px";
-		}
+		}*/
 	}
 
 	private resizeText() {
@@ -71,8 +74,8 @@ export class CardComponent implements OnInit, AfterViewInit {
 
 
 	public flipCard() {
-		document.querySelector(`#card_${CSS.escape(this.baseCard.id)}`)?.classList.toggle('flipped');
-		document.querySelector(`#flip_button_${CSS.escape(this.baseCard.id)}`)?.classList.toggle('flipped');
+		document.querySelector(`#card_${this.playerCard.id}`)?.classList.toggle('flipped');
+		document.querySelector(`#flip_button_${this.playerCard.id}`)?.classList.toggle('flipped');
 	}
 
 	cssEscape(rawString: string) {
@@ -123,41 +126,41 @@ export class CardComponent implements OnInit, AfterViewInit {
 
 	iTabDatas() {
 	  return [
-		this.baseCard.acceleration,
-		this.baseCard.topSpeed,
-		this.baseCard.engineCapacity,
-		this.baseCard.maxTorque,
-		this.baseCard.weight,
-		this.baseCard.fuelTankCapacity,
-		this.baseCard.groundClearance,
+		this.playerCard.acceleration,
+		this.playerCard.topSpeed,
+		this.playerCard.baseCard.engineCapacity,
+		this.playerCard.baseCard.maxTorque,
+		this.playerCard.weight,
+		this.playerCard.baseCard.fuelTankCapacity,
+		this.playerCard.groundClearance,
 	  ];
 	}
 
 	iiTabDatas() {
 	  return [
-		this.baseCard.year,
-		this.baseCard.country,
-		this.baseCard.driveWheel,
-		this.baseCard.fuelType,
-		this.baseCard.abs,
-		this.baseCard.tractionControl,
+		this.playerCard.baseCard.year,
+		this.playerCard.baseCard.country,
+		this.playerCard.baseCard.driveWheel,
+		this.playerCard.baseCard.fuelType,
+		this.playerCard.baseCard.abs,
+		this.playerCard.baseCard.tractionControl,
 	  ];
 	}
 
 	iiiTabDatas() {
 	  return [
-		this.baseCard.body,
-		this.baseCard.doors,
-		this.baseCard.seats,
-		this.baseCard.length,
-		this.baseCard.width,
-		this.baseCard.height,
+		this.playerCard.baseCard.body,
+		this.playerCard.baseCard.doors,
+		this.playerCard.baseCard.seats,
+		this.playerCard.baseCard.length,
+		this.playerCard.width,
+		this.playerCard.height,
 	  ];
 	}
 
 	ivTabDatas() {
 	  return [
-		this.baseCard.year
+		this.playerCard.baseCard.year
 	  ];
 	}
 

@@ -1,16 +1,17 @@
 <button
-        (click)="getFilteredCards()"
 >FILTER
 </button>
 <app-search-fields
         [hidden]="searchFieldsVisible()"
-        [baseCardSkeleton]="baseCardSkeleton"
+        [baseCardSkeleton]="playerCard.baseCard"
 ></app-search-fields>
-<app-base-card-list
-        [baseCards]="baseCards"
-></app-base-card-list>
-<app-card
-        [baseCard]=getSelectedCard()
-></app-card>
+<div class="d-flex">
+    <app-base-card-list
+            [playerCards]="playerCards"
+    ></app-base-card-list>
+    <app-card
+            [playerCard]=getSelectedCard()
+    ></app-card>
+</div>
 <app-card-attr-fields
-[baseCard]=getSelectedCard()></app-card-attr-fields>
+        [baseCard]=getSelectedCard().baseCard></app-card-attr-fields>
