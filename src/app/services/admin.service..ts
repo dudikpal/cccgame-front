@@ -3,23 +3,33 @@ import {HttpRequest} from "@angular/common/http";
 import {BaseCard} from "../models/BaseCard";
 import {BehaviorSubject, Subject} from "rxjs";
 import {environment} from "../../environments/environment";
+import {PlayerCard} from "../models/PlayerCard";
+import {IFilter} from "../models/IFilter";
 
 @Injectable({
 	providedIn: 'root'
 })
 export class AdminService {
 
-	searchFieldsVisibility = false;
-	baseCards!: BaseCard[];
-	selectedCard!: BaseCard;
-	filter!: any;
+	searchFieldsVisibility = true;
+	playerCards!: PlayerCard[];
+	selectedCard!: PlayerCard;
+	filters: IFilter = {};
 
 	constructor() {
 	}
 
-	async getFilteredBaseCards() {
-		const response = await fetch('http://localhost:8080/api/basecard');
-		this.baseCards = await response.json();
+	async getFilteredPlayerCards(filters: IFilter) {
+		const response = await fetch(environment.endpointPrefix + '/api/playercard',
+			{
+				method: "POST",
+				body: JSON.stringify(filters),
+				headers: {
+					"Content-Type": "application/json"
+				}
+			});
+		const data = await response.json();
+		this.playerCards = data;
 	}
 
 	toggleSearchFieldsVisibility() {
@@ -57,5 +67,10 @@ export class AdminService {
 					"Content-Type": "application/json"
 				}
 			});
+		this.deletePlayerCardFromAdminCardsByBaseCardId(baseCard);
+	}
+
+	deletePlayerCardFromAdminCardsByBaseCardId(baseCard: BaseCard) {
+		this.playerCards = this.playerCards.filter(playerCard => playerCard.baseCard.id !== baseCard.id);
 	}
 }

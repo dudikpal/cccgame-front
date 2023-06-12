@@ -2,17 +2,17 @@
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                <a [routerLink]="['../']" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <span class="fs-5 d-none d-sm-inline">Menu</span>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
-                        <a [routerLink]="['../']" class="nav-link align-middle px-0">
+                        <a href="/" class="nav-link align-middle px-0">
                             <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline text-white">Home</span>
                         </a>
                     </li>
                     <li>
-                        <a data-bs-target="#submenu1" [routerLink]="['./admin/manage-basecards']" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                        <a data-bs-target="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">BaseCards</span> </a>
                         <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100" (click)="loadBaseCardsFromFile()">
@@ -21,7 +21,7 @@
                             <li (click)="toggleSearchFieldVisibility()">
                                 <button class="nav-link submenu-item">Search fields</button>
                             </li>
-                            <li (click)="getFilteredBaseCards()">
+                            <li (click)="getFilteredPlayerCards(manageBaseCards.getFilters())">
                                 <button class="nav-link submenu-item">Filtered baseCards</button>
                             </li>
                             <li (click)="dropBaseCardsTable()">
@@ -31,7 +31,8 @@
                     </li>
                     <li>
                         <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders</span></a>
+                            <i class="fs-4 bi-table"></i>
+                            <span (click)="testing()" class="ms-1 d-none d-sm-inline">Orders</span></a>
                     </li>
                     <li>
                         <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
@@ -106,7 +107,7 @@
             </div>
         </div>
         <div class="col py-3">
-            <app-manage-basecards
+            <app-manage-basecards #manageBaseCards
             ></app-manage-basecards>
         </div>
     </div>
