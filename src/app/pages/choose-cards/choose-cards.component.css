@@ -1,0 +1,59 @@
+.hand-container {
+    display: grid;
+    grid-column-gap: 20px;
+    grid-row-gap: 40px;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.selected-cards {
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    height: 100%;
+    /*height: calc(100% - 85%);*/ /* Subtracting the header and footer height */
+    /*grid-template-columns: repeat(auto-fit, minmax(calc(33% - 10px), 1fr));*/
+
+}
+
+.surfaces {
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    /*height: calc(100% - 95%);*/ /* Subtracting the header and footer height */
+    /*grid-template-columns: repeat(auto-fit, minmax(calc(33% - 10px), 1fr));*/
+
+}
+
+.surface {
+    min-height: 30px;
+    width: 10rem;
+    height: 3rem;
+}
+
+.selected-card {
+    width: 10rem;
+    height: 10rem;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.grid-item {
+    margin: 0px 5rem 0px 5rem;
+    background-color: #3dd5f3;
+    display: flex;
+    background-size: cover;
+}
+
+.container {
+    border: 1px solid black;
+    min-height: 500px;
+    margin: 50px;
+}
+
+.dropzone {
+    border: 1px solid red;
+    min-height: 100px;
+}
