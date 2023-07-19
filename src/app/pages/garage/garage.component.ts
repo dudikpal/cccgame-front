@@ -29,12 +29,35 @@ export class GarageComponent implements OnInit {
     this.page = event;
   }
 
+  onDrop(event: CdkDragDrop<any>) {
+    console.log('garage ondropban');
+    this.mainService.onDrop(event);
+    //console.log(event.previousContainer.data[event.previousIndex].baseCard.imageUrl);
+
+  }
+
   previous10(currentPage: number) {
     const previousPage = currentPage -= 10;
     previousPage >= 10;
   }
 
-  temp(pages: Page[]) {
+  /*temp(pages: Page[]) {
     console.log(pages);
+  }*/
+
+  onWheel(event: WheelEvent) {
+    (<Element>event.target).parentElement!.scrollLeft += event.deltaY;
+    /*(<Element>event.target).parentElement!.scrollBy({
+      left: event.deltaY < 0 ? -30 : 30,
+    });*/
+    //event.preventDefault();
+  }
+
+  onDragStarted(card: any) {
+    const index = this.playerCards.indexOf(card);
+    console.log(index);
+    /*if (index > -1) {
+      this.playerCards.splice(index, 1);
+    }*/
   }
 }

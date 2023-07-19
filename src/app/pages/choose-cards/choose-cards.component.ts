@@ -15,6 +15,11 @@ export class ChooseCardsComponent implements OnInit{
   selectedCards = this.mainService.playerCards;
   nestedArray = this.mainService.playerCards;
   idList: any[] = [];
+  selectedCard1: any[] = [];
+  selectedCard2: any[] = [];
+  selectedCard3: any[] = [];
+  selectedCard4: any[] = [];
+  selectedCard5: any[] = [];
 
   constructor(
       private mainService: MainService
@@ -26,19 +31,21 @@ export class ChooseCardsComponent implements OnInit{
 
   ngOnInit(): void {
     console.log('onInintben');
-    console.log(this.selectedCards.length);
-    console.log(this.nestedArray.length);
+    this.selectedCard1.push(this.mainService.playerCardSkeleton);
+    this.selectedCard2.push(this.mainService.playerCardSkeleton);
+    this.selectedCard3.push(this.mainService.playerCardSkeleton);
+    this.selectedCard4.push(this.mainService.playerCardSkeleton);
+    this.selectedCard5.push(this.mainService.playerCardSkeleton);
   }
 
   onDrop(event: CdkDragDrop<any>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(event.previousContainer.data,
-          event.container.data,
-          event.previousIndex,
-          event.currentIndex);
-    }
+    console.log('choosecard ondropban');
+    this.mainService.onDrop(event);
+    console.log(event.previousContainer.data[event.previousIndex].baseCard.imageUrl);
+
+    console.log(this.selectedCard1);
+    this.selectedCard1 = [event.previousContainer.data[event.previousIndex]];
+    console.log(this.selectedCard1);
   }
 
   mouseEnterHandler(

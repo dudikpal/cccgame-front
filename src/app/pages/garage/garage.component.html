@@ -1,5 +1,59 @@
-<app-search-and-filter-bar></app-search-and-filter-bar>
-<div class="grid-container">
+<!--<app-search-and-filter-bar
+        class="grid-container-filter-bar"
+></app-search-and-filter-bar>-->
+<div class="grid-container"
+     (wheel)="onWheel($event)"
+cdkDropList
+     #playerCardList="cdkDropList"
+[id]="'playerCardList'"
+      [cdkDropListData]="playerCards"
+     [cdkDropListConnectedTo]="'towatch1'"
+     (cdkDropListDropped)="onDrop($event)"
+     >
+    <app-card cdkDrag
+            *ngFor="let playerCard of playerCards"
+            [playerCard]="playerCard"
+
+    >
+
+    </app-card>
+</div>
+
+<!--<cdk-virtual-scroll-viewport orientation="horizontal"
+                             class="viewport"
+                             itemSize="50">
+
+        <div *cdkVirtualFor="let playerCard of playerCards">
+            <app-card
+            [playerCard]="playerCard">
+            </app-card>
+        </div>
+
+</cdk-virtual-scroll-viewport>-->
+
+<!--<div class="cdk-virtual-scroll-data-source-example">
+    <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="1" class="viewport">
+        <div *cdkVirtualFor="let playerCard of playerCards" class="example-item">
+            <app-card
+                    [playerCard]="playerCard">
+            </app-card>
+        </div>
+    </cdk-virtual-scroll-viewport>
+</div>-->
+
+<!--<cdk-virtual-scroll-viewport itemSize="42" class="viewport" orientation="horizontal">
+    <mat-grid-list cols="4" rowHeight="1:1">
+        <mat-grid-tile *cdkVirtualFor="let user of items">
+            {{user}}
+        </mat-grid-tile>
+    </mat-grid-list>
+</cdk-virtual-scroll-viewport>-->
+
+<!--<cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="example-viewport">
+    <div *cdkVirtualFor="let item of items" class="example-item">{{item}}</div>
+</cdk-virtual-scroll-viewport>-->
+
+<!--<div class="grid-container">
     <app-card
             *ngFor="let playerCard of playerCards | paginate : {
             itemsPerPage: itemsPerPage,
@@ -55,4 +109,4 @@
                   </span>
         </button>
     </div>
-</pagination-template>
+</pagination-template>-->
