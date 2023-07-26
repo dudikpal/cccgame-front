@@ -20,6 +20,7 @@ export class ChooseCardsComponent implements OnInit{
   selectedCard3: any[] = [];
   selectedCard4: any[] = [];
   selectedCard5: any[] = [];
+  isDisabled: boolean = false;
 
   constructor(
       private mainService: MainService
@@ -39,13 +40,25 @@ export class ChooseCardsComponent implements OnInit{
   }
 
   onDrop(event: CdkDragDrop<any>) {
-    console.log('choosecard ondropban');
-    this.mainService.onDrop(event);
-    console.log(event.previousContainer.data[event.previousIndex].baseCard.imageUrl);
 
-    console.log(this.selectedCard1);
-    this.selectedCard1 = [event.previousContainer.data[event.previousIndex]];
-    console.log(this.selectedCard1);
+    console.log('choosecard ondropban');
+
+    const cardId = event.previousContainer.data[event.previousIndex].id;
+    const card = document.querySelector(`#card_${CSS.escape(cardId)}`);
+    card!.classList.add('disabled');
+    //console.log(card!.classList.value);
+    this.mainService.onDrop(event);
+
+    //console.log(event.previousContainer.data[event.previousIndex].baseCard.imageUrl);
+    console.log(event.previousIndex);
+    console.log(cardId);
+    //console.log(this.selectedCard1);
+    //this.selectedCard1 = [event.previousContainer.data[event.previousIndex]];
+    this.selectedCard1 = this.selectedCards.filter(
+        (card: { id: any; }) => card.id === event.item.data.id
+    )
+    console.log(event.item.data.id);
+
   }
 
   mouseEnterHandler(
@@ -55,5 +68,9 @@ export class ChooseCardsComponent implements OnInit{
     if (event.buttons && !chapterExpansionPanel.expanded) {
       chapterExpansionPanel.open();
     }
+  }
+
+  toggleDisable() {
+    this.mainService.toggleDisable();
   }
 }

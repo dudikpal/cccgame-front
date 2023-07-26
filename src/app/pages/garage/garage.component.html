@@ -1,6 +1,6 @@
-<!--<app-search-and-filter-bar
+<app-search-and-filter-bar
         class="grid-container-filter-bar"
-></app-search-and-filter-bar>-->
+></app-search-and-filter-bar>
 <div class="grid-container"
      (wheel)="onWheel($event)"
 cdkDropList
@@ -13,7 +13,7 @@ cdkDropList
     <app-card cdkDrag
             *ngFor="let playerCard of playerCards"
             [playerCard]="playerCard"
-
+            [cdkDragData]="playerCard"
     >
 
     </app-card>
