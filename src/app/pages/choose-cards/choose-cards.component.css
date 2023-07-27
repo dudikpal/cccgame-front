@@ -43,7 +43,7 @@
 .grid-item {
     margin: 0px 5rem 0px 5rem;
     background-color: #3dd5f3;
-    display: flex;
+    /*display: flex;*/
     background-size: cover;
 }
 
@@ -55,8 +55,33 @@
 
 .dropzone img {
     border: 1px solid red;
-    height: 300px;
-    width: 400px;
-    max-height: 300px;
-    max-width: 400px;
+    height: 200px;
+    width: 300px;
+}
+
+.disabled {
+    opacity: 0.9;
+    color: white;
+    pointer-events: none;
+    border: medium solid black;
+}
+
+.dropzone {
+    margin: 1%;
+    display: inline;
+}
+
+.drop-places {
+    align-self: center;
+    margin: 2rem;
+}
+
+.choose-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.choose-buttons button {
+    margin: 0rem 5rem;
 }
