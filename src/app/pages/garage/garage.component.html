@@ -7,8 +7,7 @@ cdkDropList
      #playerCardList="cdkDropList"
 [id]="'playerCardList'"
       [cdkDropListData]="playerCards"
-     [cdkDropListConnectedTo]="'towatch1'"
-     (cdkDropListDropped)="onDrop($event)"
+     [cdkDropListConnectedTo]="['dropZone1', 'dropZone2', 'dropZone3', 'dropZone4', 'dropZone5']"
      >
     <app-card cdkDrag
             *ngFor="let playerCard of playerCards"

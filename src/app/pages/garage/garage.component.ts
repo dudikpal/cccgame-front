@@ -1,6 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {MainService} from "../../services/main.service";
-import {Page} from "ngx-pagination";
+//import {Page} from "ngx-pagination";
+import {PlayerCard} from "../../models/PlayerCard";
+import {Router} from "@angular/router";
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import {CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 
 @Component({
   selector: 'app-garage',
@@ -27,13 +32,6 @@ export class GarageComponent implements OnInit {
 
   onDataChange(event: any) {
     this.page = event;
-  }
-
-  onDrop(event: CdkDragDrop<any>) {
-    console.log('garage ondropban');
-    this.mainService.onDrop(event);
-    //console.log(event.previousContainer.data[event.previousIndex].baseCard.imageUrl);
-
   }
 
   previous10(currentPage: number) {
