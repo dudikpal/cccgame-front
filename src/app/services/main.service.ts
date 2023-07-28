@@ -41,4 +41,23 @@ export class MainService {
       //this.playerCards = data;
       return data;
   }
+
+  onDrop(event: CdkDragDrop<any>) {
+    console.log('mainservice iondropben');
+    console.log(event.previousContainer.data[event.previousIndex].baseCard.imageUrl);
+    if (event.previousContainer === event.container) {
+      //moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      // mozgatott kártya
+      //console.log(event.previousContainer.data[event.previousIndex].baseCard.imageUrl);
+      /*copyArrayItem(event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          0);*/
+    }
+    /*const cardId = event.previousContainer.data[0].id;
+    const card = document.querySelector(`#card_${CSS.escape(cardId)}`);
+    card!.classList.add('disabled');
+    console.log(card);*/
+  }
 }
