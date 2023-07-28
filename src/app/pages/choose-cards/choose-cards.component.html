@@ -1,23 +1,71 @@
-<div style="display: flex;">
-    <div class="container">
+<div
+cdkDropListGroup>
+    <!--<div class="container">
         <div class="row">
-            <h2 style="text-align: center">Movies</h2>
-            <div  cdkDropList #allmovies="cdkDropList" [cdkDropListData]="nestedArray" [cdkDropListConnectedTo]="[towatch]"
+            <h2 style="text-align: center">Movies</h2>-->
+            <!--<div  cdkDropList #allmovies="cdkDropList" [cdkDropListData]="nestedArray" [cdkDropListConnectedTo]="[dropZone1, dropZone2, dropZone3, dropZone4, dropZone5]"
                   (cdkDropListDropped)="onDrop($event)"
             class="dropzone">
                 <app-card *ngFor="let movie of nestedArray" [playerCard]="movie" cdkDrag></app-card>
-            </div>
-        </div>
-    </div>
-    <div class="container">
+            </div>-->
+            <app-garage
+
+
+                    ></app-garage>
+            <!--<app-garage></app-garage>-->
+        <!--</div>
+    </div>-->
+    <!--<div class="container">
         <div class="row">
-            <h2 style="text-align: center">Movies to watch</h2>
-            <div cdkDropList #towatch="cdkDropList" [cdkDropListData]="idList" [cdkDropListConnectedTo]="[allmovies]"
+            <h2 style="text-align: center">Movies to watch</h2>-->
+    <div class="drop-places">
+            <div
+                    cdkDropList
+
+                    [id]="'dropZone1'"
+                    [cdkDropListData]="selectedCard1"
+                    [cdkDropListConnectedTo]="'playerCardList'"
                  (cdkDropListDropped)="onDrop($event)"
                  class="dropzone">
                 <!--<div *cdkDragPlaceholder></div>-->
-                <app-card *ngFor="let movie of idList" [playerCard]="movie" cdkDrag></app-card>
+                <!--<app-card *ngFor="let movie of idList" [playerCard]="movie" cdkDrag></app-card>-->
+                <img  [src]="selectedCard1[0].baseCard.imageUrl" cdkDrag>
             </div>
-        </div>
+    <div cdkDropList #dropZone2="cdkDropList" [id]="'dropZone2'" [cdkDropListData]="selectedCard2" [cdkDropListConnectedTo]="'playerCardList'"
+         (cdkDropListDropped)="onDrop($event)"
+         class="dropzone">
+        <!--<div *cdkDragPlaceholder></div>-->
+        <!--<app-card *ngFor="let movie of idList" [playerCard]="movie" cdkDrag></app-card>-->
+        <img  [src]="selectedCard2[0].baseCard.imageUrl" cdkDrag>
     </div>
+    <div cdkDropList #dropZone3="cdkDropList" [id]="'dropZone3'" [cdkDropListData]="selectedCard3" [cdkDropListConnectedTo]="'playerCardList'"
+         (cdkDropListDropped)="onDrop($event)"
+         class="dropzone">
+        <!--<div *cdkDragPlaceholder></div>-->
+        <!--<app-card *ngFor="let movie of idList" [playerCard]="movie" cdkDrag></app-card>-->
+        <img  [src]="selectedCard3[0].baseCard.imageUrl" cdkDrag>
+    </div>
+    <div cdkDropList #dropZone4="cdkDropList" [id]="'dropZone4'" [cdkDropListData]="selectedCard4" [cdkDropListConnectedTo]="'playerCardList'"
+         (cdkDropListDropped)="onDrop($event)"
+         class="dropzone">
+        <!--<div *cdkDragPlaceholder></div>-->
+        <!--<app-card *ngFor="let movie of idList" [playerCard]="movie" cdkDrag></app-card>-->
+        <img  [src]="selectedCard4[0].baseCard.imageUrl" cdkDrag>
+    </div>
+    <div cdkDropList #dropZone5="cdkDropList" [id]="'dropZone5'" [cdkDropListData]="selectedCard5" [cdkDropListConnectedTo]="'playerCardList'"
+         (cdkDropListDropped)="onDrop($event)"
+         class="dropzone">
+        <!--<div *cdkDragPlaceholder></div>-->
+        <!--<app-card *ngFor="let movie of idList" [playerCard]="movie" cdkDrag></app-card>-->
+        <img  [src]="selectedCard5[0].baseCard.imageUrl" cdkDrag>
+    </div>
+        <!--</div>
+    </div>-->
+</div>
+        <div class="choose-buttons">
+            <button
+            (click)=rechooseCards()>Rechoose cards</button>
+            <button
+            (click)="gotoRaces()">Go to races</button>
+        </div>
 </div>
