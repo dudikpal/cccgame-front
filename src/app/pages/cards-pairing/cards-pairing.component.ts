@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {MainService} from "../../services/main.service";
-import {CdkDragDrop, copyArrayItem} from "@angular/cdk/drag-drop";
+import {CdkDragDrop, copyArrayItem, transferArrayItem} from "@angular/cdk/drag-drop";
 
 @Component({
   selector: 'app-cards-pairing',
@@ -9,11 +9,11 @@ import {CdkDragDrop, copyArrayItem} from "@angular/cdk/drag-drop";
 })
 export class CardsPairingComponent {
 
-  pairedCard1 = this.mainService.selectedCard1;
-  pairedCard2 = this.mainService.selectedCard2;
-  pairedCard3 = this.mainService.selectedCard3;
-  pairedCard4 = this.mainService.selectedCard4;
-  pairedCard5 = this.mainService.selectedCard5;
+  pairedCard1 = this.mainService.pairedCard1;
+  pairedCard2 = this.mainService.pairedCard2;
+  pairedCard3 = this.mainService.pairedCard3;
+  pairedCard4 = this.mainService.pairedCard4;
+  pairedCard5 = this.mainService.pairedCard5;
 
   constructor(
       private mainService: MainService
@@ -29,7 +29,7 @@ export class CardsPairingComponent {
     console.log(cardId);
     console.log(cardName);
     console.log(card);
-    copyArrayItem(event.item.data,
+    transferArrayItem(event.item.data,
         event.container.data,
         0,
         0);

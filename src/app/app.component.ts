@@ -17,8 +17,8 @@ export class AppComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.mainService.getPlayerCardSkeleton();
-		this.mainService.getPlayerCards();
+		//this.mainService.getPlayerCardSkeleton();
+		//this.mainService.getPlayerCards();
 	}
 
 
