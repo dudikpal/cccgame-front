@@ -14,7 +14,7 @@ cdkDropList
             [playerCard]="playerCard"
             [cdkDragData]="playerCard"
     >
-
+        <img *cdkDragPreview [src]="playerCard.baseCard.imageUrl" [alt]="playerCard.baseCard.id">
     </app-card>
 </div>
 

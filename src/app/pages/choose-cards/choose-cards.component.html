@@ -1,5 +1,6 @@
 <div
-cdkDropListGroup>
+cdkDropListGroup
+class="choose-container">
     <!--<div class="container">
         <div class="row">
             <h2 style="text-align: center">Movies</h2>-->
@@ -9,7 +10,7 @@ cdkDropListGroup>
                 <app-card *ngFor="let movie of nestedArray" [playerCard]="movie" cdkDrag></app-card>
             </div>-->
             <app-garage
-
+                class="choose-garage"
 
                     ></app-garage>
             <!--<app-garage></app-garage>-->
@@ -18,11 +19,12 @@ cdkDropListGroup>
     <!--<div class="container">
         <div class="row">
             <h2 style="text-align: center">Movies to watch</h2>-->
-    <app-drop-places></app-drop-places>
+    <app-drop-places
+    class="choose-drop-places"></app-drop-places>
         <div class="choose-buttons">
             <button
             (click)=rechooseCards()>Rechoose cards</button>
             <button
-            (click)="gotoRaces()">Go to pairing</button>
+            (click)="gotoPairing()">Go to pairing</button>
         </div>
 </div>

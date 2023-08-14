@@ -40,16 +40,16 @@ export class ChooseCardsComponent implements OnInit {
 	}
 
 	rechooseCards() {
-		this.mainService.rechooseCards();
+		this.dropPlacesComponent.rechooseCards();
 	}
 
-	gotoRaces() {
+	gotoPairing() {
 		// navigálni a cars pairing componentbe
-		this.mainService.selectedCard1 = this.dropPlacesComponent.selectedCard1;
-		this.mainService.selectedCard2 = this.dropPlacesComponent.selectedCard2;
-		this.mainService.selectedCard3 = this.dropPlacesComponent.selectedCard3;
-		this.mainService.selectedCard4 = this.dropPlacesComponent.selectedCard4;
-		this.mainService.selectedCard5 = this.dropPlacesComponent.selectedCard5;
+		this.mainService.selectedCard1 = this.dropPlacesComponent.selectedCards[1];
+		this.mainService.selectedCard2 = this.dropPlacesComponent.selectedCards[2];
+		this.mainService.selectedCard3 = this.dropPlacesComponent.selectedCards[3];
+		this.mainService.selectedCard4 = this.dropPlacesComponent.selectedCards[4];
+		this.mainService.selectedCard5 = this.dropPlacesComponent.selectedCards[5];
 		this.router.navigate(['/cards-pairing']);
 	}
 }

@@ -73,3 +73,15 @@
 .choose-buttons button {
     margin: 0rem 5rem;
 }
+
+.choose-container {
+    max-height: 1040px;
+}
+
+.choose-garage {
+    height: 750px;
+}
+
+.choose-drop-places {
+    height: 250px;
+}
