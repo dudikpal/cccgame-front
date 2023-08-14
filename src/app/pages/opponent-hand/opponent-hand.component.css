@@ -1,0 +1,23 @@
+.dropzone {
+    margin: 1%;
+    display: inline-block;
+
+    text-align: center;
+}
+
+.drop-places {
+    align-self: center;
+    margin: 2rem;
+}
+
+.dropzone img {
+    border: 1px solid red;
+    height: 200px;
+    width: 300px;
+
+}
+
+.dropzone>p {
+    font-size: large;
+    font-weight: bolder;
+}
