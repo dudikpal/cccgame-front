@@ -3,16 +3,23 @@
 ></app-search-and-filter-bar>
 <div class="grid-container"
      (wheel)="onWheel($event)"
-cdkDropList
+     cdkDropList
      #playerCardList="cdkDropList"
-[id]="'playerCardList'"
-      [cdkDropListData]="playerCards"
+     [id]="'playerCardList'"
+     [cdkDropListData]="playerCards"
+     cdkDropListSortingDisabled
+
      [cdkDropListConnectedTo]="['dropZone1', 'dropZone2', 'dropZone3', 'dropZone4', 'dropZone5']"
-     >
-    <app-card cdkDrag
-            *ngFor="let playerCard of playerCards"
-            [playerCard]="playerCard"
-            [cdkDragData]="playerCard"
+>
+    <app-card
+        cdkDrag
+        *ngFor="let playerCard of playerCards"
+        [playerCard]="playerCard"
+        [cdkDragData]="playerCard"
+
+
+        (cdkDragStarted)="onDragStarted(playerCard)"
+[cdkDragDisabled]="playerCard.disabled"
     >
         <img *cdkDragPreview [src]="playerCard.baseCard.imageUrl" [alt]="playerCard.baseCard.id">
     </app-card>

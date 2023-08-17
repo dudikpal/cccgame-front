@@ -93,7 +93,7 @@ ngb-pagination {
 }
 
 .cdk-drag-placeholder {
-    opacity: 0;
+    opacity: 1;
 }
 
 .cdk-drag-animating {

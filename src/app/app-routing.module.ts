@@ -8,6 +8,8 @@ import {MainComponent} from "./pages/main/main.component";
 import {ChallengesComponent} from "./pages/challenges/challenges.component";
 import {ChooseCardsComponent} from "./pages/choose-cards/choose-cards.component";
 import {CardsPairingComponent} from "./pages/cards-pairing/cards-pairing.component";
+import {RacesComponent} from "./pages/races/races.component";
+import {RaceComponent} from "./pages/race/race.component";
 
 const routes: Routes = [
 	//{path: '', redirectTo: 'garage', pathMatch: "full"},
@@ -25,8 +27,10 @@ const routes: Routes = [
 			{path: 'garage', component: GarageComponent},
 			{path: 'challenges', component: ChallengesComponent},*/
 	{path: '', component: ChooseCardsComponent},
-	{path: 'challenge', component: ChallengesComponent},
-	{path: 'cards-pairing', component: CardsPairingComponent}
+	{path: 'challenges', component: ChallengesComponent},
+	{path: 'cards-pairing', component: CardsPairingComponent},
+	{path: 'races', component: RacesComponent},
+	{path: 'race', component: RaceComponent}
 		//]},
 	//{path: '', component: GarageComponent}
 

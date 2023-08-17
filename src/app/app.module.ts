@@ -31,6 +31,8 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import { CardsPairingComponent } from './pages/cards-pairing/cards-pairing.component';
 import { DropPlacesComponent } from './pages/drop-places/drop-places.component';
 import { OpponentHandComponent } from './pages/opponent-hand/opponent-hand.component';
+import { RaceComponent } from './pages/race/race.component';
+import { RacesComponent } from './pages/races/races.component';
 
 
 @NgModule({
@@ -53,6 +55,8 @@ import { OpponentHandComponent } from './pages/opponent-hand/opponent-hand.compo
   CardsPairingComponent,
   DropPlacesComponent,
   OpponentHandComponent,
+  RaceComponent,
+  RacesComponent,
 	],
 	imports: [
 		HttpClientModule,

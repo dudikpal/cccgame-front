@@ -1,0 +1,6 @@
+#playerCard, #opponentCard {
+    width: 270px;
+    height: 324px;
+    border: solid blue 2px;
+    margin: 20px;
+}

@@ -8,7 +8,7 @@
                 cdkDropList
                 #pairedDropZone1="cdkDropList"
                 [id]="'pairedDropZone1'"
-                [cdkDropListData]="pairedCards[1]"
+                [cdkDropListData]="pairedCards"
 
                 (cdkDropListDropped)="onDrop($event)"
                 class="dropzone">
@@ -16,7 +16,7 @@
             <!--<app-card *ngFor="let movie of idList" [playerCard]="movie" cdkDrag></app-card>-->
             <img [src]="pairedCards[1].baseCard.imageUrl" cdkDrag>
         </div>
-        <div cdkDropList #pairedDropZone2="cdkDropList" [id]="'pairedDropZone2'" [cdkDropListData]="pairedCards[2]"
+        <div cdkDropList #pairedDropZone2="cdkDropList" [id]="'pairedDropZone2'" [cdkDropListData]="pairedCards"
              [cdkDropListConnectedTo]="'playerCardList'"
              (cdkDropListDropped)="onDrop($event)"
              class="dropzone">
@@ -24,7 +24,7 @@
             <!--<app-card *ngFor="let movie of idList" [playerCard]="movie" cdkDrag></app-card>-->
             <img [src]="pairedCards[2].baseCard.imageUrl" cdkDrag>
         </div>
-        <div cdkDropList #pairedDropZone3="cdkDropList" [id]="'pairedDropZone3'" [cdkDropListData]="pairedCards[3]"
+        <div cdkDropList #pairedDropZone3="cdkDropList" [id]="'pairedDropZone3'" [cdkDropListData]="pairedCards"
              [cdkDropListConnectedTo]="'playerCardList'"
              (cdkDropListDropped)="onDrop($event)"
              class="dropzone">
@@ -32,7 +32,7 @@
             <!--<app-card *ngFor="let movie of idList" [playerCard]="movie" cdkDrag></app-card>-->
             <img [src]="pairedCards[3].baseCard.imageUrl" cdkDrag>
         </div>
-        <div cdkDropList #pairedDropZone4="cdkDropList" [id]="'pairedDropZone4'" [cdkDropListData]="pairedCards[4]"
+        <div cdkDropList #pairedDropZone4="cdkDropList" [id]="'pairedDropZone4'" [cdkDropListData]="pairedCards"
              [cdkDropListConnectedTo]="'playerCardList'"
              (cdkDropListDropped)="onDrop($event)"
              class="dropzone">
@@ -40,7 +40,7 @@
             <!--<app-card *ngFor="let movie of idList" [playerCard]="movie" cdkDrag></app-card>-->
             <img [src]="pairedCards[4].baseCard.imageUrl" cdkDrag>
         </div>
-        <div cdkDropList #pairedDropZone5="cdkDropList" [id]="'pairedDropZone5'" [cdkDropListData]="pairedCards[5]"
+        <div cdkDropList #pairedDropZone5="cdkDropList" [id]="'pairedDropZone5'" [cdkDropListData]="pairedCards"
              [cdkDropListConnectedTo]="'playerCardList'"
              (cdkDropListDropped)="onDrop($event)"
              class="dropzone">
@@ -55,4 +55,4 @@
     <app-drop-places></app-drop-places>
 </div>
 <button
-(click)="pairCards()">Go to race</button>
+(click)="pairCards()">Start races</button>

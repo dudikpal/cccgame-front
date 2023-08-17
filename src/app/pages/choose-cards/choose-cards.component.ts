@@ -24,8 +24,6 @@ export class ChooseCardsComponent implements OnInit {
 	ngOnInit(): void {
 	}
 
-
-
 	mouseEnterHandler(
 		event: MouseEvent,
 		chapterExpansionPanel: MatExpansionPanel
@@ -44,12 +42,15 @@ export class ChooseCardsComponent implements OnInit {
 	}
 
 	gotoPairing() {
-		// navigálni a cars pairing componentbe
-		this.mainService.selectedCard1 = this.dropPlacesComponent.selectedCards[1];
-		this.mainService.selectedCard2 = this.dropPlacesComponent.selectedCards[2];
-		this.mainService.selectedCard3 = this.dropPlacesComponent.selectedCards[3];
-		this.mainService.selectedCard4 = this.dropPlacesComponent.selectedCards[4];
-		this.mainService.selectedCard5 = this.dropPlacesComponent.selectedCards[5];
-		this.router.navigate(['/cards-pairing']);
+		if (this.mainService.dropPlacesFilled(this.dropPlacesComponent.selectedCards)) {
+			this.mainService.selectedCard1 = this.dropPlacesComponent.selectedCards[1];
+			this.mainService.selectedCard2 = this.dropPlacesComponent.selectedCards[2];
+			this.mainService.selectedCard3 = this.dropPlacesComponent.selectedCards[3];
+			this.mainService.selectedCard4 = this.dropPlacesComponent.selectedCards[4];
+			this.mainService.selectedCard5 = this.dropPlacesComponent.selectedCards[5];
+			this.router.navigate(['/cards-pairing']);
+		} else {
+			alert('Need to select all 5 cards.');
+		}
 	}
 }

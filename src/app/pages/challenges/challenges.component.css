@@ -1,0 +1,17 @@
+.grid-container {
+    display: grid;
+    grid-gap: 30px;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    height: calc(100% - 128px); /* Subtracting the header and footer height */
+    /*grid-template-columns: repeat(auto-fit, minmax(calc(33% - 10px), 1fr));*/
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-item {
+    background-color: #eaeaea;
+    display: flex;
+    height: 350px;
+    background-size: cover;
+}

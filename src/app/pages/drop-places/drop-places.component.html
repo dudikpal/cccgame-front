@@ -4,7 +4,6 @@
             cdkDrag
             #dropZone1="cdkDropList"
             [id]="'dropZone1'"
-            cdkdroplistsortingdisabled="true"
             [cdkDropListData]="selectedCards['dropZone1']"
             [cdkDropListConnectedTo]="['pairedDropZone1', 'pairedDropZone2', 'pairedDropZone3', 'pairedDropZone4', 'pairedDropZone5']"
             (cdkDropListDropped)="onDrop($event)"
@@ -19,7 +18,7 @@
         >
     </div>
     <div cdkDropList #dropZone2="cdkDropList" [id]="'dropZone2'" [cdkDropListData]="selectedCards[2]" [cdkDropListConnectedTo]="['pairedDropZone1', 'pairedDropZone2', 'pairedDropZone3', 'pairedDropZone4', 'pairedDropZone5']"
-         cdkDropListSortingDisabled="true"
+         
          (cdkDropListDropped)="onDrop($event)"
          class="dropzone">
         <!--<div *cdkDragPlaceholder></div>-->
@@ -28,7 +27,7 @@
              [cdkDragData]="selectedCards[2]">
     </div>
     <div cdkDropList #dropZone3="cdkDropList" [id]="'dropZone3'" [cdkDropListData]="selectedCards[3]" [cdkDropListConnectedTo]="['pairedDropZone1', 'pairedDropZone2', 'pairedDropZone3', 'pairedDropZone4', 'pairedDropZone5']"
-         cdkDropListSortingDisabled="true"
+         
          (cdkDropListDropped)="onDrop($event)"
          class="dropzone">
         <!--<div *cdkDragPlaceholder></div>-->
@@ -37,7 +36,7 @@
               [cdkDragData]="selectedCards[3]">
     </div>
     <div cdkDropList #dropZone4="cdkDropList" [id]="'dropZone4'" [cdkDropListData]="selectedCards[4]" [cdkDropListConnectedTo]="['pairedDropZone1', 'pairedDropZone2', 'pairedDropZone3', 'pairedDropZone4', 'pairedDropZone5']"
-         cdkDropListSortingDisabled="true"
+         
          (cdkDropListDropped)="onDrop($event)"
          class="dropzone">
         <!--<div *cdkDragPlaceholder></div>-->
@@ -46,7 +45,7 @@
               [cdkDragData]="selectedCards[4]">
     </div>
     <div cdkDropList #dropZone5="cdkDropList" [id]="'dropZone5'" [cdkDropListData]="selectedCards[5]" [cdkDropListConnectedTo]="['pairedDropZone1', 'pairedDropZone2', 'pairedDropZone3', 'pairedDropZone4', 'pairedDropZone5']"
-         cdkDropListSortingDisabled="true"
+         
          (cdkDropListDropped)="onDrop($event)"
          class="dropzone">
         <!--<div *cdkDragPlaceholder></div>-->
