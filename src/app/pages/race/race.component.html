@@ -1,12 +1,38 @@
 <div>
-    <div
-            id="playerCard">
-        <app-card
-                [playerCard]="race.playerCard"></app-card>
+    <div class="result cards-line">
+        <div
+                id="playerCard">
+            <app-card
+                    [playerCard]="race.playerCard"></app-card>
+        </div>
+        <div class="result-text" style="text-align: center">
+            <div>{{race.track.raceType}}</div>
+            <div>{{race.track.surface}}</div>
+            <div>{{race.track.condition}}</div>
+        </div>
+        <div
+                id="opponentCard">
+            <app-card [playerCard]="race.opponentCard"></app-card>
+        </div>
     </div>
-    <div
-            id="opponentCard">
-        <app-card [playerCard]="race.opponentCard"></app-card>
+    <div class="result result-text line-1">
+        Result
     </div>
-
+    <div class="result result-text line-2">
+        <div>Player</div>
+        <div>vs</div>
+        <div>Opponent</div>
+    </div>
+    <div class="result result-text line-3">
+        <div>{{race.result.player}}</div>
+        <div>{{race.result.opponent}}</div>
+    </div>
+    <div class="result result-text line-4">
+        <div>
+            <p *ngIf="race.result.winner === 'player'">Winner</p>
+        </div>
+        <div>
+            <p *ngIf="race.result.winner === 'opponent'">Winner</p>
+        </div>
+    </div>
 </div>

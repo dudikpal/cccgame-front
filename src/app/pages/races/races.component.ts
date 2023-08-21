@@ -1,11 +1,18 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MainService} from "../../services/main.service";
+import {MainService, Track} from "../../services/main.service";
 import {Router} from "@angular/router";
 
+export interface Result {
+	opponent: string
+	player: string
+	winner: string
+}
 
 export interface Race {
 	opponentCard: any
 	playerCard: any
+	track: Track
+	result?: Result
 }
 
 @Component({
@@ -27,12 +34,17 @@ export class RacesComponent implements OnInit {
 
 	ngOnInit(): void {
 		for (let i = 1; i <= 5; i++) {
-			this.races.push({
+			let race: Race = {
 				opponentCard: this.mainService.opponentCards[i],
-				playerCard: this.mainService.pairedCards[i]
-			});
+				playerCard: this.mainService.pairedCards[i],
+				track: this.mainService.tracks[i],
+				result: <Result>{}
+			};
+			race.result = this.calculateResult(race);
+			this.races.push(race);
 		}
 		this.race = this.races[0];
+		console.log(this.races);
 		this.races.shift();
 	}
 
@@ -40,13 +52,39 @@ export class RacesComponent implements OnInit {
 		if (this.races.length === 0) {
 			this.router.navigate(['challenges']);
 		}
-		if (this.races) {
+
+		if (this.races.length > 0) {
 			this.canLoadNextRace = true;
 		}
+
 		if (this.canLoadNextRace) {
+			this.races[0].result = this.calculateResult(this.race);
 			this.race = this.races[0];
 			this.races.shift();
 			this.canLoadNextRace = false;
 		}
 	}
+
+	calculateResult(race: Race): Result {
+		let result: Result = <Result>{};
+
+		/*console.log(race.opponentCard.acceleration);
+		console.log(race.playerCard.acceleration);*/
+		const opponentResult = Math.sqrt((2 * 400) / race.opponentCard.acceleration).toFixed(3);
+		const playerResult = Math.sqrt((2 * 400) / race.playerCard.acceleration).toFixed(3);
+		if (opponentResult < playerResult) {
+			result.winner = 'opponent';
+			console.log(opponentResult + '<' + playerResult);
+		} else {
+			result.winner = 'player';
+			console.log(opponentResult + '<' + playerResult);
+		}
+
+		result.player = String(playerResult);
+		result.opponent = String(opponentResult);
+		console.log(result);
+		return result;
+	}
+
+
 }

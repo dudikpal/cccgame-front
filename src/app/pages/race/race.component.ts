@@ -15,6 +15,7 @@ export class RaceComponent implements OnInit, OnChanges{
   }
 
   ngOnInit(): void {
+    //console.log(this.race);
   }
 
 
