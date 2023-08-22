@@ -33,6 +33,7 @@ import { DropPlacesComponent } from './pages/drop-places/drop-places.component';
 import { OpponentHandComponent } from './pages/opponent-hand/opponent-hand.component';
 import { RaceComponent } from './pages/race/race.component';
 import { RacesComponent } from './pages/races/races.component';
+import { ResultComponent } from './pages/result/result.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { RacesComponent } from './pages/races/races.component';
   OpponentHandComponent,
   RaceComponent,
   RacesComponent,
+  ResultComponent,
 	],
 	imports: [
 		HttpClientModule,

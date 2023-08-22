@@ -33,6 +33,7 @@ export class RacesComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+		this.mainService.initResult();
 		for (let i = 1; i <= 5; i++) {
 			let race: Race = {
 				opponentCard: this.mainService.opponentCards[i],
@@ -44,13 +45,13 @@ export class RacesComponent implements OnInit {
 			this.races.push(race);
 		}
 		this.race = this.races[0];
-		console.log(this.races);
+		//console.log(this.races);
 		this.races.shift();
 	}
 
 	loadNextRace() {
 		if (this.races.length === 0) {
-			this.router.navigate(['challenges']);
+			this.router.navigate(['result']);
 		}
 
 		if (this.races.length > 0) {
@@ -58,7 +59,7 @@ export class RacesComponent implements OnInit {
 		}
 
 		if (this.canLoadNextRace) {
-			this.races[0].result = this.calculateResult(this.race);
+			//this.races[0].result = this.calculateResult(this.race);
 			this.race = this.races[0];
 			this.races.shift();
 			this.canLoadNextRace = false;
@@ -67,22 +68,24 @@ export class RacesComponent implements OnInit {
 
 	calculateResult(race: Race): Result {
 		let result: Result = <Result>{};
-
+		console.log(this.mainService.result);
 		/*console.log(race.opponentCard.acceleration);
 		console.log(race.playerCard.acceleration);*/
-		const opponentResult = Math.sqrt((2 * 400) / race.opponentCard.acceleration).toFixed(3);
-		const playerResult = Math.sqrt((2 * 400) / race.playerCard.acceleration).toFixed(3);
+		const opponentResult = parseFloat(Math.sqrt((2 * 400) / race.opponentCard.acceleration).toFixed(3));
+		const playerResult = parseFloat(Math.sqrt((2 * 400) / race.playerCard.acceleration).toFixed(3));
 		if (opponentResult < playerResult) {
 			result.winner = 'opponent';
-			console.log(opponentResult + '<' + playerResult);
+			this.mainService.result.opponent++;
+			//console.log(opponentResult + '<' + playerResult + ' => ' + (opponentResult < playerResult));
 		} else {
 			result.winner = 'player';
-			console.log(opponentResult + '<' + playerResult);
+			this.mainService.result.player++;
+			//console.log(opponentResult + '>' + playerResult + ' => ' + (opponentResult > playerResult));
 		}
 
 		result.player = String(playerResult);
 		result.opponent = String(opponentResult);
-		console.log(result);
+		//console.log(result);
 		return result;
 	}
 

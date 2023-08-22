@@ -1,0 +1,27 @@
+<div>
+<h2>
+    Player
+</h2>
+</div>
+<div>
+<h2>
+    {{mainService.result.player}}
+</h2>
+</div>
+<div>
+<h2>
+    Opponent
+</h2>
+</div>
+<div>
+<h2>
+    {{mainService.result.opponent}}
+</h2>
+</div>
+<div>
+<h2>
+    <div *ngIf="mainService.result.player > mainService.result.opponent">Win</div>
+    <div *ngIf="mainService.result.player < mainService.result.opponent">Lose</div>
+    <div *ngIf="mainService.result.player === mainService.result.opponent">Draw</div>
+</h2>
+</div>
