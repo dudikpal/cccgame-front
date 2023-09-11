@@ -1,5 +1,13 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MainService, Track} from "../../services/main.service";
+import {
+	ComplexRace,
+	Condition,
+	MainService,
+	SimpleFieldGreaterWin,
+	SimpleFieldLesserWin,
+	Surface,
+	Track
+} from "../../services/main.service";
 import {Router} from "@angular/router";
 
 export interface Result {
@@ -11,7 +19,7 @@ export interface Result {
 export interface Race {
 	opponentCard: any
 	playerCard: any
-	track: Track
+	track: Track | SimpleFieldLesserWin | SimpleFieldGreaterWin
 	result?: Result
 }
 
@@ -38,14 +46,16 @@ export class RacesComponent implements OnInit {
 			let race: Race = {
 				opponentCard: this.mainService.opponentCards[i],
 				playerCard: this.mainService.pairedCards[i],
-				track: this.mainService.tracks[i],
+				track: this.mainService.simpleFieldRaces[i],
 				result: <Result>{}
 			};
+			//let race = this.mainService.round.races[i];
+
 			race.result = this.calculateResult(race);
+			//console.log(this.mainService.round.races[i]);
 			this.races.push(race);
 		}
 		this.race = this.races[0];
-		//console.log(this.races);
 		this.races.shift();
 	}
 
@@ -81,13 +91,56 @@ export class RacesComponent implements OnInit {
 			result.winner = 'player';
 			this.mainService.result.player++;
 			//console.log(opponentResult + '>' + playerResult + ' => ' + (opponentResult > playerResult));
-		}
+		}*/
 
-		result.player = String(playerResult);
-		result.opponent = String(opponentResult);
+		/*result.player = String(playerResult);
+		result.opponent = String(opponentResult);*/
 		//console.log(result);
 		return result;
 	}
 
+	// drawot még le kell kezelni
+	calculateSimpleFieldRace(race: Race) {
+		let result: Result = <Result>{};
+		/*const isLesserWinRace = (Object.values(SimpleFieldLesserWin) as string[]).includes(race.track);
+		result.player = race.playerCard.weight;
+		result.opponent = race.opponentCard.weight;
+		if (isLesserWinRace) {
+			if (race.playerCard.weight < race.opponentCard.weight) {
+				result.winner = 'player';
+				this.mainService.result.player++;
+			} else {
+				result.winner = 'opponent';
+				this.mainService.result.opponent++;
+			}
+		} else {
+			if (race.playerCard.weight > race.opponentCard.weight) {
+				result.winner = 'player';
+				this.mainService.result.player++;
+			} else {
+				result.winner = 'opponent';
+				this.mainService.result.opponent++;
+			}
+		}*/
+		return result;
+	}
 
+	isTrack(object: any) {
+		return  object instanceof Object
+			&& 'surface' in object
+			&& 'condition' in object
+			&& 'raceType' in object;
+	}
+
+	isSimpleFieldLesserWin(object: any) {
+		return (Object.values(SimpleFieldLesserWin) as string[]).includes(object);
+	}
+
+	isSimpleFieldGreaterWin(object: any) {
+		return (Object.values(SimpleFieldGreaterWin) as string[]).includes(object);
+	}
+
+	skipAllRaces() {
+		this.router.navigate(['result']);
+	}
 }
