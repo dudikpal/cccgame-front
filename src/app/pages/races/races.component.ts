@@ -11,8 +11,8 @@ import {
 import {Router} from "@angular/router";
 
 export interface Result {
-	opponent: string
 	player: string
+	opponent: string
 	winner: string
 }
 
@@ -20,7 +20,7 @@ export interface Race {
 	opponentCard: any
 	playerCard: any
 	track: Track | SimpleFieldLesserWin | SimpleFieldGreaterWin
-	result?: Result
+	result: Result
 }
 
 @Component({
@@ -50,9 +50,10 @@ export class RacesComponent implements OnInit {
 				result: <Result>{}
 			};
 			//let race = this.mainService.round.races[i];
-
-			race.result = this.calculateResult(race);
-			//console.log(this.mainService.round.races[i]);
+			if (i%2 ===0) {
+				race.track = this.mainService.tracks[i];
+			}
+			this.calculateResult(race);
 			this.races.push(race);
 		}
 		this.race = this.races[0];
@@ -77,10 +78,23 @@ export class RacesComponent implements OnInit {
 	}
 
 	calculateResult(race: Race): Result {
-		let result: Result = <Result>{};
-		console.log(this.mainService.result);
+		race.result.player = race.playerCard.weight;
+		race.result.opponent = race.opponentCard.weight;
+		//console.log(race.track);
+		if (this.isTrack(race.track)) {
+		//	console.log('Is Track!');
+		} else if (this.isSimpleFieldLesserWin(race.track)) {
+		//	console.log('Is lesser win!');
+		} else {
+		//	console.log('Is greater win!');
+		}
+		let result: Result = this.calculateSimpleFieldRace(race);
+
+
 		/*console.log(race.opponentCard.acceleration);
 		console.log(race.playerCard.acceleration);*/
+
+		/*Ez majd a pályás racekhoz kell
 		const opponentResult = parseFloat(Math.sqrt((2 * 400) / race.opponentCard.acceleration).toFixed(3));
 		const playerResult = parseFloat(Math.sqrt((2 * 400) / race.playerCard.acceleration).toFixed(3));
 		if (opponentResult < playerResult) {
@@ -99,44 +113,64 @@ export class RacesComponent implements OnInit {
 		return result;
 	}
 
-	// drawot még le kell kezelni
-	calculateSimpleFieldRace(race: Race) {
+	private calculateSimpleFieldRace(race: Race) {
 		let result: Result = <Result>{};
-		/*const isLesserWinRace = (Object.values(SimpleFieldLesserWin) as string[]).includes(race.track);
-		result.player = race.playerCard.weight;
-		result.opponent = race.opponentCard.weight;
+		const isLesserWinRace = (Object.values(SimpleFieldLesserWin) as string[]).includes(race.track.toString());
+
 		if (isLesserWinRace) {
-			if (race.playerCard.weight < race.opponentCard.weight) {
-				result.winner = 'player';
-				this.mainService.result.player++;
-			} else {
-				result.winner = 'opponent';
-				this.mainService.result.opponent++;
-			}
+			this.calculateSimpleFieldLesserWinRace(race);
 		} else {
-			if (race.playerCard.weight > race.opponentCard.weight) {
-				result.winner = 'player';
-				this.mainService.result.player++;
-			} else {
-				result.winner = 'opponent';
-				this.mainService.result.opponent++;
-			}
-		}*/
+			this.calculateSimpleFieldGreaterWinRace(race);
+		}
 		return result;
 	}
 
-	isTrack(object: any) {
+	private calculateSimpleFieldLesserWinRace(race: Race) {
+		if (race.playerCard.weight < race.opponentCard.weight) {
+			this.setPlayerToWinner(race);
+		} else if (race.playerCard.weight > race.opponentCard.weight) {
+			this.setOpponentToWinner(race);
+		} else {
+			this.setDraw(race);
+		}
+	}
+
+	private calculateSimpleFieldGreaterWinRace(race: Race) {
+		if (race.playerCard.weight > race.opponentCard.weight) {
+			this.setPlayerToWinner(race);
+		} else if (race.playerCard.weight < race.opponentCard.weight) {
+			this.setOpponentToWinner(race);
+		} else {
+			this.setDraw(race);
+		}
+	}
+
+	private setPlayerToWinner(race: Race) {
+		race.result.winner = 'player';
+		this.mainService.result.player++;
+	}
+
+	private setOpponentToWinner(race: Race) {
+		race.result.winner = 'opponent';
+		this.mainService.result.opponent++;
+	}
+
+	private setDraw(race: Race) {
+		race.result.winner = 'draw';
+	}
+
+	private isTrack(object: any) {
 		return  object instanceof Object
 			&& 'surface' in object
 			&& 'condition' in object
 			&& 'raceType' in object;
 	}
 
-	isSimpleFieldLesserWin(object: any) {
+	private isSimpleFieldLesserWin(object: any) {
 		return (Object.values(SimpleFieldLesserWin) as string[]).includes(object);
 	}
 
-	isSimpleFieldGreaterWin(object: any) {
+	private isSimpleFieldGreaterWin(object: any) {
 		return (Object.values(SimpleFieldGreaterWin) as string[]).includes(object);
 	}
 

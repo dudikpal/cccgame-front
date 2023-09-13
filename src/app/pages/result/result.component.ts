@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {MainService} from "../../services/main.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-result',
@@ -9,7 +10,12 @@ import {MainService} from "../../services/main.service";
 export class ResultComponent {
 
   constructor(
-      public mainService: MainService
+      public mainService: MainService,
+      private router: Router
   ) {
+  }
+
+  gotoRounds() {
+    this.router.navigate(['challenges']);
   }
 }

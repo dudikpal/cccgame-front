@@ -9,6 +9,7 @@
             <div>{{race.track.raceType}}</div>
             <div>{{race.track.surface}}</div>
             <div>{{race.track.condition}}</div>
+            <div>{{race.track}}</div>
         </div>
         <div
                 id="opponentCard">
@@ -30,9 +31,11 @@
     <div class="result result-text line-4">
         <div>
             <p *ngIf="race.result.winner === 'player'">Winner</p>
+            <p *ngIf="race.result.winner === 'draw'">Draw</p>
         </div>
         <div>
             <p *ngIf="race.result.winner === 'opponent'">Winner</p>
+            <p *ngIf="race.result.winner === 'draw'">Draw</p>
         </div>
     </div>
 </div>

@@ -20,8 +20,9 @@
 </div>
 <div>
 <h2>
-    <div *ngIf="mainService.result.player > mainService.result.opponent">Win</div>
-    <div *ngIf="mainService.result.player < mainService.result.opponent">Lose</div>
+    <div *ngIf="mainService.result.player > mainService.result.opponent">You win</div>
+    <div *ngIf="mainService.result.player < mainService.result.opponent">You lose</div>
     <div *ngIf="mainService.result.player === mainService.result.opponent">Draw</div>
 </h2>
 </div>
+<button (click)="gotoRounds()">Done</button>

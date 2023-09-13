@@ -13,13 +13,14 @@ export class DropPlacesComponent {
 	nestedArray = this.mainService.playerCards;
 	idList: any[] = [];
 	selectedCards: { [key: string]: any } = {
-		1: this.mainService.selectedCard1,
-		2: this.mainService.selectedCard2,
-		3: this.mainService.selectedCard3,
-		4: this.mainService.selectedCard4,
-		5: this.mainService.selectedCard5
+		1: this.mainService.selectedCards[1],
+		2: this.mainService.selectedCards[2],
+		3: this.mainService.selectedCards[3],
+		4: this.mainService.selectedCards[4],
+		5: this.mainService.selectedCards[5],
 
 	};
+	races = this.mainService.simpleFieldRaces;
 	//selectedCard1 = this.mainService.selectedCard1;
 	//selectedCard1 = [JSON.parse('{"id":"64837db4a4606e7e46c81951","baseCard":{"id":"c_1993_fiat-coupe-fa-175-2.0-20v-154hp-7278","rq":0,"tags":null,"level":null,"manufacturer":"Fiat","type":"Coupe 2.0 20V","country":"N/A","body":"Coupe","driveWheel":"FWD","fuelType":"Petrol","abs":"yes","tractionControl":"N/A","imageUrl":"assets/img/cars/fiat-coupe-fa-175-2.0-20v-154hp-7278.webp","logoURL":"placeholder.png","carPageUrl":"https://www.auto-data.net/en/fiat-coupe-fa-175-2.0-20v-154hp-7278","objectPositionHorizontal":"center","objectPositionVertical":"","objectWidth":"100%","objectHeight":"100%","year":1993,"doors":2,"cornering":71,"seats":4,"fuelTankCapacity":63,"engineCapacity":1998,"powerKW":114,"powerHP":154,"maxTorque":186,"topSpeed":215,"weight":1270,"length":4250,"width":1768,"height":1355,"groundClearance":-1,"acceleration":8.4,"gear1st":-1,"gear2nd":-1,"gear3rd":-1,"gear4th":-1,"gear5th":-1,"gear6th":-1,"finalDrive":-1,"createdAt":1685308533.54,"updatedAt":1685308533.545,"isPrizeCard":null,"value":null},"tunings":{"body":0,"engine":0,"cornering":0},"weight":1270,"topSpeed":215,"acceleration":8.4,"powerHP":154,"width":1768,"height":1355,"cornering":71,"groundClearance":-1,"win":null,"loss":null,"value":null,"createdAt":1686338996.55,"updatedAt":1686338996.55}')];
 	//selectedCard2 = this.mainService.selectedCard2;
@@ -79,11 +80,11 @@ export class DropPlacesComponent {
 
 	rechooseCards() {
 		this.selectedCards = {
-			1: this.mainService.selectedCard1,
-			2: this.mainService.selectedCard2,
-			3: this.mainService.selectedCard3,
-			4: this.mainService.selectedCard4,
-			5: this.mainService.selectedCard5
+			1: this.mainService.selectedCards[1],
+			2: this.mainService.selectedCards[2],
+			3: this.mainService.selectedCards[3],
+			4: this.mainService.selectedCards[4],
+			5: this.mainService.selectedCards[5],
 
 		};
 	}
