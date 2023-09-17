@@ -62,4 +62,8 @@ export class CardsPairingComponent {
 			alert('Need to select all 5 cards.');
 		}
 	}
+
+	backToChooseCards() {
+		this.router.navigate(['/choose-cards']);
+	}
 }

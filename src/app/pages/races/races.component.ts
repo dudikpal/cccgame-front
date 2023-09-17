@@ -23,6 +23,10 @@ export interface Race {
 	result: Result
 }
 
+export interface RaceCards {
+	placedCards: any[]
+}
+
 @Component({
 	selector: 'app-races',
 	templateUrl: './races.component.html',
