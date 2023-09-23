@@ -6,11 +6,12 @@ import {Router} from "@angular/router";
 export interface Round {
   order: number
   races: Race[]
+  done: boolean
+  placedCards: {[key: string]: any}
 }
 
 export interface RoundCards {
   order: number
-  //racesCards: RaceCards[]
   racesCards: any[]
 }
 
@@ -33,7 +34,6 @@ export class RoundsComponent implements OnInit{
   ngOnInit(): void {
     this.rounds = this.mainService.actualChallenge.rounds;
   }
-
 
   toRaces(round: Round) {
     this.mainService.actualRound = round;

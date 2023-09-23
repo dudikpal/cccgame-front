@@ -148,27 +148,75 @@ export class MainService {
 			rounds: [
 				{
 					order: 1,
-					races: []
+					races: [],
+					placedCards: {
+						1: this.playerCardSkeleton,
+						2: this.playerCardSkeleton,
+						3: this.playerCardSkeleton,
+						4: this.playerCardSkeleton,
+						5: this.playerCardSkeleton,
+					},
+					done: false
 				},
 				{
 					order: 2,
-					races: []
+					races: [],
+					placedCards: {
+						1: this.playerCardSkeleton,
+						2: this.playerCardSkeleton,
+						3: this.playerCardSkeleton,
+						4: this.playerCardSkeleton,
+						5: this.playerCardSkeleton,
+					},
+					done: false
 				},
 				{
 					order: 3,
-					races: []
+					races: [],
+					placedCards: {
+						1: this.playerCardSkeleton,
+						2: this.playerCardSkeleton,
+						3: this.playerCardSkeleton,
+						4: this.playerCardSkeleton,
+						5: this.playerCardSkeleton,
+					},
+					done: false
 				},
 				{
 					order: 4,
-					races: []
+					races: [],
+					placedCards: {
+						1: this.playerCardSkeleton,
+						2: this.playerCardSkeleton,
+						3: this.playerCardSkeleton,
+						4: this.playerCardSkeleton,
+						5: this.playerCardSkeleton,
+					},
+					done: false
 				},
 				{
 					order: 5,
-					races: []
+					races: [],
+					placedCards: {
+						1: this.playerCardSkeleton,
+						2: this.playerCardSkeleton,
+						3: this.playerCardSkeleton,
+						4: this.playerCardSkeleton,
+						5: this.playerCardSkeleton,
+					},
+					done: false
 				},
 				{
 					order: 6,
-					races: []
+					races: [],
+					placedCards: {
+						1: this.playerCardSkeleton,
+						2: this.playerCardSkeleton,
+						3: this.playerCardSkeleton,
+						4: this.playerCardSkeleton,
+						5: this.playerCardSkeleton,
+					},
+					done: false
 				}
 			]
 		}
@@ -282,18 +330,15 @@ export class MainService {
 	}
 
 	onDrop(event: CdkDragDrop<any>) {
-		//console.log('mainservice ondropben');
-		//console.log(event.previousContainer.data[event.previousIndex].baseCard.imageUrl);
-		//console.log(event.previousIndex);
 		if (event.previousContainer === event.container) {
-			//moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+			moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
 		} else {
 			// mozgatott kártya
-			//console.log(event.previousContainer.data[event.previousIndex].baseCard.imageUrl);
-			/*copyArrayItem(event.previousContainer.data,
+			console.log(event.previousContainer.data[event.previousIndex].baseCard.imageUrl);
+			copyArrayItem(event.previousContainer.data,
 				event.container.data,
 				event.previousIndex,
-				0);*/
+				0);
 		}
 		const cardId = event.previousContainer.data[event.previousIndex].id;
 		const card = document.querySelector(`#card_${CSS.escape(cardId)}`);
@@ -316,5 +361,15 @@ export class MainService {
 			}
 		}
 		return true;
+	}
+
+	saveSelectedCardsToDb() {
+		console.log(this.actualRound.order);
+		console.log(this.challenges[0].rounds[0].placedCards[1]);
+		console.log(this.challenges[0].rounds[1].placedCards[2]);
+		// placedCards meg  a dropPlaces/mainservice selectedCardjait össze kell fésülni
+		this.actualRound.placedCards = this.selectedCards;
+		console.log(this.challenges[0].rounds[0].placedCards[1]);
+		console.log(this.challenges[0].rounds[1].placedCards[2]);
 	}
 }

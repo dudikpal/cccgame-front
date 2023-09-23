@@ -11,13 +11,8 @@ export class RaceComponent implements OnInit, OnChanges{
   @Input() race!: any;
 
   ngOnChanges(): void {
-
   }
 
   ngOnInit(): void {
-    //console.log(this.race.result.winner);
   }
-
-
-
 }

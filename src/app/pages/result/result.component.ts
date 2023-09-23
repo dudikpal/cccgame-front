@@ -16,6 +16,11 @@ export class ResultComponent {
   }
 
   gotoRounds() {
+    if (this.mainService.result.player > this.mainService.result.opponent) {
+      this.mainService.actualRound.done = true;
+      this.mainService.actualChallenge.rounds.shift();
+      // db-be is le kell menteni az egész challengest
+    }
     this.router.navigate(['challenges']);
   }
 }

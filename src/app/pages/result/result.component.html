@@ -1,28 +1,28 @@
 <div>
-<h2>
-    Player
-</h2>
+    <h2>
+        Player
+    </h2>
 </div>
 <div>
-<h2>
-    {{mainService.result.player}}
-</h2>
+    <h2>
+        {{mainService.result.player}}
+    </h2>
 </div>
 <div>
-<h2>
-    Opponent
-</h2>
+    <h2>
+        Opponent
+    </h2>
 </div>
 <div>
-<h2>
-    {{mainService.result.opponent}}
-</h2>
+    <h2>
+        {{mainService.result.opponent}}
+    </h2>
 </div>
 <div>
-<h2>
-    <div *ngIf="mainService.result.player > mainService.result.opponent">You win</div>
-    <div *ngIf="mainService.result.player < mainService.result.opponent">You lose</div>
-    <div *ngIf="mainService.result.player === mainService.result.opponent">Draw</div>
-</h2>
+    <h2>
+        <div *ngIf="mainService.result.player > mainService.result.opponent">You win</div>
+        <div *ngIf="mainService.result.player < mainService.result.opponent">You lose</div>
+        <div *ngIf="mainService.result.player === mainService.result.opponent">Draw</div>
+    </h2>
 </div>
 <button (click)="gotoRounds()">Done</button>
