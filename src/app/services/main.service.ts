@@ -356,6 +356,7 @@ export class MainService {
 
 	dropPlacesFilled(places: any) {
 		for (let i = 1; i <= 5; i++) {
+			//console.log(places[i].id);
 			if (!places[i].id) {
 				return false;
 			}
@@ -364,12 +365,12 @@ export class MainService {
 	}
 
 	saveSelectedCardsToDb() {
-		console.log(this.actualRound.order);
+		/*console.log(this.actualRound.order);
 		console.log(this.challenges[0].rounds[0].placedCards[1]);
-		console.log(this.challenges[0].rounds[1].placedCards[2]);
+		console.log(this.challenges[0].rounds[1].placedCards[2]);*/
 		// placedCards meg  a dropPlaces/mainservice selectedCardjait össze kell fésülni
 		this.actualRound.placedCards = this.selectedCards;
-		console.log(this.challenges[0].rounds[0].placedCards[1]);
-		console.log(this.challenges[0].rounds[1].placedCards[2]);
+		/*console.log(this.challenges[0].rounds[0].placedCards[1]);
+		console.log(this.challenges[0].rounds[1].placedCards[2]);*/
 	}
 }
