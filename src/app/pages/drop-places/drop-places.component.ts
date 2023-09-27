@@ -23,8 +23,6 @@ export class DropPlacesComponent implements OnInit{
 		this.selectedCards = JSON.parse(JSON.stringify(this.mainService.actualRound.placedCards));
 	}
 
-
-
 	onDrop(event: any) {
 		if (!event.previousContainer.id.startsWith(event.container.id.substring(0, event.container.id.length - 1))) {
 			const cardId = event.item.data.id;

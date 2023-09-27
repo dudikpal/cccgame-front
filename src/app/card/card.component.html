@@ -1,5 +1,9 @@
-<div class='container'>
-    <div class='flip_box' id="card_{{playerCard.id}}">
+<div class='container '
+>
+    <div class='flip_box '
+         id="card_{{playerCard.id}}"
+
+    >
         <div class='front'>
             <div
                     class="img-container"
@@ -14,11 +18,11 @@
             </div>
             <div>
                 <div></div>
-                <div class="manufacturer-name"
+                <div class="resize"
                      style="white-space: nowrap;"
                      [id]="cssEscape('#card_' + playerCard.id)"
-                     [innerHTML]="playerCard.baseCard.id"></div>
-                <!--<div [ngStyle]="{ 'width.px': 300, 'white-space': 'nowrap', 'font-size.px': calculateFontSize() }">
+                     [innerHTML]="playerCard.baseCard.id">{{ playerCard.baseCard.id }}</div>
+                <!--<div class="resize" [ngStyle]="{ 'width.px': 300, 'white-space': 'nowrap' }">
                     {{ playerCard.baseCard.id }}
                 </div>-->
 
@@ -119,10 +123,10 @@
             </div>
         </div>
     </div>
-    <div class='r_wrap'>
+    <div class='r_wrap' [class.disabled]="isDisabled">
         <div class='b_round'></div>
         <div class='s_round' id="flip_button_{{playerCard.id}}"
-        (click)=flipCard()>
+             (click)=flipCard()>
             <div class='s_arrow'></div>
         </div>
     </div>

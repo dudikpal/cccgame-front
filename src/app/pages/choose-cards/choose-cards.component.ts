@@ -44,6 +44,7 @@ export class ChooseCardsComponent implements OnInit {
 	}
 
 	gotoPairing() {
+		console.log(this.dropPlacesComponent.selectedCards);
 		if (this.mainService.dropPlacesFilled(this.dropPlacesComponent.selectedCards)) {
 			this.mainService.selectedCards = this.dropPlacesComponent.selectedCards;
 			this.mainService.saveSelectedCardsToDb();
