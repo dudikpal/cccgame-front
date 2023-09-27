@@ -1,0 +1,6 @@
+.grid-item {
+    background-color: #eaeaea;
+    display: flex;
+    height: 100%;
+    background-size: cover;
+}
