@@ -1,0 +1,33 @@
+.result {
+    display: grid;
+    grid-gap: 30px;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.result-text {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.line-1 {
+    grid-template-columns: auto;
+}
+
+.line-2 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.line-3 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.line-4 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.cards-line {
+    grid-template-columns: repeat(3, 1fr);
+}
