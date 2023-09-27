@@ -1,0 +1,9 @@
+<div class="grid-container">
+    <!--ide majd for kell, de csak 6db, mert ami done, az eltűnik, lép 1et előre-->
+    <!--<div class="grid-item" id="ch-2023-1" [routerLink]="['../choose-cards']"><h2>2023 #1</h2></div>-->
+    <div *ngFor="let round of rounds"
+         class="grid-item"
+         id="ch-2023-2"
+         (click)="round.done ? null : toRaces(round)"><h2>Round {{round.order}}</h2></div>
+</div>
+<button (click)="backToChallenges()">Back to challenges</button>

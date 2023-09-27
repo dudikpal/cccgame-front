@@ -28,9 +28,13 @@ import {ChallengesComponent} from './pages/challenges/challenges.component';
 import {ChooseCardsComponent} from './pages/choose-cards/choose-cards.component';
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import {MatExpansionModule} from "@angular/material/expansion";
-import { CardsPairingComponent } from './pages/cards-pairing/cards-pairing.component';
-import { DropPlacesComponent } from './pages/drop-places/drop-places.component';
-import { OpponentHandComponent } from './pages/opponent-hand/opponent-hand.component';
+import {CardsPairingComponent} from './pages/cards-pairing/cards-pairing.component';
+import {DropPlacesComponent} from './pages/drop-places/drop-places.component';
+import {OpponentHandComponent} from './pages/opponent-hand/opponent-hand.component';
+import {RaceComponent} from './pages/race/race.component';
+import {RacesComponent} from './pages/races/races.component';
+import {ResultComponent} from './pages/result/result.component';
+import {RoundsComponent} from './pages/rounds/rounds.component';
 
 
 @NgModule({
@@ -50,9 +54,13 @@ import { OpponentHandComponent } from './pages/opponent-hand/opponent-hand.compo
 		SearchAndFilterBarComponent,
 		ChallengesComponent,
 		ChooseCardsComponent,
-  CardsPairingComponent,
-  DropPlacesComponent,
-  OpponentHandComponent,
+		CardsPairingComponent,
+		DropPlacesComponent,
+		OpponentHandComponent,
+		RaceComponent,
+		RacesComponent,
+		ResultComponent,
+		RoundsComponent,
 	],
 	imports: [
 		HttpClientModule,

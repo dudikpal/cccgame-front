@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MainService} from "./services/main.service";
 
 @Component({
@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
 
 	constructor(
 		private router: Router,
+		private activeRoute: ActivatedRoute,
 		private mainService: MainService
 	) {
 	}
@@ -23,6 +24,11 @@ export class AppComponent implements OnInit {
 
 
 	toAdminPage() {
-		this.router.navigate(['/admin']);
+
+		this.router.navigate(['admin'], {relativeTo: this.activeRoute});
+	}
+
+	toHome() {
+		this.router.navigate(['']);
 	}
 }

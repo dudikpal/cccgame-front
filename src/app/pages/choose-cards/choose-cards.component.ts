@@ -22,9 +22,8 @@ export class ChooseCardsComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+		this.dropPlacesComponent.selectedCards = this.mainService.actualRound.placedCards;
 	}
-
-
 
 	mouseEnterHandler(
 		event: MouseEvent,
@@ -40,16 +39,23 @@ export class ChooseCardsComponent implements OnInit {
 	}
 
 	rechooseCards() {
-		this.dropPlacesComponent.rechooseCards();
+		this.mainService.rechooseCards();
+		this.dropPlacesComponent.selectedCards = this.mainService.selectedCards;
 	}
 
 	gotoPairing() {
-		// navigálni a cars pairing componentbe
-		this.mainService.selectedCard1 = this.dropPlacesComponent.selectedCards[1];
-		this.mainService.selectedCard2 = this.dropPlacesComponent.selectedCards[2];
-		this.mainService.selectedCard3 = this.dropPlacesComponent.selectedCards[3];
-		this.mainService.selectedCard4 = this.dropPlacesComponent.selectedCards[4];
-		this.mainService.selectedCard5 = this.dropPlacesComponent.selectedCards[5];
-		this.router.navigate(['/cards-pairing']);
+		if (this.mainService.dropPlacesFilled(this.dropPlacesComponent.selectedCards)) {
+			this.mainService.selectedCards = this.dropPlacesComponent.selectedCards;
+			this.mainService.saveSelectedCardsToDb();
+			this.router.navigate(['/cards-pairing']);
+		} else {
+			alert('Need to select all 5 cards.');
+		}
+	}
+
+	backToRounds() {
+		this.mainService.selectedCards = this.dropPlacesComponent.selectedCards;
+		this.mainService.saveSelectedCardsToDb();
+		this.router.navigate(['/rounds']);
 	}
 }

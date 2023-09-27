@@ -17,9 +17,28 @@ export class HomeComponent implements OnInit{
 
 	}
 
-
-
 	toGarage() {
 		this.router.navigate(['/garage']);
+	}
+
+	autoSizeText() {
+		const elements = document.querySelectorAll('.resize');
+
+		if (elements.length === 0) {
+			return;
+		}
+
+		elements.forEach((value: Element) => {
+			const el = value as HTMLElement;
+			const resizeText = () => {
+				const elFontSize = parseFloat(getComputedStyle(el).fontSize);
+				const elNewFontSize = (elFontSize - 1) + 'px';
+				el.style.fontSize = elNewFontSize;
+			};
+
+			while (el.scrollHeight > el.offsetHeight) {
+				resizeText();
+			}
+		});
 	}
 }
