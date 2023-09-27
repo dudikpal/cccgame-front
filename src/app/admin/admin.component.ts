@@ -15,8 +15,7 @@ export class AdminComponent implements OnInit{
 	url = "http://localhost:8080/api/basecard"
 	urlPC = "http://localhost:8080/api/playercard"
 	baseCards!: BaseCard[];
-	isCollapsed = false;
-
+	isCollapsed = true;
 
 	constructor(
 		private adminService: AdminService
@@ -24,10 +23,7 @@ export class AdminComponent implements OnInit{
 	}
 
 	ngOnInit(): void {
-
 	}
-
-
 
 	loadBaseCardsFromFile() {
 		let input = document.createElement('input');
@@ -62,6 +58,7 @@ export class AdminComponent implements OnInit{
 	}
 
 	getFilteredPlayerCards(filters: IFilter) {
+		console.log(filters);
 		this.adminService.getFilteredPlayerCards(filters);
 	}
 

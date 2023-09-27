@@ -6,3 +6,13 @@
     color: blueviolet;
     border: solid gray 1px;
 }
+
+.grid-container {
+    display: grid;
+    grid-gap: 10px;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+    height: 3em;
+    grid-template-columns: repeat(5, 1fr);
+}

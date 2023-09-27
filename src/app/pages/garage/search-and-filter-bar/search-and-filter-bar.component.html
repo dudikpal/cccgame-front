@@ -1,1 +1,13 @@
-<div class="main-container"></div>
+<div class="grid-container">
+    <div class="sorting grid-item">
+        <button>Sorting</button>
+    </div>
+    <div class="filter grid-item">
+        <button>Filter</button>
+    </div>
+    <div class="search grid-item d-inline-flex">
+        <input id="search-input" [(ngModel)]="searchText">
+        <button (click)="searchByText()"
+        [(ngModel)]="manipulatedCards">Search</button>
+    </div>
+</div>
