@@ -19,6 +19,8 @@ export class ResultComponent {
     if (this.mainService.result.player > this.mainService.result.opponent) {
       this.mainService.actualRound.done = true;
       this.mainService.actualChallenge.rounds.shift();
+      this.mainService.actualRound = this.mainService.actualChallenge.rounds[0];
+      console.log(this.mainService.actualRound.order);
       // db-be is le kell menteni az egész challengest
     }
     this.router.navigate(['challenges']);

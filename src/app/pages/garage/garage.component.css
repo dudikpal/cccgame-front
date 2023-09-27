@@ -3,7 +3,7 @@
     padding: 0px;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    background-color: gray;
+    background-color: cyan;
 }
 
 html,
@@ -30,7 +30,8 @@ ngb-pagination {
     display: grid;
     grid-gap: 0px;
     padding: 0px;
-    height: calc(100% - 30%); /* Subtracting the header and footer height */
+    /*height: calc(100% - 15%); !* Subtracting the header and footer height *!*/
+    height: 700px; /* Subtracting the header and footer height */
     grid-template-rows: auto auto;
     grid-auto-flow: column;
 }

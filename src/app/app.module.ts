@@ -28,13 +28,13 @@ import {ChallengesComponent} from './pages/challenges/challenges.component';
 import {ChooseCardsComponent} from './pages/choose-cards/choose-cards.component';
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import {MatExpansionModule} from "@angular/material/expansion";
-import { CardsPairingComponent } from './pages/cards-pairing/cards-pairing.component';
-import { DropPlacesComponent } from './pages/drop-places/drop-places.component';
-import { OpponentHandComponent } from './pages/opponent-hand/opponent-hand.component';
-import { RaceComponent } from './pages/race/race.component';
-import { RacesComponent } from './pages/races/races.component';
-import { ResultComponent } from './pages/result/result.component';
-import { RoundsComponent } from './pages/rounds/rounds.component';
+import {CardsPairingComponent} from './pages/cards-pairing/cards-pairing.component';
+import {DropPlacesComponent} from './pages/drop-places/drop-places.component';
+import {OpponentHandComponent} from './pages/opponent-hand/opponent-hand.component';
+import {RaceComponent} from './pages/race/race.component';
+import {RacesComponent} from './pages/races/races.component';
+import {ResultComponent} from './pages/result/result.component';
+import {RoundsComponent} from './pages/rounds/rounds.component';
 
 
 @NgModule({
@@ -54,13 +54,13 @@ import { RoundsComponent } from './pages/rounds/rounds.component';
 		SearchAndFilterBarComponent,
 		ChallengesComponent,
 		ChooseCardsComponent,
-  CardsPairingComponent,
-  DropPlacesComponent,
-  OpponentHandComponent,
-  RaceComponent,
-  RacesComponent,
-  ResultComponent,
-  RoundsComponent,
+		CardsPairingComponent,
+		DropPlacesComponent,
+		OpponentHandComponent,
+		RaceComponent,
+		RacesComponent,
+		ResultComponent,
+		RoundsComponent,
 	],
 	imports: [
 		HttpClientModule,

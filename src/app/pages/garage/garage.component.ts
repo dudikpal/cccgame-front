@@ -19,7 +19,7 @@ export class GarageComponent implements OnInit {
 	itemsPerPage = 10;
 	playerCards: any[] = [];
 	transferringItem: string | undefined = undefined;
-
+	disableDrag = false;
 
 	constructor(
 		private mainService: MainService
@@ -29,7 +29,6 @@ export class GarageComponent implements OnInit {
 	ngOnInit(): void {
 		this.playerCards = this.mainService.playerCards;
 		this.count = this.playerCards.length;
-		//console.log(this.playerCards);
 	}
 
 	onDataChange(event: any) {
@@ -41,24 +40,12 @@ export class GarageComponent implements OnInit {
 		previousPage >= 10;
 	}
 
-	/*temp(pages: Page[]) {
-	  console.log(pages);
-	}*/
-
 	onWheel(event: WheelEvent) {
 		(<Element>event.target).parentElement!.scrollLeft += event.deltaY;
-		/*(<Element>event.target).parentElement!.scrollBy({
-		  left: event.deltaY < 0 ? -30 : 30,
-		});*/
-		//event.preventDefault();
 	}
 
 	onDragStarted(card: any) {
 		const index = this.playerCards.indexOf(card);
-		//console.log(index);
-		/*if (index > -1) {
-		  this.playerCards.splice(index, 1);
-		}*/
 	}
 
 	exited(event: CdkDragExit<string>) {
@@ -77,7 +64,7 @@ export class GarageComponent implements OnInit {
 		//this.playerCards = this.playerCards.filter((f) => !f.temp);
 	}
 
-	itemDisabled() {
-		return "item.disabled";
+	dragDisabled(event: Event) {
+		event.stopPropagation();
 	}
 }

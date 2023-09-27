@@ -37,7 +37,7 @@ export class RoundsComponent implements OnInit{
 
   toRaces(round: Round) {
     this.mainService.actualRound = round;
-    this.router.navigate(['choose-cards']);
+    this.router.navigate(['/choose-cards']);
   }
 
   backToChallenges() {

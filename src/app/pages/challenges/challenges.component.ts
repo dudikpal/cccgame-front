@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 export interface Challenge {
   name: string
   rounds: Round[]
+  done?: boolean
 }
 
 export interface ChallengeCards {
@@ -35,7 +36,10 @@ export class ChallengesComponent implements OnInit{
 
 
   toRounds(challenge: Challenge) {
-    // itt kell feltölteni a mainServicebe a kiválasztott challentget
+    if (this.mainService.actualChallenge === (null || undefined) || this.mainService.actualChallenge.name != challenge.name) {
+      // a dropPlaces.selectedCards-ot menteni db-be
+      // már nem kell, a round váltáskor van lekezelve a mentés
+    }
     this.mainService.actualChallenge = challenge;
     this.router.navigate(['rounds']);
   }
