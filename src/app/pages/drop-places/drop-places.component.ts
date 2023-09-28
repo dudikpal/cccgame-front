@@ -11,7 +11,7 @@ export class DropPlacesComponent implements OnInit{
 
 	playerCards = this.mainService.playerCards;
 	idList: any[] = [];
-	selectedCards: any;
+	selectedCards = JSON.parse(JSON.stringify(this.mainService.actualRound.placedCards));
 	races = this.mainService.simpleFieldRaces;
 
 	constructor(
@@ -20,7 +20,7 @@ export class DropPlacesComponent implements OnInit{
 	}
 
 	ngOnInit(): void {
-		this.selectedCards = JSON.parse(JSON.stringify(this.mainService.actualRound.placedCards));
+		//this.selectedCards = JSON.parse(JSON.stringify(this.mainService.actualRound.placedCards));
 	}
 
 	onDrop(event: any) {
@@ -29,7 +29,8 @@ export class DropPlacesComponent implements OnInit{
 			const cardIndex = this.playerCards.findIndex((card: { id: any; }) => card.id === cardId);
 			const dropIndex = Number(event.container.id.match(/(\d)/g));
 			this.selectedCards[dropIndex] = this.playerCards[cardIndex];
-			this.selectedCards[dropIndex].cdkDragDisabled = true;
+			this.mainService.actualRound.placedCards[dropIndex] = this.selectedCards[dropIndex];
+			//this.selectedCards[dropIndex].cdkDragDisabled = true;
 		}
 	}
 }
