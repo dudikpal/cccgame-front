@@ -28,7 +28,7 @@ const routes: Routes = [
 			{path: '', component: HomeComponent},
 			{path: 'garage', component: GarageComponent},
 			{path: 'challenges', component: ChallengesComponent},*/
-	{path: '', component: MainComponent},
+	{path: '', component: GarageComponent},
 	{path: 'home', component: HomeComponent},
 	{path: 'challenges', component: ChallengesComponent},
 	{path: 'cards-pairing', component: CardsPairingComponent},

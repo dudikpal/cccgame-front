@@ -11,6 +11,7 @@ import {
 import {BaseCard} from "../models/BaseCard";
 import {environment} from "../../environments/environment";
 import {PlayerCard} from "../models/PlayerCard";
+import {MainService} from "../services/main.service";
 
 @Component({
 	selector: 'app-card',
@@ -25,53 +26,27 @@ export class CardComponent implements OnInit, AfterViewInit {
 	manufacturerLogoUrlPrefix = environment.imgFilePrefix;
 	isFlipped = false;
 	private _defaultFontSize = 35;
-	fontSize: number = 20;
+	isDisabled = false;
 
 	@ViewChild('baseCardIdElement', { static: false }) baseCardIdElement!: ElementRef;
+	private fontSize: string = '';
 
-	constructor() {
-	}
-
-	get defaultFontSize(): number {
-		return this._defaultFontSize;
+	constructor(
+		private mainService: MainService
+	) {
 	}
 
 	ngOnInit(): void {
 		this.baseCard = this.playerCard.baseCard;
-		//this.flexFont();
-		//this.shrinkTextIntoContainer();
-		//this.resizeText();
 	}
 
 	ngAfterViewInit(): void {
-		/*setTimeout(() => {
-			this.resizeText();
-		});*/
-		this.calculateFontSize();
+		//this.autoSizeText();
 	}
 
-	calculateFontSize() {
-		// vmiért nem kicsinít, de már megtalálja id alapján a diveket
-		/*const manufacturerDiv = document.querySelector(`#card_${this.cssEscape(this.baseCard.id)}`) as HTMLDivElement;
-		let fontSize = this.fontSize;
-		while (manufacturerDiv.scrollWidth > manufacturerDiv.offsetWidth
-		|| manufacturerDiv.scrollHeight > manufacturerDiv.offsetHeight) {
-			fontSize--;
-			manufacturerDiv.style.fontSize = fontSize + "px";
-		}*/
+	toggleDisable() {
+		this.isDisabled = this.mainService.isDisabled;
 	}
-
-	private resizeText() {
-		const elementWidth = this.baseCardIdElement.nativeElement.offsetWidth;
-		const parentWidth = this.baseCardIdElement.nativeElement.parentElement.offsetWidth;
-
-		while (elementWidth > parentWidth && this.fontSize > 0) {
-			this.fontSize--;
-			this.baseCardIdElement.nativeElement.style.fontSize = `${this.fontSize}px`;
-		}
-
-	}
-
 
 	public flipCard() {
 		document.querySelector(`#card_${this.playerCard.id}`)?.classList.toggle('flipped');
@@ -82,37 +57,34 @@ export class CardComponent implements OnInit, AfterViewInit {
 		return CSS.escape(rawString);
 	}
 
-	// mindet összeveszi, nem csak azt ami kiléógna
-	flexFont() {
-		//var divs: HTMLCollectionOf<Element> = document.getElementsByClassName("manufacturer-name");
-		var div: HTMLDivElement = document.querySelector("#manufacturer-div")!;
-		/*for (let i = 0; i < divs.length; i++) {
-			const div = divs[i] as HTMLDivElement;
-			var relFontsize = div.offsetWidth * 0.05;
-			div.style.fontSize = relFontsize + 'px';
-		}*/
-	}
-
 	public generateLogoUrl(filename: string) {
 		return this.manufacturerLogoUrlPrefix + filename;
 	}
 
+	autoSizeText() {
+		const elements = document.querySelectorAll('.resize');
 
-
-	private shrinkTextIntoContainer() {
-		const manufacturerDiv = document.querySelector('#manufacturer-div') as HTMLDivElement;
-		let fontSize = this.defaultFontSize;
-		console.log("manufacturerDiv.scrollWidth");
-		console.log(manufacturerDiv.scrollWidth);
-		console.log("manufacturerDiv.offsetWidth");
-		console.log(manufacturerDiv.offsetWidth);
-		while (manufacturerDiv.scrollWidth > manufacturerDiv.offsetWidth
-		|| manufacturerDiv.scrollHeight > manufacturerDiv.offsetHeight) {
-			fontSize--;
-			manufacturerDiv.style.fontSize = fontSize + "px";
-			console.log("fontSize");
-			console.log(fontSize);
+		if (elements.length === 0) {
+			return;
 		}
+
+		elements.forEach((value: Element) => {
+			const el = value as HTMLElement;
+			const resizeText = () => {
+				const elFontSize = parseFloat(getComputedStyle(el).fontSize);
+				const elNewFontSize = (elFontSize - 1) + 'px';
+				el.style.fontSize = elNewFontSize;
+				this.fontSize = elNewFontSize;
+			};
+				console.log('Element fontsize = ' + this.fontSize);
+			/*console.log('While ');
+			console.log('ScrollHeight: ' + el.scrollHeight);
+			console.log('>');
+			console.log('OffsetHeight: ' + el.offsetHeight);*/
+			while (el.scrollHeight > el.offsetHeight) {
+				resizeText();
+			}
+		});
 	}
 
 	/*frontDatas() {
@@ -163,5 +135,6 @@ export class CardComponent implements OnInit, AfterViewInit {
 		this.playerCard.baseCard.year
 	  ];
 	}
+
 
 }
