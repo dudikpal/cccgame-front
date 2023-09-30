@@ -3,6 +3,7 @@ import {MainService} from "../../services/main.service";
 import {CdkDragDrop, copyArrayItem, transferArrayItem} from "@angular/cdk/drag-drop";
 import {DropPlacesComponent} from "../drop-places/drop-places.component";
 import {Router} from "@angular/router";
+import {PlayerCard} from "../../models/PlayerCard";
 
 @Component({
 	selector: 'app-cards-pairing',

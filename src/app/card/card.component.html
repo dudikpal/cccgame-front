@@ -35,20 +35,34 @@
             <table class="front-table"
                    style="border: #86b7fe solid 2px">
                 <tr>
-                    <td>Top spped (km/h)</td>
-                    <td>{{playerCard.baseCard.objectWidth}}</td>
+                    <td class="front-cell" style="width: 50%">
+                        <span style="text-align: left; width: 50%; display: inline-block">0-100:</span>
+                        <span style="text-align: center; width: 50%; display: inline-block">{{playerCard.acceleration}}</span>
+                    </td>
+                    <td class="front-cell" style="width: 50%">
+                        <span style="text-align: left; width: 50%; display: inline-block">Weight:</span>
+                        <span style="text-align: center; width: 50%; display: inline-block">{{playerCard.weight}}</span>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Top spped (km/h)</td>
-                    <td>{{playerCard.baseCard.objectHeight}}</td>
+                    <td class="front-cell" style="width: 50%">
+                        <span style="text-align: left; width: 50%; display: inline-block">Speed:</span>
+                        <span style="text-align: center; width: 50%; display: inline-block">{{playerCard.topSpeed}}</span>
+                    </td>
+                    <td class="front-cell" style="width: 50%">
+                        <span style="text-align: left; width: 50%; display: inline-block">HP:</span>
+                        <span style="text-align: center; width: 50%; display: inline-block">{{playerCard.powerHP}}</span>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Top spped (km/h)</td>
-                    <td>{{playerCard.baseCard.objectPositionHorizontal}}</td>
-                </tr>
-                <tr>
-                    <td>Top spped (km/h)</td>
-                    <td>{{playerCard.baseCard.objectPositionVertical}}</td>
+                    <td class="front-cell" style="width: 50%">
+                        <span style="text-align: left; width: 50%; display: inline-block">Cornering:</span>
+                        <span style="text-align: center; width: 50%; display: inline-block">{{playerCard.cornering}}</span>
+                    </td>
+                    <td class="front-cell" style="width: 50%">
+                        <span style="text-align: left; width: 50%; display: inline-block">Weight:</span>
+                        <span style="text-align: center; width: 50%; display: inline-block">{{playerCard.weight}}</span>
+                    </td>
                 </tr>
             </table>
         </div>
