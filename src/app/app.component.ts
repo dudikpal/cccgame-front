@@ -31,4 +31,8 @@ export class AppComponent implements OnInit {
 	toHome() {
 		this.router.navigate(['']);
 	}
+
+	getCardsFromDB() {
+		this.mainService.getPlayerCards();
+	}
 }
