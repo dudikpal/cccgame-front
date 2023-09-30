@@ -9,6 +9,7 @@ import {
 	Track
 } from "../../services/main.service";
 import {Router} from "@angular/router";
+import {PlayerCard} from "../../models/PlayerCard";
 
 export interface Result {
 	player: string

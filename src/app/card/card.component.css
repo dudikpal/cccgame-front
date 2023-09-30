@@ -76,7 +76,7 @@ span {
     -moz-transform: perspective(1200px);
     -webkit-perspective: 1200px;
     perspective: 1200px;
-    margin: 5px;
+    margin: 8px;
 
 }
 
@@ -122,14 +122,14 @@ span {
 .r_wrap {
     position: absolute;
     transition: all 0.5s ease-out;
-    bottom: 32px;
+    bottom: 25px;
 }
 
 .b_round,
 .s_round {
     position: absolute;
     width: 270px;
-    height: 32px;
+    height: 25px;
     border-radius: 0px 0px 15px 15px;
     transition: all 0.5s ease-out;
     background-color: #D21849;
@@ -150,10 +150,11 @@ span {
 }
 
 .s_arrow {
-    width: 32px;
-    height: 32px;
+    width: 33px;
+    height: 33px;
     background-image: url('https://img-fotki.yandex.ru/get/194549/29644339.5/0_d6c60_1d7815f0_orig');
     background-color: transparent;
+    background-position: center;
 }
 
 .s_arrow_back {
@@ -175,7 +176,7 @@ span {
     color: white;
     width: 96%;
     margin: 2%;
-    font-size: smaller;
+
 }
 
 td {
@@ -210,3 +211,15 @@ td {
     font-size: 4.2vw;
 }
 
+.front-cell {
+    border: white solid 1px;
+    text-wrap: none;
+    padding: 5px;
+    font-size: 0.5rem;
+}
+
+.front-cell span {
+    /*vertical-align: middle;*/
+
+
+}
