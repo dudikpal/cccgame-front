@@ -41,7 +41,7 @@ export class CardComponent implements OnInit, AfterViewInit {
 	}
 
 	ngAfterViewInit(): void {
-		//this.autoSizeText();
+		this.autoSizeText();
 	}
 
 	toggleDisable() {

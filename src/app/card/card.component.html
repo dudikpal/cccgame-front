@@ -1,13 +1,7 @@
-<div class='container '
->
-    <div class='flip_box '
-         id="card_{{playerCard.id}}"
-
-    >
+<div class='container '>
+    <div class='flip_box' id="card_{{playerCard.id}}">
         <div class='front'>
-            <div
-                    class="img-container"
-            >
+            <div class="img-container">
                 <img
                         class="img-car"
                         [style.width]=playerCard.baseCard.objectWidth
@@ -17,31 +11,24 @@
                 />
             </div>
             <div>
-                <div></div>
-                <div class="resize"
-                     style="white-space: nowrap;"
+                <div class="resize manufacturer-name"
                      [id]="cssEscape('#card_' + playerCard.id)"
-                     [innerHTML]="playerCard.baseCard.id">{{ playerCard.baseCard.id }}</div>
-                <!--<div class="resize" [ngStyle]="{ 'width.px': 300, 'white-space': 'nowrap' }">
-                    {{ playerCard.baseCard.id }}
-                </div>-->
-
-
-                <div class="manufacturer-name"
-                     style="white-space: nowrap;"
-                     id="manufacturer-type"
-                     [innerHTML]="playerCard.baseCard.type"></div>
+                     [innerHTML]="playerCard.baseCard.manufacturer">
+                </div>
+                <div class="manufacturer-type resize"
+                     [innerHTML]="playerCard.baseCard.type"
+                     id="manufacturer-type">
+                </div>
             </div>
-            <table class="front-table"
-                   style="border: #86b7fe solid 2px">
+            <table class="front-table" style="border: #86b7fe solid 2px">
                 <tr>
                     <td class="front-cell" style="width: 50%">
-                        <span style="text-align: left; width: 50%; display: inline-block">0-100:</span>
+                        <span>0-100:</span>
                         <span style="text-align: center; width: 50%; display: inline-block">{{playerCard.acceleration}}</span>
                     </td>
                     <td class="front-cell" style="width: 50%">
-                        <span style="text-align: left; width: 50%; display: inline-block">Weight:</span>
-                        <span style="text-align: center; width: 50%; display: inline-block">{{playerCard.weight}}</span>
+                        <span>Country:</span>
+                        <span style="text-align: center; width: 50%; display: inline-block">{{playerCard.baseCard.country}}</span>
                     </td>
                 </tr>
                 <tr>
@@ -69,30 +56,24 @@
         <div class='back'>
             <div class="container-fluid">
                 <ul class="nav nav-tabs nav-fill nav-justified" id="back-tabs_{{playerCard.id}}">
-                    <li
-                            class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link active" [href]="cssEscape('#i_' + playerCard.id)" data-bs-toggle="tab">I</a>
                     </li>
-                    <li
-                            class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" [href]="cssEscape('#ii_' + playerCard.id)" data-bs-toggle="tab">II</a>
                     </li>
-                    <li
-                            class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" [href]="cssEscape('#iii_' + playerCard.id)" data-bs-toggle="tab">III</a>
                     </li>
-                    <li
-                            class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" [href]="cssEscape('#iv_' + playerCard.id)" data-bs-toggle="tab">IV</a>
                     </li>
                 </ul>
             </div>
             <div class="tab-content container-fluid" id="back-tabs-content">
-                <div
-                        class="tab-pane active"
-                        id="i_{{playerCard.id}}">
-                    <table class="table table-striped back-table"
-                           style="height: 100%">
+                <div class="tab-pane active"
+                     id="i_{{playerCard.id}}">
+                    <table class="table table-striped back-table" style="height: 100%">
                         <tbody>
                         <tr *ngFor="let data of iTabDatas()">
                             <th scope="row" [innerHTML]=data></th>
@@ -102,8 +83,7 @@
                     </table>
                 </div>
                 <div class="tab-pane" id="ii_{{playerCard.id}}">
-                    <table class="table table-striped back-table"
-                           style="height: 100%">
+                    <table class="table table-striped back-table" style="height: 100%">
                         <tbody>
                         <tr *ngFor="let data of iiTabDatas()">
                             <th scope="row" [innerHTML]=data></th>
@@ -124,8 +104,7 @@
                     </table>
                 </div>
                 <div class="tab-pane" id="iv_{{playerCard.id}}">
-                    <table class="table table-striped back-table"
-                           style="height: 100%">
+                    <table class="table table-striped back-table" style="height: 100%">
                         <tbody>
                         <tr *ngFor="let data of ivTabDatas()">
                             <th scope="row" [innerHTML]=data></th>
@@ -139,8 +118,7 @@
     </div>
     <div class='r_wrap' [class.disabled]="isDisabled">
         <div class='b_round'></div>
-        <div class='s_round' id="flip_button_{{playerCard.id}}"
-             (click)=flipCard()>
+        <div class='s_round' id="flip_button_{{playerCard.id}}" (click)=flipCard()>
             <div class='s_arrow'></div>
         </div>
     </div>
