@@ -18,6 +18,7 @@ export class ManageBasecardsComponent implements OnInit, AfterViewInit {
 	playerCards!: PlayerCard[];
 	baseCard!: BaseCard;
 	filters: IFilter = {simpleValues: [], multipleValues: [], betweens: []};
+	private fontSize: string = '';
 
 	constructor(
 		private adminService: AdminService,
@@ -37,7 +38,9 @@ export class ManageBasecardsComponent implements OnInit, AfterViewInit {
 		this.adminService.selectedCard = JSON.parse(JSON.stringify(this.playerCard));
 	}
 
+
 	ngAfterViewInit(): void {
+		this.autoSizeText();
 	}
 
 	searchFieldsVisible(): boolean {
@@ -111,6 +114,31 @@ export class ManageBasecardsComponent implements OnInit, AfterViewInit {
 		this.filters.simpleValues?.push(simpleValue);
 	}
 
+	autoSizeText() {
+		const elements = document.querySelectorAll('.resize');
+
+		if (elements.length === 0) {
+			return;
+		}
+
+		elements.forEach((value: Element) => {
+			const el = value as HTMLElement;
+			const resizeText = () => {
+				const elFontSize = parseFloat(getComputedStyle(el).fontSize);
+				const elNewFontSize = (elFontSize - 1) + 'px';
+				el.style.fontSize = elNewFontSize;
+				this.fontSize = elNewFontSize;
+			};
+			console.log('Element fontsize = ' + this.fontSize);
+			/*console.log('While ');
+			console.log('ScrollHeight: ' + el.scrollHeight);
+			console.log('>');
+			console.log('OffsetHeight: ' + el.offsetHeight);*/
+			while (el.scrollHeight > el.offsetHeight) {
+				resizeText();
+			}
+		});
+	}
 }
 
 [

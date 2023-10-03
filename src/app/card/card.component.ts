@@ -98,41 +98,39 @@ export class CardComponent implements OnInit, AfterViewInit {
 
 	iTabDatas() {
 	  return [
-		this.playerCard.acceleration,
-		this.playerCard.topSpeed,
-		this.playerCard.baseCard.engineCapacity,
-		this.playerCard.baseCard.maxTorque,
-		this.playerCard.weight,
-		this.playerCard.baseCard.fuelTankCapacity,
-		this.playerCard.groundClearance,
+		  {name: PlayerCard.names.acceleration, value: this.playerCard.acceleration},
+		  {name: PlayerCard.names.topSpeed, value: this.playerCard.topSpeed},
+		  {name: PlayerCard.names.weight, value: this.playerCard.weight},
+		  {name: this.playerCard.baseCard.body, value: this.playerCard.baseCard.body},
+		  {name: this.playerCard.groundClearance, value: this.playerCard.groundClearance},
+		  {name: this.playerCard.baseCard.driveWheel, value: this.playerCard.baseCard.driveWheel},
 	  ];
 	}
 
 	iiTabDatas() {
 	  return [
-		this.playerCard.baseCard.year,
-		this.playerCard.baseCard.country,
-		this.playerCard.baseCard.driveWheel,
-		this.playerCard.baseCard.fuelType,
-		this.playerCard.baseCard.abs,
-		this.playerCard.baseCard.tractionControl,
+		  {name: this.playerCard.baseCard.year, value: this.playerCard.baseCard.year},
+		  {name: this.playerCard.baseCard.country, value: this.playerCard.baseCard.country},
+		  {name: this.playerCard.baseCard.fuelType, value: this.playerCard.baseCard.fuelType},
+		  {name: this.playerCard.baseCard.fuelTankCapacity, value: this.playerCard.baseCard.fuelTankCapacity},
+		  {name: this.playerCard.baseCard.abs, value: this.playerCard.baseCard.abs},
+		  {name: this.playerCard.baseCard.tractionControl, value: this.playerCard.baseCard.tractionControl},
 	  ];
 	}
 
 	iiiTabDatas() {
 	  return [
-		this.playerCard.baseCard.body,
-		this.playerCard.baseCard.doors,
-		this.playerCard.baseCard.seats,
-		this.playerCard.baseCard.length,
-		this.playerCard.width,
-		this.playerCard.height,
+		  {name: this.playerCard.baseCard.doors, value: this.playerCard.baseCard.doors},
+		  {name: this.playerCard.baseCard.seats, value: this.playerCard.baseCard.seats},
+		  {name: this.playerCard.baseCard.length, value: this.playerCard.baseCard.length},
+		  {name: this.playerCard.width, value: this.playerCard.width},
+		  {name: this.playerCard.height, value: this.playerCard.height},
 	  ];
 	}
 
 	ivTabDatas() {
 	  return [
-		this.playerCard.baseCard.year
+		  {name: this.playerCard.tunings, value: this.playerCard.tunings}
 	  ];
 	}
 

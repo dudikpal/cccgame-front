@@ -16,7 +16,7 @@
                      [innerHTML]="playerCard.baseCard.manufacturer">
                 </div>
                 <div class="manufacturer-type resize"
-                     [innerHTML]="playerCard.baseCard.type"
+                     [innerHTML]="playerCard.baseCard.id"
                      id="manufacturer-type">
                 </div>
             </div>
@@ -76,8 +76,8 @@
                     <table class="table table-striped back-table" style="height: 100%">
                         <tbody>
                         <tr *ngFor="let data of iTabDatas()">
-                            <th scope="row" [innerHTML]=data></th>
-                            <td>{{data}}</td>
+                            <th scope="row" [innerHTML]=data.name></th>
+                            <td>{{data.value}}</td>
                         </tr>
                         </tbody>
                     </table>
