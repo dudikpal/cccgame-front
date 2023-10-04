@@ -86,8 +86,8 @@
                     <table class="table table-striped back-table" style="height: 100%">
                         <tbody>
                         <tr *ngFor="let data of iiTabDatas()">
-                            <th scope="row" [innerHTML]=data></th>
-                            <td>{{data}}</td>
+                            <th scope="row" [innerHTML]=data.name></th>
+                            <td>{{data.value}}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -97,8 +97,8 @@
                            style="height: 100%">
                         <tbody>
                         <tr *ngFor="let data of iiiTabDatas()">
-                            <th scope="row" [innerHTML]=data></th>
-                            <td>{{data}}</td>
+                            <th scope="row" [innerHTML]=data.name></th>
+                            <td>{{data.value}}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -107,8 +107,8 @@
                     <table class="table table-striped back-table" style="height: 100%">
                         <tbody>
                         <tr *ngFor="let data of ivTabDatas()">
-                            <th scope="row" [innerHTML]=data></th>
-                            <td>{{data}}</td>
+                            <th scope="row" [innerHTML]=data.name></th>
+                            <td>{{data.value}}</td>
                         </tr>
                         </tbody>
                     </table>

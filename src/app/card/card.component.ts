@@ -12,6 +12,7 @@ import {BaseCard} from "../models/BaseCard";
 import {environment} from "../../environments/environment";
 import {PlayerCard} from "../models/PlayerCard";
 import {MainService} from "../services/main.service";
+import {CardFieldNames} from "../models/CardFieldNames";
 
 @Component({
 	selector: 'app-card',
@@ -42,6 +43,7 @@ export class CardComponent implements OnInit, AfterViewInit {
 
 	ngAfterViewInit(): void {
 		this.autoSizeText();
+		console.log(this.playerCard);
 	}
 
 	toggleDisable() {
@@ -76,11 +78,6 @@ export class CardComponent implements OnInit, AfterViewInit {
 				el.style.fontSize = elNewFontSize;
 				this.fontSize = elNewFontSize;
 			};
-				console.log('Element fontsize = ' + this.fontSize);
-			/*console.log('While ');
-			console.log('ScrollHeight: ' + el.scrollHeight);
-			console.log('>');
-			console.log('OffsetHeight: ' + el.offsetHeight);*/
 			while (el.scrollHeight > el.offsetHeight) {
 				resizeText();
 			}
@@ -98,39 +95,41 @@ export class CardComponent implements OnInit, AfterViewInit {
 
 	iTabDatas() {
 	  return [
-		  {name: PlayerCard.names.acceleration, value: this.playerCard.acceleration},
-		  {name: PlayerCard.names.topSpeed, value: this.playerCard.topSpeed},
-		  {name: PlayerCard.names.weight, value: this.playerCard.weight},
-		  {name: this.playerCard.baseCard.body, value: this.playerCard.baseCard.body},
-		  {name: this.playerCard.groundClearance, value: this.playerCard.groundClearance},
-		  {name: this.playerCard.baseCard.driveWheel, value: this.playerCard.baseCard.driveWheel},
+		  {name: CardFieldNames.getFieldName('acceleration'), value: this.playerCard.acceleration},
+		  {name: CardFieldNames.getFieldName('topSpeed'), value: this.playerCard.topSpeed},
+		  {name: CardFieldNames.getFieldName('weight'), value: this.playerCard.weight},
+		  {name: CardFieldNames.getFieldName('body'), value: this.playerCard.baseCard.body},
+		  {name: CardFieldNames.getFieldName('groundClearance'), value: this.playerCard.groundClearance},
+		  {name: CardFieldNames.getFieldName('driveWheel'), value: this.playerCard.baseCard.driveWheel},
 	  ];
 	}
 
 	iiTabDatas() {
 	  return [
-		  {name: this.playerCard.baseCard.year, value: this.playerCard.baseCard.year},
-		  {name: this.playerCard.baseCard.country, value: this.playerCard.baseCard.country},
-		  {name: this.playerCard.baseCard.fuelType, value: this.playerCard.baseCard.fuelType},
-		  {name: this.playerCard.baseCard.fuelTankCapacity, value: this.playerCard.baseCard.fuelTankCapacity},
-		  {name: this.playerCard.baseCard.abs, value: this.playerCard.baseCard.abs},
-		  {name: this.playerCard.baseCard.tractionControl, value: this.playerCard.baseCard.tractionControl},
+		  {name: CardFieldNames.getFieldName('year'), value: this.playerCard.baseCard.year},
+		  {name: CardFieldNames.getFieldName('country'), value: this.playerCard.baseCard.country},
+		  {name: CardFieldNames.getFieldName('fuelType'), value: this.playerCard.baseCard.fuelType},
+		  {name: CardFieldNames.getFieldName('fuelTankCapacity'), value: this.playerCard.baseCard.fuelTankCapacity},
+		  {name: CardFieldNames.getFieldName('abs'), value: this.playerCard.baseCard.abs},
+		  {name: CardFieldNames.getFieldName('tractionControl'), value: this.playerCard.baseCard.tractionControl},
 	  ];
 	}
 
 	iiiTabDatas() {
 	  return [
-		  {name: this.playerCard.baseCard.doors, value: this.playerCard.baseCard.doors},
-		  {name: this.playerCard.baseCard.seats, value: this.playerCard.baseCard.seats},
-		  {name: this.playerCard.baseCard.length, value: this.playerCard.baseCard.length},
-		  {name: this.playerCard.width, value: this.playerCard.width},
-		  {name: this.playerCard.height, value: this.playerCard.height},
+		  {name: CardFieldNames.getFieldName('doors'), value: this.playerCard.baseCard.doors},
+		  {name: CardFieldNames.getFieldName('seats'), value: this.playerCard.baseCard.seats},
+		  {name: CardFieldNames.getFieldName('length'), value: this.playerCard.baseCard.length},
+		  {name: CardFieldNames.getFieldName('width'), value: this.playerCard.width},
+		  {name: CardFieldNames.getFieldName('height'), value: this.playerCard.height},
 	  ];
 	}
 
 	ivTabDatas() {
 	  return [
-		  {name: this.playerCard.tunings, value: this.playerCard.tunings}
+		  {name: CardFieldNames.getFieldName('tuningsBody'), value: this.playerCard.tunings.body},
+		  {name: CardFieldNames.getFieldName('tuningsEngine'), value: this.playerCard.tunings.engine},
+		  {name: CardFieldNames.getFieldName('tuningsCornering'), value: this.playerCard.tunings.cornering},
 	  ];
 	}
 
