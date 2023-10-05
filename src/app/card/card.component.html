@@ -3,52 +3,52 @@
         <div class='front'>
             <div class="img-container">
                 <img
-                        class="img-car"
-                        [style.width]=playerCard.baseCard.objectWidth
-                        [style.height]=playerCard.baseCard.objectHeight
-                        [style.object-position]="playerCard.baseCard.objectPositionHorizontal + ' ' + playerCard.baseCard.objectPositionVertical"
-                        [src]=playerCard.baseCard.imageUrl
+                    class="img-car"
+                    [style.width]=playerCard.baseCard.objectWidth
+                    [style.height]=playerCard.baseCard.objectHeight
+                    [style.object-position]="playerCard.baseCard.objectPositionHorizontal + ' ' + playerCard.baseCard.objectPositionVertical"
+                    [src]=playerCard.baseCard.imageUrl
                 />
             </div>
             <div>
-                <div class="resize manufacturer-name"
+                <div class="manufacturer manufacturer-name resize"
                      [id]="cssEscape('#card_' + playerCard.id)"
                      [innerHTML]="playerCard.baseCard.manufacturer">
                 </div>
-                <div class="manufacturer-type resize"
+                <div class="manufacturer manufacturer-type resize"
                      [innerHTML]="playerCard.baseCard.id"
                      id="manufacturer-type">
                 </div>
             </div>
-            <table class="front-table" style="border: #86b7fe solid 2px">
+            <table class="front-table">
                 <tr>
-                    <td class="front-cell" style="width: 50%">
+                    <td class="front-cell">
                         <span>0-100:</span>
-                        <span style="text-align: center; width: 50%; display: inline-block">{{playerCard.acceleration}}</span>
+                        <span>{{playerCard.acceleration}}</span>
                     </td>
-                    <td class="front-cell" style="width: 50%">
+                    <td class="front-cell">
                         <span>Country:</span>
-                        <span style="text-align: center; width: 50%; display: inline-block">{{playerCard.baseCard.country}}</span>
+                        <span>{{playerCard.baseCard.country}}</span>
                     </td>
                 </tr>
                 <tr>
-                    <td class="front-cell" style="width: 50%">
-                        <span style="text-align: left; width: 50%; display: inline-block">Speed:</span>
-                        <span style="text-align: center; width: 50%; display: inline-block">{{playerCard.topSpeed}}</span>
+                    <td class="front-cell">
+                        <span>Speed:</span>
+                        <span>{{playerCard.topSpeed}}</span>
                     </td>
-                    <td class="front-cell" style="width: 50%">
-                        <span style="text-align: left; width: 50%; display: inline-block">HP:</span>
-                        <span style="text-align: center; width: 50%; display: inline-block">{{playerCard.powerHP}}</span>
+                    <td class="front-cell">
+                        <span>HP:</span>
+                        <span>{{playerCard.powerHP}}</span>
                     </td>
                 </tr>
                 <tr>
-                    <td class="front-cell" style="width: 50%">
-                        <span style="text-align: left; width: 50%; display: inline-block">Cornering:</span>
-                        <span style="text-align: center; width: 50%; display: inline-block">{{playerCard.cornering}}</span>
+                    <td class="front-cell">
+                        <span>Cornering:</span>
+                        <span>{{playerCard.cornering}}</span>
                     </td>
-                    <td class="front-cell" style="width: 50%">
-                        <span style="text-align: left; width: 50%; display: inline-block">Weight:</span>
-                        <span style="text-align: center; width: 50%; display: inline-block">{{playerCard.weight}}</span>
+                    <td class="front-cell">
+                        <span>Weight:</span>
+                        <span>{{playerCard.weight}}</span>
                     </td>
                 </tr>
             </table>
@@ -56,57 +56,24 @@
         <div class='back'>
             <div class="container-fluid">
                 <ul class="nav nav-tabs nav-fill nav-justified" id="back-tabs_{{playerCard.id}}">
-                    <li class="nav-item">
-                        <a class="nav-link active" [href]="cssEscape('#i_' + playerCard.id)" data-bs-toggle="tab">I</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [href]="cssEscape('#ii_' + playerCard.id)" data-bs-toggle="tab">II</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [href]="cssEscape('#iii_' + playerCard.id)" data-bs-toggle="tab">III</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [href]="cssEscape('#iv_' + playerCard.id)" data-bs-toggle="tab">IV</a>
+                    <li class="nav-item" *ngFor="let tab of getAllTabs(); let i = index">
+                        <a class="nav-link"
+                           id="nav-link_{{i + 1}}_{{playerCard.id}}"
+                           [class.active]="i === 0"
+                           [href]="cssEscape('#i_' + (i + 1) + playerCard.id)"
+                           data-bs-toggle="tab">{{i + 1}}</a>
                     </li>
                 </ul>
             </div>
-            <div class="tab-content container-fluid" id="back-tabs-content">
-                <div class="tab-pane active"
-                     id="i_{{playerCard.id}}">
-                    <table class="table table-striped back-table" style="height: 100%">
+            <div class="tab-content container-fluid" id="back-tabs-content"
+                >
+                <div class="tab-pane"
+                     [class.active]="i === 0"
+                     *ngFor="let tab of getAllTabs(); let i = index;"
+                     id="tab-pane_{{i + 1}}_{{playerCard.id}}">
+                    <table class="table table-striped back-table">
                         <tbody>
-                        <tr *ngFor="let data of iTabDatas()">
-                            <th scope="row" [innerHTML]=data.name></th>
-                            <td>{{data.value}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="tab-pane" id="ii_{{playerCard.id}}">
-                    <table class="table table-striped back-table" style="height: 100%">
-                        <tbody>
-                        <tr *ngFor="let data of iiTabDatas()">
-                            <th scope="row" [innerHTML]=data.name></th>
-                            <td>{{data.value}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="tab-pane" id="iii_{{playerCard.id}}">
-                    <table class="table table-striped back-table"
-                           style="height: 100%">
-                        <tbody>
-                        <tr *ngFor="let data of iiiTabDatas()">
-                            <th scope="row" [innerHTML]=data.name></th>
-                            <td>{{data.value}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="tab-pane" id="iv_{{playerCard.id}}">
-                    <table class="table table-striped back-table" style="height: 100%">
-                        <tbody>
-                        <tr *ngFor="let data of ivTabDatas()">
+                        <tr *ngFor="let data of tab">
                             <th scope="row" [innerHTML]=data.name></th>
                             <td>{{data.value}}</td>
                         </tr>

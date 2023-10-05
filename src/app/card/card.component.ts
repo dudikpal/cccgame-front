@@ -43,7 +43,6 @@ export class CardComponent implements OnInit, AfterViewInit {
 
 	ngAfterViewInit(): void {
 		this.autoSizeText();
-		console.log(this.playerCard);
 	}
 
 	toggleDisable() {
@@ -93,6 +92,10 @@ export class CardComponent implements OnInit, AfterViewInit {
 	  ];
 	}*/
 
+	getAllTabs() {
+		return [this.iTabDatas(), this.iiTabDatas(), this.iiiTabDatas(), this.ivTabDatas()];
+	}
+
 	iTabDatas() {
 	  return [
 		  {name: CardFieldNames.getFieldName('acceleration'), value: this.playerCard.acceleration},
@@ -127,9 +130,9 @@ export class CardComponent implements OnInit, AfterViewInit {
 
 	ivTabDatas() {
 	  return [
-		  {name: CardFieldNames.getFieldName('tuningsBody'), value: this.playerCard.tunings.body},
-		  {name: CardFieldNames.getFieldName('tuningsEngine'), value: this.playerCard.tunings.engine},
-		  {name: CardFieldNames.getFieldName('tuningsCornering'), value: this.playerCard.tunings.cornering},
+		  {name: CardFieldNames.getTuningFieldName('body'), value: this.playerCard.tunings.body},
+		  {name: CardFieldNames.getTuningFieldName('engine'), value: this.playerCard.tunings.engine},
+		  {name: CardFieldNames.getTuningFieldName('cornering'), value: this.playerCard.tunings.cornering},
 	  ];
 	}
 

@@ -33,8 +33,8 @@ export class CardFieldNames {
 		length: "Length (mm)",
 		width: "Width (mm)",
 		height: "Height (mm)",
-		groundClearance: "Grnd. clr. (mm)",
-		acceleration: "Acc. (0-100km/h)",
+		groundClearance: "Ground clearance (mm)",
+		acceleration: "Acceleration (0-100km/h)",
 		gear1st: "Gear 1st",
 		gear2nd: "Gear 2nd",
 		gear3rd: "Gear 3rd",
@@ -48,7 +48,17 @@ export class CardFieldNames {
 		tuningsCornering: "Cornering tuning",
 	}
 
+	static tuningFieldNames: any = {
+		body: "Tunings Body level",
+		engine: "Tunings Engine level",
+		cornering: "Tunings Cornering level",
+}
+
 	public static getFieldName(field: string) {
 		return this.fieldNames[field];
+	}
+
+	public static getTuningFieldName(field: string) {
+		return this.tuningFieldNames[field];
 	}
 }
