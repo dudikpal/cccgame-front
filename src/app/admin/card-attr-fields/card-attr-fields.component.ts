@@ -4,6 +4,7 @@ import {environment} from "../../../environments/environment";
 import {AdminService} from "../../services/admin.service.";
 import {MainService} from "../../services/main.service";
 import {isEmpty} from "rxjs";
+import {CardFieldNames} from "../../models/CardFieldNames";
 
 @Component({
 	selector: 'app-card-attr-fields',
@@ -13,6 +14,7 @@ import {isEmpty} from "rxjs";
 export class CardAttrFieldsComponent implements OnInit{
 
 	@Input() baseCard!: BaseCard;
+	//cardFieldNames: new CardFieldNames();
 
 	constructor(
 		private adminService: AdminService,
@@ -36,7 +38,11 @@ export class CardAttrFieldsComponent implements OnInit{
 			const attributeName = attrField.getAttribute('data-card_attribute')!;
 			const value = (attrField as HTMLInputElement).value.trim();
 			if (!!value) {
-				(this.baseCard as any)[attributeName] = value;
+				if (value.includes(',')) {
+					(this.baseCard as any)[attributeName] = value.split(/\s*,\s*/);
+				} else {
+					(this.baseCard as any)[attributeName] = value;
+				}
 			}
 		}
 		this.adminService.updateBaseCard(this.baseCard);
@@ -64,5 +70,9 @@ export class CardAttrFieldsComponent implements OnInit{
 			}
 		}
 		this.adminService.bulkUpdateBaseCard(baseCards);
+	}
+
+	getFieldName(field: any) {
+		return CardFieldNames.getFieldName(field);
 	}
 }

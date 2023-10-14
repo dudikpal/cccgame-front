@@ -40,6 +40,7 @@ export class AdminService {
 	}
 
 	async updateBaseCard(baseCard: BaseCard) {
+		console.log(baseCard);
 		fetch(environment.endpointPrefix + '/api/basecard',
 			{
 				method: "PUT",

@@ -21,8 +21,8 @@ p,
 a,
 span {
     color: #fff;
-    letter-spacing: 0.02em;
-    font-weight: 600;
+    /*letter-spacing: 0.02em;
+    font-weight: 600;*/
 }
 
 h1,
@@ -92,16 +92,10 @@ span {
 .front, .back {
     /*box-shadow: 2px 2px black;*/
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
-
-}
-
-.front {
     background-color: #024395;
-    /*background-image: url('https://img-fotki.yandex.ru/get/194550/29644339.5/0_d6c5f_c9f15850_orig');*/
 }
 
 .back {
-    background-color: #D21849;
     -webkit-transform: rotateY(180deg);
     -moz-transform: rotateY(180deg);
     -ms-transform: rotateY(180deg);
@@ -174,20 +168,34 @@ span {
 
 .front-table {
     color: white;
-    width: 96%;
-    margin: 2%;
-
+    width: 98%;
+    /*margin: 1%;*/
+    margin-bottom: 28px;
 }
 
-td {
-    padding: 1%;
+.front-table td {
+    width: 50%;
+}
+
+.manufacturer {
+    max-width: 100%;
+    overflow: hidden;
+    text-align: center;
+    padding-left: 5px;
+    vertical-align: middle;
 }
 
 .manufacturer-name {
-    max-width: 300px;
-    overflow: hidden;
-    white-space: nowrap;
+    height: 1.8rem;
+    font-size: 1.3rem;
+    font-weight: bold;
 }
+
+.manufacturer-type {
+    height: 1.4rem;
+    font-size: 1.1rem;
+}
+
 .container.disabled {
     opacity: 0.5; /* Adjust the opacity as needed */
     pointer-events: none; /* Prevent interactions with the card when disabled */
@@ -212,14 +220,57 @@ td {
 }
 
 .front-cell {
-    border: white solid 1px;
+    border: rgba(255, 255, 255, .2) solid 1px;
     text-wrap: none;
     padding: 5px;
-    font-size: 0.5rem;
+    font-size: 0.6rem;
 }
 
 .front-cell span {
-    /*vertical-align: middle;*/
+    font-weight: lighter;
+    text-align: left;
+    width: 50%;
+    display: inline-block;
+}
 
+.front-cell span:nth-last-of-type(1) {
+    font-weight: bold;
+    text-align: center;
+    width: 50%;
+    display: inline-block;
+}
 
+.no-resize, .resize {
+    width: 100%;
+    color: #FFF;
+    overflow: hidden;
+}
+
+.back-table {
+    height: 100%;
+}
+
+.back-table th {
+    font-weight: lighter;
+
+}
+
+.back-table td {
+    text-align: center;
+    vertical-align: middle;
+    padding-right: 5px;
+    font-weight: bolder;
+}
+
+.nav-item {
+    /*display: flex;
+    margin: auto;
+    justify-content: center;
+    width: 100%;
+    text-align: center;*/
+}
+
+.nav-link {
+
+    color: #a52834;
 }
