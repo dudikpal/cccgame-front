@@ -16,7 +16,7 @@
                      [innerHTML]="playerCard.baseCard.manufacturer">
                 </div>
                 <div class="manufacturer manufacturer-type resize"
-                     [innerHTML]="playerCard.baseCard.id"
+                     [innerHTML]="playerCard.baseCard.type"
                      id="manufacturer-type">
                 </div>
             </div>
@@ -24,11 +24,11 @@
                 <tr>
                     <td class="front-cell">
                         <span>0-100:</span>
-                        <span>{{playerCard.acceleration}}</span>
+                        <span>{{playerCard.acceleration}} s.</span>
                     </td>
                     <td class="front-cell">
-                        <span>Country:</span>
-                        <span>{{playerCard.baseCard.country}}</span>
+                        <span>Drive:</span>
+                        <span>{{playerCard.baseCard.driveWheel}}</span>
                     </td>
                 </tr>
                 <tr>
@@ -48,7 +48,7 @@
                     </td>
                     <td class="front-cell">
                         <span>Weight:</span>
-                        <span>{{playerCard.weight}}</span>
+                        <span>{{playerCard.weight}} kg</span>
                     </td>
                 </tr>
             </table>
@@ -58,10 +58,16 @@
                 <ul class="nav nav-tabs nav-fill nav-justified" id="back-tabs_{{playerCard.id}}">
                     <li class="nav-item" *ngFor="let tab of getAllTabs(); let i = index">
                         <a class="nav-link"
+                           style="align-text: center;
+                           justify-content: center;
+                           align-items: center;
+                           margin-left: auto;
+                           margin-right: auto;"
                            id="nav-link_{{i + 1}}_{{playerCard.id}}"
                            [class.active]="i === 0"
-                           [href]="cssEscape('#i_' + (i + 1) + playerCard.id)"
-                           data-bs-toggle="tab">{{i + 1}}</a>
+                           [href]="cssEscape('#tab-pane_' + (i + 1) + '_' + playerCard.id)"
+                           data-bs-toggle="tab"
+                        [innerHTML]="i + 1"></a>
                     </li>
                 </ul>
             </div>

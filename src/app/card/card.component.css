@@ -261,3 +261,16 @@ span {
     padding-right: 5px;
     font-weight: bolder;
 }
+
+.nav-item {
+    /*display: flex;
+    margin: auto;
+    justify-content: center;
+    width: 100%;
+    text-align: center;*/
+}
+
+.nav-link {
+
+    color: #a52834;
+}

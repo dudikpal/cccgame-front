@@ -92,6 +92,8 @@ export class BaseCard {
 
 	level: IDTORecord = {name: "Level", value: ''};
 
+	tags: IDTORecord = {name: "Tags", value: []}
+
 	manufacturer: IDTORecord = {name: "Manufacturer", value: ''};
 
 	type: IDTORecord = {name: "Type", value: ''};

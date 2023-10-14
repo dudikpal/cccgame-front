@@ -3,7 +3,7 @@ import {BaseCard} from "./BaseCard";
 export interface IDTORecord {
 	frontName?: string;
 	name: string;
-	value: number | string | null | undefined;
+	value: number | string | [] | null | undefined;
 }
 
 export class PlayerCard {

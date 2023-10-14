@@ -93,7 +93,7 @@ export class CardComponent implements OnInit, AfterViewInit {
 	}*/
 
 	getAllTabs() {
-		return [this.iTabDatas(), this.iiTabDatas(), this.iiiTabDatas(), this.ivTabDatas()];
+		return [this.iTabDatas(), this.iiTabDatas(), this.iiiTabDatas(), this.ivTabDatas(), this.vTabDatas()];
 	}
 
 	iTabDatas() {
@@ -136,5 +136,9 @@ export class CardComponent implements OnInit, AfterViewInit {
 	  ];
 	}
 
-
+	vTabDatas() {
+		return [
+			{name: CardFieldNames.getFieldName('tags'), value: this.playerCard.baseCard.tags},
+		];
+	}
 }

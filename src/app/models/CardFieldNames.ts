@@ -43,9 +43,7 @@ export class CardFieldNames {
 		gear6th: "Gear 6rd",
 		finalDrive: "Final drive",
 		isPrizeCard: "Prize card",
-		tuningsBody: "Chassis tuning",
-		tuningsEngine: "Engine tuning",
-		tuningsCornering: "Cornering tuning",
+		tags: "Tags",
 	}
 
 	static tuningFieldNames: any = {
