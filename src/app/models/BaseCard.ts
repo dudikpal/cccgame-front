@@ -1,3 +1,5 @@
+import {IDTORecord} from "./PlayerCard";
+
 export class BaseCard {
 
 	/*id!: string;
@@ -84,87 +86,89 @@ export class BaseCard {
 
 	isPrizeCard!: boolean;*/
 
-	id = {name: "ID"};
+	id: IDTORecord = {name: "BCID", value: ''};
 
-	rq = {name: "RQ"};
+	rq: IDTORecord = {name: "RQ", value: ''};
 
-	level = {name: "Level"};
+	level: IDTORecord = {name: "Level", value: ''};
 
-	manufacturer = {name: "Manufacturer"};
+	tags: IDTORecord = {name: "Tags", value: []}
 
-	type = {name: "Type"};
+	manufacturer: IDTORecord = {name: "Manufacturer", value: ''};
 
-	country = {name: "Country"};
+	type: IDTORecord = {name: "Type", value: ''};
 
-	body = {name: "Body"};
+	country: IDTORecord = {name: "Country", value: ''};
 
-	driveWheel = {name: "Drive wheel"};
+	body: IDTORecord = {name: "Body", value: ''};
 
-	fuelType = {name: "Fuel type"};
+	driveWheel: IDTORecord = {name: "Drive wheel", value: ''};
 
-	abs = {name: "ABS"};
+	fuelType: IDTORecord = {name: "Fuel type", value: ''};
 
-	tractionControl = {name: "Traction control"};
+	abs: IDTORecord = {name: "ABS", value: ''};
 
-	imageUrl = {name: "Image URL"};
+	tractionControl: IDTORecord = {name: "Traction control", value: ''};
 
-	logoURL = {name: "Logo URL"};
+	imageUrl: IDTORecord = {name: "Image URL", value: ''};
 
-	carPageUrl = {name: "Car page URL"};
+	logoURL: IDTORecord = {name: "Logo URL", value: ''};
 
-	objectPositionHorizontal = {name: "Object pos. horizontal"};
+	carPageUrl: IDTORecord = {name: "Car page URL", value: ''};
 
-	objectPositionVertical = {name: "Object pos. vertical"};
+	objectPositionHorizontal: IDTORecord = {name: "Object pos. horizontal", value: ''};
 
-	objectWidth = {name: "Object width"};
+	objectPositionVertical: IDTORecord = {name: "Object pos. vertical", value: ''};
 
-	objectHeight = {name: "Object height"};
+	objectWidth: IDTORecord = {name: "Object width", value: ''};
 
-	year = {name: "Year"};
+	objectHeight: IDTORecord = {name: "Object height", value: ''};
 
-	doors = {name: "Doors"};
+	year: IDTORecord = {name: "Year", value: ''};
 
-	cornering = {name: "Cornering"};
+	doors: IDTORecord = {name: "Doors", value: ''};
 
-	seats = {name: "Seats"};
+	cornering: IDTORecord = {name: "Cornering", value: ''};
 
-	fuelTankCapacity = {name: "Fuel tank capacity"};
+	seats: IDTORecord = {name: "Seats", value: ''};
 
-	engineCapacity = {name: "Engine capacity"};
+	fuelTankCapacity: IDTORecord = {name: "Fuel tank capacity", value: ''};
 
-	powerKW = {name: "Power KW"};
+	engineCapacity: IDTORecord = {name: "Engine capacity", value: ''};
 
-	powerHP = {name: "Power (HP)"};
+	powerKW: IDTORecord = {name: "Power KW", value: ''};
 
-	maxTorque = {name: "Max torque"};
+	powerHP: IDTORecord = {name: "Power (HP)", value: ''};
 
-	topSpeed = {name: "Top speed (km/h)"};
+	maxTorque: IDTORecord = {name: "Max torque", value: ''};
 
-	weight = {name: "Weight (kg)"};
+	topSpeed: IDTORecord = {name: "Top speed (km/h)", value: ''};
 
-	length = {name: "Length (mm)"};
+	weight: IDTORecord = {name: "Weight (kg)", value: ''};
 
-	width = {name: "Width (mm)"};
+	length: IDTORecord = {name: "Length (mm)", value: ''};
 
-	height = {name: "Height (mm)"};
+	width: IDTORecord = {name: "Width (mm)", value: ''};
 
-	groundClearance = {name: "Ground clearance (mm)"};
+	height: IDTORecord = {name: "Height (mm)", value: ''};
 
-	acceleration = {name: "Acceleration (0-100km/h)"};
+	groundClearance: IDTORecord = {name: "Ground clearance (mm)", value: ''};
 
-	gear1st = {name: "Gear 1st"};
+	acceleration: IDTORecord = {name: "Acceleration (0-100km/h)", value: ''};
 
-	gear2nd = {name: "Gear 2nd"};
+	gear1st: IDTORecord = {name: "Gear 1st", value: ''};
 
-	gear3rd = {name: "Gear 3rd"};
+	gear2nd: IDTORecord = {name: "Gear 2nd", value: ''};
 
-	gear4th = {name: "Gear 4rd"};
+	gear3rd: IDTORecord = {name: "Gear 3rd", value: ''};
 
-	gear5th = {name: "Gear 5rd"};
+	gear4th: IDTORecord = {name: "Gear 4rd", value: ''};
 
-	gear6th = {name: "Gear 6rd"};
+	gear5th: IDTORecord = {name: "Gear 5rd", value: ''};
 
-	finalDrive = {name: "Final drive"};
+	gear6th: IDTORecord = {name: "Gear 6rd", value: ''};
 
-	isPrizeCard = {name: "Prize card"};
+	finalDrive: IDTORecord = {name: "Final drive", value: ''};
+
+	isPrizeCard: IDTORecord = {name: "Prize card", value: ''};
 }

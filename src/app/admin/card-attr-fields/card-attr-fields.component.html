@@ -17,7 +17,7 @@
      *ngFor="let cardProperty of getObjectEntries(baseCard)"
 >
     <label for="card_attribute_{{cardProperty[0]}}"
-           [innerHTML]='cardProperty[0]'>
+           [innerHTML]='getFieldName([cardProperty[0]])'>
 
     </label>
     <input
