@@ -75,4 +75,22 @@ export class CardAttrFieldsComponent implements OnInit{
 	getFieldName(field: any) {
 		return CardFieldNames.getFieldName(field);
 	}
+
+	createBaseCard() {
+		const attrFields = document.querySelectorAll('[data-card_attribute]');
+		for (const attrField of Array.from(attrFields)) {
+			const attributeName = attrField.getAttribute('data-card_attribute')!;
+			const value = (attrField as HTMLInputElement).value.trim();
+			if (!!value) {
+				if (value.includes(',')) {
+					(this.baseCard as any)[attributeName] = value.split(/\s*,\s*/);
+				/*} else if (attributeName === 'id') {
+*/
+				} else {
+					(this.baseCard as any)[attributeName] = value;
+				}
+			}
+		}
+		this.adminService.createBaseCard(this.baseCard);
+	}
 }

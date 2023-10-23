@@ -40,7 +40,6 @@ export class AdminService {
 	}
 
 	async updateBaseCard(baseCard: BaseCard) {
-		console.log(baseCard);
 		fetch(environment.endpointPrefix + '/api/basecard',
 			{
 				method: "PUT",
@@ -76,5 +75,16 @@ export class AdminService {
 
 	deletePlayerCardFromAdminCardsByBaseCardId(baseCard: BaseCard) {
 		this.playerCards = this.playerCards.filter(playerCard => playerCard.baseCard.id !== baseCard.id);
+	}
+
+	createBaseCard(baseCard: BaseCard) {
+		fetch(environment.endpointPrefix + '/api/basecard/create',
+			{
+				method: "POST",
+				body: JSON.stringify(baseCard),
+				headers: {
+					"Content-Type": "application/json"
+				}
+			});
 	}
 }
