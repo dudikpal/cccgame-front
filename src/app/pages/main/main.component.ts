@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-main',
@@ -14,6 +14,7 @@ export class MainComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.router.navigate(["/home"]);
   }
 
 

@@ -29,7 +29,7 @@ export class GarageComponent implements OnInit {
 	) {
 		console.log('in garage constructor');
 		this.getPlayerCards();
-		this.playerCards = this.mainService.playerCards;
+		//this.playerCards = this.mainService.playerCards;
 	}
 
 	ngOnInit(): void {

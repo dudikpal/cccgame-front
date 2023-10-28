@@ -61,7 +61,8 @@ export interface Track {
 })
 export class MainService {
 
-
+	public userIsLoggedIn = false;
+	public isLoading = false;
 //  playerCardSkeleton!: PlayerCard;
 	playerCardSkeleton = {
 		baseCard: {
