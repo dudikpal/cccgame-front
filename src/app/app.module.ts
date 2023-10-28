@@ -35,6 +35,24 @@ import {RaceComponent} from './pages/race/race.component';
 import {RacesComponent} from './pages/races/races.component';
 import {ResultComponent} from './pages/result/result.component';
 import {RoundsComponent} from './pages/rounds/rounds.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatOptionModule} from "@angular/material/core";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatSelectModule} from "@angular/material/select";
+import {MatIconModule} from "@angular/material/icon";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatCardModule} from "@angular/material/card";
+import {MatDividerModule} from "@angular/material/divider";
+import {MatInputModule} from "@angular/material/input";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatButtonModule} from "@angular/material/button";
+import {LoggedInGuardService} from "./login/logged-in-guard.service";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import { LoginComponent } from './login/login.component';
+import {RegisterComponent} from "./register/register.component";
 
 
 @NgModule({
@@ -61,22 +79,39 @@ import {RoundsComponent} from './pages/rounds/rounds.component';
 		RacesComponent,
 		ResultComponent,
 		RoundsComponent,
+		LoginComponent,
+		RegisterComponent,
 	],
 	imports: [
 		HttpClientModule,
 		BrowserModule,
 		BrowserAnimationsModule,
 		AppRoutingModule,
+		FlexLayoutModule,
 		FormsModule,
+		MatToolbarModule,
+		MatInputModule,
+		MatCardModule,
+		MatMenuModule,
+		MatIconModule,
+		MatButtonModule,
+		MatTableModule,
+		MatSlideToggleModule,
+		MatSelectModule,
+		MatOptionModule,
+		MatDividerModule,
+		MatDialogModule,
+		MatProgressSpinnerModule,
 		ReactiveFormsModule,
 		NgxPaginationModule,
 		ScrollingModule,
 		CdkScrollableModule,
 		MatGridListModule,
 		DragDropModule,
-		MatExpansionModule
+		MatExpansionModule,
+		MatFormFieldModule,
 	],
-	providers: [FormBuilder, AdminService, MainService],
+	providers: [FormBuilder, AdminService, MainService, LoggedInGuardService],
 	bootstrap: [AppComponent]
 })
 export class AppModule {

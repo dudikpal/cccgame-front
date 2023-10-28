@@ -41,10 +41,10 @@ export class ChallengesComponent implements OnInit{
       // már nem kell, a round váltáskor van lekezelve a mentés
     }
     this.mainService.actualChallenge = challenge;
-    this.router.navigate(['rounds']);
+    this.router.navigate(['/rounds']);
   }
 
   backToHome() {
-    this.router.navigate(['home']);
+    this.router.navigate(['/home']);
   }
 }
