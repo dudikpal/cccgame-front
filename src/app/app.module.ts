@@ -48,11 +48,8 @@ import {MatDividerModule} from "@angular/material/divider";
 import {MatInputModule} from "@angular/material/input";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatButtonModule} from "@angular/material/button";
-import {LoggedInGuardService} from "./login/logged-in-guard.service";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {FlexLayoutModule} from "@angular/flex-layout";
-import { LoginComponent } from './login/login.component';
-import {RegisterComponent} from "./register/register.component";
 
 
 @NgModule({
@@ -79,8 +76,6 @@ import {RegisterComponent} from "./register/register.component";
 		RacesComponent,
 		ResultComponent,
 		RoundsComponent,
-		LoginComponent,
-		RegisterComponent,
 	],
 	imports: [
 		HttpClientModule,
@@ -111,7 +106,7 @@ import {RegisterComponent} from "./register/register.component";
 		MatExpansionModule,
 		MatFormFieldModule,
 	],
-	providers: [FormBuilder, AdminService, MainService, LoggedInGuardService],
+	providers: [FormBuilder, AdminService, MainService],
 	bootstrap: [AppComponent]
 })
 export class AppModule {

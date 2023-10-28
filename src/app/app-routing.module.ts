@@ -12,12 +12,8 @@ import {RacesComponent} from "./pages/races/races.component";
 import {RaceComponent} from "./pages/race/race.component";
 import {ResultComponent} from "./pages/result/result.component";
 import {RoundsComponent} from "./pages/rounds/rounds.component";
-import {LoginComponent} from "./login/login.component";
-import {RegisterComponent} from "./register/register.component";
 
 const routes: Routes = [
-	{path: 'login', component: LoginComponent},
-	{path: 'register', component: RegisterComponent},
 	{path: '', component: MainComponent,
 		children: [
 			{path: 'garage', component: GarageComponent},
