@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -9,16 +9,13 @@ import {Router} from "@angular/router";
 export class HomeComponent implements OnInit{
 
 	constructor(
-		private router: Router
+		private router: Router,
+		private route: ActivatedRoute
 	) {
 	}
 
 	ngOnInit(): void {
 
-	}
-
-	toGarage() {
-		this.router.navigate(['/garage']);
 	}
 
 	autoSizeText() {

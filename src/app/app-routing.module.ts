@@ -12,35 +12,31 @@ import {RacesComponent} from "./pages/races/races.component";
 import {RaceComponent} from "./pages/race/race.component";
 import {ResultComponent} from "./pages/result/result.component";
 import {RoundsComponent} from "./pages/rounds/rounds.component";
+import {LoginComponent} from "./login/login.component";
+import {RegisterComponent} from "./register/register.component";
 
 const routes: Routes = [
-	//{path: '', redirectTo: 'garage', pathMatch: "full"},
+	{path: 'login', component: LoginComponent},
+	{path: 'register', component: RegisterComponent},
+	{path: '', component: MainComponent,
+		children: [
+			{path: 'garage', component: GarageComponent},
+			{path: 'challenges', component: ChallengesComponent},
+			{path: 'home', component: HomeComponent},
+			{path: 'cards-pairing', component: CardsPairingComponent},
+			{path: 'races', component: RacesComponent},
+			{path: 'race', component: RaceComponent},
+			{path: 'result', component: ResultComponent},
+			{path: 'rounds', component: RoundsComponent},
+			{path: 'choose-cards', component: ChooseCardsComponent},
+		]
+	},
 	{path: 'admin', component: AdminComponent,
 		children: [
 			{path: 'manage-basecards', component: ManageBasecardsComponent}
-		]
+			]
 	},
-	/*{path: '', component: MainComponent, redirectTo: '/main', pathMatch: "full"},
-	{path: '**', component: MainComponent, redirectTo: '/main', pathMatch: "full"},*/
-	//{path: '', component: MainComponent,
-	/*{path: '', component: MainComponent,
-		children: [
-			{path: '', component: HomeComponent},
-			{path: 'garage', component: GarageComponent},
-			{path: 'challenges', component: ChallengesComponent},*/
-	{path: '', component: HomeComponent},
-	{path: 'home', component: HomeComponent},
-	{path: 'challenges', component: ChallengesComponent},
-	{path: 'cards-pairing', component: CardsPairingComponent},
-	{path: 'races', component: RacesComponent},
-	{path: 'race', component: RaceComponent},
-	{path: 'result', component: ResultComponent},
-	{path: 'rounds', component: RoundsComponent},
-	{path: 'choose-cards', component: ChooseCardsComponent},
-	{path: 'garage', component: GarageComponent},
-		//]},
-	//{path: '', component: GarageComponent}
-
+	{path: '**', component: MainComponent, redirectTo: '', pathMatch: "full"},
 ];
 
 @NgModule({
