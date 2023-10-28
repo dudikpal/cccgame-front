@@ -14,6 +14,7 @@ import {ResultComponent} from "./pages/result/result.component";
 import {RoundsComponent} from "./pages/rounds/rounds.component";
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
+import {LoggedInGuardService} from "./login/logged-in-guard.service";
 
 const routes: Routes = [
 	{path: 'login', component: LoginComponent},
@@ -29,14 +30,14 @@ const routes: Routes = [
 			{path: 'result', component: ResultComponent},
 			{path: 'rounds', component: RoundsComponent},
 			{path: 'choose-cards', component: ChooseCardsComponent},
-		]
+		], canActivate: [LoggedInGuardService]
 	},
 	{path: 'admin', component: AdminComponent,
 		children: [
 			{path: 'manage-basecards', component: ManageBasecardsComponent}
 			]
 	},
-	{path: '**', component: MainComponent, redirectTo: '', pathMatch: "full"},
+	{path: '**', component: MainComponent, redirectTo: '', pathMatch: "full", canActivate: [LoggedInGuardService]},
 ];
 
 @NgModule({
